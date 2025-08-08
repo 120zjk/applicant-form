@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>康業服務有限公司電子申請平台-generalform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="form1.css">
+</head>
+<body>
+    <!-- 成功提交的覆盖层 -->
+    <div class="success-overlay" id="successOverlay">
+        <div class="success-modal">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2 class="success-title">申請表提交成功！</h2>
+            <p class="success-message">
+                您的求職申請表已成功提交並轉換為Excel文件。我們將盡快處理您的申請。
+            </p>
+            <div class="success-details" id="successDetails">
+                <h4><i class="fas fa-info-circle"></i> 提交詳情</h4>
+                <p><strong>提交時間：</strong><span id="submissionTime"></span></p>
+                <p><strong>申請人：</strong><span id="applicantName"></span></p>
+                <p><strong>申請職位：</strong><span id="appliedPosition"></span></p>
+                <p><strong>文件狀態：</strong><span style="color: var(--success-color);">已成功生成Excel文件</span></p>
+            </div>
+            <div class="loading-spinner" id="loadingSpinner">
+                <div class="spinner"></div>
+                <p>正在處理您的申請...</p>
+            </div>
+            <div>
+                <button class="btn-success" id="downloadBtn">
+                    <i class="fas fa-download"></i> 下載Excel文件
+                </button>
+                <button class="btn-secondary" id="newApplicationBtn">
+                    <i class="fas fa-plus"></i> 填寫新申請
+                </button>
+                <button class="btn-secondary" id="closeModalBtn">
+                    <i class="fas fa-times"></i> 關閉
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="company-header">
+                <div class="company-name">康業服務有限公司</div>
+                <div class="company-name-en">HONG YIP HOLDINGS LIMITED</div>
+                <div class="form-title">求職申請表</div>
+                <div class="form-title-en">Application for Employment</div>
+            </div>
+            <p class="section-subtitle">個人資料 PERSONAL DATA</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- 提交状态显示 -->
+        <div class="submission-status" id="submissionStatus">
+            <i class="fas fa-check-circle"></i> 申請表已成功提交
+        </div>
+
+        <div class="notes-box">
+            <h3>個人資料處理聲明及注意事項 Personal Information Collection Statement and Notes to Job Applicants</h3>
+            <ol class="notes-list">
+                <li>康業控股有限公司及其附屬公司(簡稱"公司")收集求職者之個人資料的目的乃協助公司甄選求職者是否合適擔任所申請職位，以及用作於獲聘後各種有關人力資源及行政管理的事項，包括但不限於招聘及選拔。求職者同意此求職申請表可轉移子公司內不同商業單位作招聘及薪酬用途。The personal data collected in this application for employment will be used by Hong Yip Holdings Limited and its subsidiaries ("the Company") to assess the suitability of job applicants for the applied position and for various human resources management and administration purposes throughout the employment thereafter including, but not limited to recruitment and selection. Job Applicants agree that the personal data collected in this application for employment can be transferred and used within all business units of the Company for recruitment-related purpose.</li>
+                <li>求職申請表上的資料可能會披露及/或轉移子公司的保險商、銀行、醫療機構、政府機構、強權金管理人、潛在或前僱主及/或其他第三者機構，以作任何與其僱傭直接有關的用途包括但不限於薪酬及福利管理及檢討、僱傭資料審查及/或職工策劃等。The personal data collected may be disclosed and/or transferred to the Company's insurers, bankers, medical organizations, government organizations, administrators of provident fund scheme, former or prospective employers and/or other third parties for the purpose of any matters directly related to employment including, but not limited to administering and reviewing compensation and benefits, reference checking and/or staff planning etc.</li>
+                <li>根據《個人資料(私隱)條例》，求職者有權要求查閱及更正所填報的個人資料，如有需要，可向人力資源及行政部提出。According to the Personal Data (Privacy) Ordinance, job applicants can request for access and correction of any personal data provided in this application for employment. Please contact Human Resources & Administration Department for enquiries.</li>
+                <li>求職者必須盡量接受求職申請表上所有項目及提供完整資料(非強制性資料除外)，以便進行甄選。若求職者未能完整地提供所有資料，將有可能延誤受託申請。For selection purpose, job applicants are advised to provide <span class="highlight">FULL</span> information and complete all sections in this application for employment (except optional items). Failure to do so may delay the process of the application.</li>
+                <li>作為執行平等機會的僱主，公司會確保每位求職者得到平等的僱傭機會。Being an equal opportunity employer, the Company assures that every job applicant has an equal employment opportunity.</li>
+                <li>所有求職者不會因為其性別、懷孕、殘疾、婚姻狀況、家庭崗位、種族、年齡及性傾向而在求職時蒙受不利。All job applicants will not be disadvantaged because of his/her sex, pregnancy, disability, marital status, family status, race, age and sexual orientation when applying for a job.</li>
+                <li>所有求職申請表資料將絕對保密。All information provided in this application for employment will be treated in strict confidence.</li>
+                <li>請用正楷填寫申請表。Please complete this form in <span class="highlight">BLOCK</span> letters.</li>
+            </ol>
+        </div>
+
+        <form id="applicationForm" class="form-section">
+            <h2 class="section-title">求職者專用 FOR JOB APPLICANT USE ONLY</h2>
+            
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">申請職位 Position Applied for</label>
+                        <input type="text" name="position" class="form-control" placeholder="請輸入申請職位" required>
+                        <div class="error-message">此為必填項目</div>
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">要求薪金 Expected Salary</label>
+                        <input type="text" name="salary" class="form-control" placeholder="請輸入期望薪金" required>
+                        <div class="error-message">此為必填項目</div>
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">可到職日期 Date Available</label>
+                        <input type="date" name="available_date" class="form-control" required>
+                        <div class="error-message">此為必填項目</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="section-subtitle">個人資料 Personal Particulars</h3>
+            
+            <table class="form-table">
+                <tr>
+                    <th>稱謂 Title </th>
+                    <td>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="title" value="Mr." required> 先生 Mr.
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="title" value="Ms."> 女士 Ms.
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="title" value="Miss"> 小姐 Miss
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="title" value="Mrs."> 太太 Mrs.
+                            </label>
+                        </div>
+                        <div class="error-message">此為必填項目</div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>中文姓名 Chinese Name </th>
+                    <td>
+                        <input type="text" name="chinese_name" class="form-control" required>
+                        <div class="error-message">此為必填項目</div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>英文姓名 English Name </th>
+                    <td>
+                        <input type="text" name="english_name" class="form-control" required>
+                        <div class="error-message">此為必填項目</div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>身份證/護照號碼 HKID/Passport No. </th>
+                    <td>
+                        <input type="text" name="id_number" class="form-control" required>
+                        <div class="error-message">此為必填項目</div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>國籍 Nationality </th>
+                    <td>
+                        <input type="text" name="nationality" class="form-control" required>
+                        <div class="error-message">此為必填項目</div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>種族 Race <span class="required"></span></th>
+                    <td>
+                        <input type="text" name="race" class="form-control">
+                        <div class="optional">非強制性資料</div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>出生日期 Date of Birth (dd/mm/yyyy) </th>
+                    <td>
+                        <input type="date" name="birth_date" class="form-control" required>
+                        <div class="error-message">此為必填項目</div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>婚姻狀況 Marital Status <span class="required"></span></th>
+                    <td>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="marital_status" value="Single"> 未婚 Single
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="marital_status" value="Married"> 已婚 Married
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="marital_status" value="Widow"> 喪偶 Widow
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="marital_status" value="Divorced"> 離婚 Divorced
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="marital_status" value="Separated"> 分居 Separated
+                            </label>
+                        </div>
+                        <div class="optional">非強制性資料</div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>住宅電話 Home Tel. <span class="required"></span></th>
+                    <td>
+                        <input type="tel" name="home_phone" class="form-control" required>
+                        <div class="error-message">此為必填項目</div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>手提電話 Mobile No. </th>
+                    <td>
+                        <input type="tel" name="mobile_phone" class="form-control" required>
+                        <div class="error-message">此為必填項目</div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>電郵地址 Email Address</th>
+                    <td>
+                        <input type="email" name="email" class="form-control" required>
+                        <div class="error-message">此為必填項目</div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>住宅地址 Residential Address (English)</th>
+                    <td>
+                        <textarea name="address" class="form-control" rows="3" required></textarea>
+                        <div class="error-message">此為必填項目</div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>通訊地址 Correspondence Address (If different from above) <span class="required"></span></th>
+                    <td>
+                        <textarea name="correspondence_address" class="form-control" rows="3"></textarea>
+                        <div class="optional">非強制性資料</div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>你是否需要簽證及/或受到任何進入許可之限制? Do you need a visa and/or restricted to any entry permits in Hong Kong? </th>
+                    <td>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="visa_required" value="No" required> 否 No
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="visa_required" value="Yes"> 是 Yes
+                            </label>
+                        </div>
+                        <input type="text" name="visa_details" class="form-control" placeholder="請註明 please specify" style="margin-top: 10px;">
+                        <div class="error-message">此為必填項目</div>
+                    </td>
+                </tr>
+            </table>
+
+            <h3 class="section-subtitle">學歷及專業資格 Academic and Professional Qualifications</h3>
+            
+            <table class="form-table">
+                <thead>
+                    <tr>
+                        <th>由 From (mm/yyyy)</th>
+                        <th>至 To (mm/yyyy)</th>
+                        <th>學校/機構名稱 Name of School</th>
+                        <th>所獲資歷或證書 Qualification Obtained</th>
+                      
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                       
+                        <td><input type="month" name="edu-start-date" class="form-control"></td>
+                        <td><input type="month" name="edu-end-date" class="form-control"></td>
+                        <td><input type="text" name="school" class="form-control" ></td>
+                        <td><input type="text" name="qualification" class="form-control" ></td>
+                    </tr>
+                    <tr>
+
+                        <td><input type="month" name="edu-start-date" class="form-control"></td>
+                        <td><input type="month" name="edu-end-date" class="form-control"></td>
+                        <td><input type="text" name="school" class="form-control" ></td>
+                        <td><input type="text" name="qualification" class="form-control" ></td>
+                    </tr>
+                    <tr>
+
+                        <td><input type="month" name="edu-end-date" class="form-control"></td>
+                        <td><input type="month" name="edu-end-date" class="form-control"></td>
+                        <td><input type="text" name="school" class="form-control"></td>
+                        <td><input type="text" name="qualification" class="form-control" ></td>
+                    </tr>
+                    <tr>
+
+                        <td><input type="month" name="edu-end-date" class="form-control"></td>
+                        <td><input type="month" name="edu-end-date" class="form-control"></td>
+                        <td><input type="text" name="school" class="form-control"></td>
+                        <td><input type="text" name="qualification" class="form-control" ></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="form-group">
+                <label class="form-label">專業資格 Professional Qualification</label>
+                <table class="form-table">
+                    <thead>
+                        <tr>
+                            <th>獲得日期 Date Obtained (dd/mm/yyyy)</th>
+                            <th>機構 Institution</th>
+                            <th>專業資格 Professional Qualification</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody id ="academicTableBody">
+                        <tr>
+                            <td><input type="date" name="qualification_1" class="form-control"></td>
+                            <td><input type="text" name="institution_1" class="form-control"></td>
+                            <td><input type="text" name="date_obtained_1" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="date" name="qualification_2" class="form-control"></td>
+                            <td><input type="text" name="institution_2" class="form-control"></td>
+                            <td><input type="text" name="date_obtained_2" class="form-control"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="add-row-container">
+                    <!-- <button type="button" id="addAcademicRow" class="add-row-btn">
+                        <i class="fas fa-plus"></i> 新增學歷
+                    </button> -->
+                    </div>
+            </div>
+            <h3 class="section-subtitle">技能 Skills</h3>
+            
+            <div class="form-group">
+                <label class="form-label">語言能力 Language Skills <span class="required"></span></label>
+                
+                <table class="form-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>中文 (普通話) Chinese (Mandarin)</th>
+                            <th>英文 English</th>
+                            <th>其他 Others</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>書寫 Written</strong></td>
+                            <td>
+                                <div class="radio-group" style="flex-direction: column;">
+                                    <label class="radio-option">
+                                        <input type="radio" name="mandarin_written" value="Fluent" required> 流利 Fluent
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="mandarin_written" value="Fair"> 一般 Fair
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="mandarin_written" value="Basic"> 基本 Basic
+                                    </label>
+                                </div>
+                                <div class="error-message">此為必填項目</div>
+                            </td>
+                            <td>
+                                <div class="radio-group" style="flex-direction: column;">
+                                    <label class="radio-option">
+                                        <input type="radio" name="english_written" value="Fluent" required> 流利 Fluent
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="english_written" value="Fair"> 一般 Fair
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="english_written" value="Basic"> 基本 Basic
+                                    </label>
+                                </div>
+                                <div class="error-message">此為必填項目</div>
+                            </td>
+                            <td>
+                                <input type="text" name="other_language" class="form-control" placeholder="請列明 Please specify" style="margin-bottom: 10px;">
+                                <div class="radio-group" style="flex-direction: column;">
+                                    <label class="radio-option">
+                                        <input type="radio" name="other_written" value="Fluent"> 流利 Fluent
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="other_written" value="Fair"> 一般 Fair
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="other_written" value="Basic"> 基本 Basic
+                                    </label>
+                                </div>
+                                <div class="optional">非強制性資料</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>會話 Spoken</strong></td>
+                            <td>
+                                <div class="radio-group" style="flex-direction: column;">
+                                    <label class="radio-option">
+                                        <input type="radio" name="mandarin_spoken" value="Fluent" required> 流利 Fluent
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="mandarin_spoken" value="Fair"> 一般 Fair
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="mandarin_spoken" value="Basic"> 基本 Basic
+                                    </label>
+                                </div>
+                                <div class="error-message">此為必填項目</div>
+                            </td>
+                            <td>
+                                <div class="radio-group" style="flex-direction: column;">
+                                    <label class="radio-option">
+                                        <input type="radio" name="english_spoken" value="Fluent" required> 流利 Fluent
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="english_spoken" value="Fair"> 一般 Fair
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="english_spoken" value="Basic"> 基本 Basic
+                                    </label>
+                                </div>
+                                <div class="error-message">此為必填項目</div>
+                            </td>
+                            <td>
+                                <div class="radio-group" style="flex-direction: column;">
+                                    <label class="radio-option">
+                                        <input type="radio" name="other_spoken" value="Fluent"> 流利 Fluent
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="other_spoken" value="Fair"> 一般 Fair
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="other_spoken" value="Basic"> 基本 Basic
+                                    </label>
+                                </div>
+                                <div class="optional">非強制性資料</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">電腦應用 PC Applications</label>
+                <div class="form-row">
+                    <div class="form-col">
+                        <input type="text" name="software_skills" class="form-control" placeholder="軟件應用 Software Application">
+                    </div>
+                    <div class="form-col">
+                        <input type="text" name="programming_skills" class="form-control" placeholder="程式語言 Programming Language">
+                    </div>
+                </div>
+                <div class="optional">非強制性資料</div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">其他技能/專長 Other Skills</label>
+                <textarea name="other_skills" class="form-control" rows="3"></textarea>
+                <div class="optional">非強制性資料</div>
+            </div>
+            <div id ="voluntarySection" class="form-group">
+            <h3 class="section-subtitle">有關公共機構/工會/團體的義務崗位例如業主立案法團委員<br>Voluntary Job of Relevant Public Institute/Organizations/Unions (e.g. member of Owners' Corporations)</h3>
+                 <table class="form-table">
+                <thead>
+                    <tr>
+                        <th>日期 Date<br>(日/月/年)(dd/mm/yyyy)</th>
+                        <th>公共機構/工會/團體名稱<br>Name of Public Institute/Organization/Union</th>
+                        <th>義務崗位名稱<br>Name of Voluntary Position</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="date" name="voluntary-date" class="form-control" placeholder="dd/mm/yyyy"></td>
+                        <td><input type="text" name="voluntary_organization" class="form-control"></td>
+                        <td><input type="text" name="voluntary_position" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="date" name="voluntary-date" class="form-control" placeholder="dd/mm/yyyy"></td>
+                        <td><input type="text" name="voluntary_organization" class="form-control"></td>
+                        <td><input type="text" name="voluntary_position" class="form-control"></td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+            <h3 class="section-subtitle">工作經驗 Working Experience</h3>
+            <p>請倒序列出過往所有僱傭紀錄，若有需要可附加頁面書寫。<br>Please list all employment records in reverse chronological order and use separate sheet if necessary.</p>
+           
+            <table class="form-table">
+                <thead>
+                    <tr>
+                        <th>由 From<br>(dd/mm/yyyy)</th>
+                        <th>至 To <br>(dd/mm/yyyy)</th>
+                        <th>僱主名稱<br>Name of Employer</th>
+                        <th>業務性質<br>Nature of Business</th>
+                        <th>最後職位<br>Last Position</th>
+                        <th>最後薪金<br>Last Salary</th>
+                        <th>離職原因<br>Reason for Leaving</th>
+                    </tr>
+                </thead>
+                <tbody id ="experienceTableBody">
+                    <tr>
+                        <td><input type="date" name="work-start" class="form-control" placeholder="dd/mm/yyyy"></td>
+                        <td><input type="date" name="work-end" class="form-control" placeholder="dd/mm/yyyy"></td>
+                        <td><input type="text" name="employer_1" class="form-control"></td>
+                        <td><input type="text" name="business_nature_1" class="form-control"></td>
+                        <td><input type="text" name="last_position_1" class="form-control"></td>
+                        <td><input type="text" name="last_salary_1" class="form-control"></td>
+                        <td><input type="text" name="reason_leaving_1" class="form-control"></td>
+                        
+                    </tr>
+                    <tr>
+                        <td><input type="date" name="work-start" class="form-control" placeholder="dd/mm/yyyy"></td>
+                        <td><input type="date" name="work-end" class="form-control" placeholder="dd/mm/yyyy"></td>
+                        <td><input type="text" name="employer_2" class="form-control"></td>
+                        <td><input type="text" name="business_nature_2" class="form-control"></td>
+                        <td><input type="text" name="last_position_2" class="form-control"></td>
+                        <td><input type="text" name="last_salary_2" class="form-control"></td>
+                        <td><input type="text" name="reason_leaving_2" class="form-control"></td>
+             
+                    </tr>
+                </tbody>
+                <!-- <div class="add-row-container">
+                    <button type="button" id="addExperienceRow" class="add-row-btn">
+                        <i class="fas fa-plus"></i> 新增工作經驗
+                    </button>
+                    </div> -->
+            </table>
+
+            <h3 class="section-subtitle">其他資料 Supplementary Information</h3>
+            
+            <div class="form-group">
+                <label class="form-label">1. 是否曾在本公司任職 (全職/兼職)? Did you work in our Company before (Permanent/Temporary)? </label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="previous_employment" value="No" required> 否 No
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="previous_employment" value="Yes"> 是 Yes
+                    </label>
+                </div>
+                <div class="error-message">此為必填項目</div>
+                
+                <div class="form-row" style="margin-top: 15px;">
+                    <div class="form-col">
+                        <input type="text" name="prev_company" class="form-control" placeholder="公司 Company">
+                    </div>
+                    <div class="form-col">
+                        <input type="text" name="prev_department" class="form-control" placeholder="部門/分區/大廈 Department/Area/Building">
+                    </div>
+                    <div class="form-col">
+                        <input type="text" name="prev_position" class="form-control" placeholder="職位 Position">
+                    </div>
+                    <div class="form-col">
+                        <input type="text" name="prev_period" class="form-control" placeholder="任職時期 Period of Employment">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">2. 是否有家屬及/或親屬現於本集團任職? Do you have any family member(s) and/or relative(s) working in the Company? </label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="relatives" value="No" required> 否 No
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="relatives" value="Yes"> 是 Yes
+                    </label>
+                </div>
+                <div class="error-message">此為必填項目</div>
+                
+                <div class="form-row" style="margin-top: 15px;">
+                    <div class="form-col">
+                        <input type="text" name="relative_name" class="form-control" placeholder="姓名 Name">
+                    </div>
+                    <div class="form-col">
+                        <input type="text" name="relationship" class="form-control" placeholder="關係 Relationship">
+                    </div>
+                    <div class="form-col">
+                        <input type="text" name="relative_company" class="form-control" placeholder="公司 Company">
+                    </div>
+                    <div class="form-col">
+                        <input type="text" name="relative_area" class="form-control" placeholder="分區/大廈 Area/Building">
+                    </div>
+                    <div class="form-col">
+                        <input type="text" name="relative_position" class="form-control" placeholder="職位 Position">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">3. 是否曾因觸犯刑事罪行而被定罪? Have you ever been convicted of any criminal offence? (A criminal conviction is not necessarily a barrier to appointment)</label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="criminal_conviction" value="No" required> 否 No
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="criminal_conviction" value="Yes"> 是 Yes
+                    </label>
+                </div>
+                <div class="error-message">此為必填項目</div>
+                
+                <div class="form-row" style="margin-top: 15px;">
+                    <div class="form-col">
+                        <input type="text" name="conviction_date" class="form-control" placeholder="日期 Date">
+                    </div>
+                    <div class="form-col">
+                        <input type="text" name="conviction_place" class="form-control" placeholder="地點 Place">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">4. 從何得知此職位空缺? How did you learn of this position? (Please specify) <span class="required"></span></label>
+                <div class="radio-group" style="flex-wrap: wrap;">
+                    <label class="radio-option">
+                        <input type="radio" name="job_source" value="Online Advertisement" required> 網上招聘廣告 Online Advertisement
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="job_source" value="Printed Advertisement"> 印刷招聘廣告 Printed Advertisement
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="job_source" value="Internal Referral"> 內部介紹 Internal Referral
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="job_source" value="Referral from Educational Institute"> 學院轉介 Referral from Educational Institute
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="job_source" value="Company's website"> 公司網站 Company's website
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="job_source" value="Others"> 其他 Others
+                    </label>
+                </div>
+                <div class="form-row" style="margin-top: 10px;">
+                    <div class="form-col">
+                        <input type="text" name="referee_name" class="form-control" placeholder="介紹人姓名 Name of Referee">
+                    </div>
+                    <div class="form-col">
+                        <input type="text" name="other_source" class="form-control" placeholder="其他來源說明 Other Source Details">
+                    </div>
+                </div>
+                <div class="error-message">此為必填項目</div>
+            </div>
+
+            <h3 class="section-subtitle">諮詢人 Referees</h3>
+            <p>請提供2名非親屬人士作為諮詢人<br>Please provide information of 2 non-relative referees.</p>
+            
+            <table class="form-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>姓名 Name</th>
+                        <th>職位 Position</th>
+                        <th>聯絡電話 Contact No.</th>
+                        <th>公司名稱 Company Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>諮詢人1 Referee 1</strong></td>
+                        <td><input type="text" name="referee1_name" class="form-control" required></td>
+                        <td><input type="text" name="referee1_position" class="form-control" required></td>
+                        <td><input type="tel" name="referee1_contact" class="form-control" required></td>
+                        <td><input type="text" name="referee1_company" class="form-control" required></td>
+                    </tr>
+                    <tr>
+                        <td><strong>諮詢人2 Referee 2</strong></td>
+                        <td><input type="text" name="referee2_name" class="form-control" required></td>
+                        <td><input type="text" name="referee2_position" class="form-control" required></td>
+                        <td><input type="tel" name="referee2_contact" class="form-control" required></td>
+                        <td><input type="text" name="referee2_company" class="form-control" required></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="mandatory-note">
+                <i class="fas fa-exclamation-circle"></i> 請完整回答上述所有問題，標「*」項為非必填內容
+            </div>
+            
+            <div class="btn-container">
+                <button type="submit" class="btn" id="submitBtn">
+                    <i class="fas fa-paper-plane"></i> 提交申請表
+                </button>
+            </div>
+        </form>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <p>康業控股有限公司 HONG YIP HOLDINGS LIMITED</p>
+            <p>© 2025 康業控股有限公司 版權所有。保留所有權利。</p>
+            <p>個人資料處理聲明: 本公司承諾遵守《個人資料(私隱)條例》的規定，確保個人資料的準確性和安全性。</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('applicationForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const successOverlay = document.getElementById('successOverlay');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const successDetails = document.getElementById('successDetails');
+            const submissionStatus = document.getElementById('submissionStatus');
+            
+            let downloadUrl = null;
+            let submissionData = null;
+            // 新增學歷行
+document.getElementById('addAcademicRow').addEventListener('click', function() {
+    const tbody = document.getElementById('academicTbody');
+    const newRow = document.createElement('tr');
+    newRow.innerHTML = `
+        <td><input type="text" name="school" class="form-control"></td>
+        <td><input type="text" name="qualification" class="form-control"></td>
+        <td><input type="month" name="edu-start-date" class="form-control"></td>
+        <td><input type="month" name="edu-end-date" class="form-control"></td>
+    `;
+    tbody.appendChild(newRow);
+});
+
+// 新增工作經驗行
+document.getElementById('addExperienceRow').addEventListener('click', function() {
+    const tbody = document.getElementById('experienceTbody');
+    const newRow = document.createElement('tr');
+    newRow.innerHTML = `
+        <td><input type="date" name="work-start" class="form-control"></td>
+        <td><input type="date" name="work-end" class="form-control"></td>
+        <td><input type="text" name="employer" class="form-control"></td>
+        <td><input type="text" name="business_nature" class="form-control"></td>
+        <td><input type="text" name="last_position" class="form-control"></td>
+        <td><input type="text" name="last_salary" class="form-control"></td>
+        <td><input type="text" name="reason_leaving" class="form-control"></td>
+    `;
+    tbody.appendChild(newRow);
+});
+            // 表单提交处理
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // 验证表单
+                if (!validateForm()) {
+                    return;
+                }
+                
+                // 显示加载状态
+                showLoadingState();
+                
+                // 收集表单数据
+                const formData = collectFormData();
+                
+                // 提交表单
+                submitForm(formData);
+            });
+            
+            // 验证表单
+            function validateForm() {
+                // 重置所有错误状态
+                form.querySelectorAll('.validation-error').forEach(el => {
+                    el.classList.remove('validation-error');
+                });
+                form.querySelectorAll('.error-message').forEach(el => {
+                    el.style.display = 'none';
+                });
+                
+                // 验证所有必填项
+                const requiredFields = form.querySelectorAll('[required]');
+                let firstInvalid = null;
+                let isValid = true;
+                
+                requiredFields.forEach(field => {
+                    // 特殊处理单选按钮组
+                    if (field.type === 'radio') {
+                        const groupName = field.name;
+                        const group = form.querySelectorAll(`input[name="${groupName}"]`);
+                        const isChecked = Array.from(group).some(radio => radio.checked);
+                        
+                        if (!isChecked) {
+                            if (!firstInvalid) firstInvalid = group[0];
+                            const errorMsg = group[0].closest('td')?.querySelector('.error-message');
+                            if (errorMsg) errorMsg.style.display = 'block';
+                            isValid = false;
+                        }
+                    }
+                    // 处理其他输入类型
+                    else if (!field.value.trim()) {
+                        if (!firstInvalid) firstInvalid = field;
+                        field.classList.add('validation-error');
+                        if (field.nextElementSibling?.classList?.contains('error-message')) {
+                            field.nextElementSibling.style.display = 'block';
+                        }
+                        isValid = false;
+                    }
+                });
+                
+                if (!isValid) {
+                    alert('請填寫所有必填項目');
+                    if (firstInvalid) {
+                        firstInvalid.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center'
+                        });
+                    }
+                }
+                
+                return isValid;
+            }
+            
+            // 收集表单数据
+            function collectFormData() {
+                const formData = new FormData(form);
+                
+                // 收集教育经历
+                const education = [];
+                // 收集小学信息
+                if (formData.get('primary_school')) {
+                    education.push({
+                        level: '小學',
+                        school: formData.get('primary_school'),
+                        qualification: formData.get('primary_qualification'),
+                        period: `${formData.get('primary_from')} - ${formData.get('primary_to')}`
+                    });
+                }
+                // 收集中学信息
+                if (formData.get('secondary_school')) {
+                    education.push({
+                        level: '中學',
+                        school: formData.get('secondary_school'),
+                        qualification: formData.get('secondary_qualification'),
+                        period: `${formData.get('secondary_from')} - ${formData.get('secondary_to')}`
+                    });
+                }
+                // 收集其他教育信息
+                if (formData.get('other_school')) {
+                    education.push({
+                        level: '其他',
+                        school: formData.get('other_school'),
+                        qualification: formData.get('other_qualification'),
+                        period: `${formData.get('other_from')} - ${formData.get('other_to')}`
+                    });
+                }
+                
+                // 收集工作经历
+                const workExperience = [];
+                if (formData.get('employer_1')) {
+                    workExperience.push({
+                        employer: formData.get('employer_1'),
+                        position: formData.get('last_position_1'),
+                        salary: formData.get('last_salary_1'),
+                        reason: formData.get('reason_leaving_1'),
+                        period: `${formData.get('work_from_1')} - ${formData.get('work_to_1')}`
+                    });
+                }
+                if (formData.get('employer_2')) {
+                    workExperience.push({
+                        employer: formData.get('employer_2'),
+                        position: formData.get('last_position_2'),
+                        salary: formData.get('last_salary_2'),
+                        reason: formData.get('reason_leaving_2'),
+                        period: `${formData.get('work_from_2')} - ${formData.get('work_to_2')}`
+                    });
+                }
+                
+                // 收集咨询人信息
+                const referees = [];
+                if (formData.get('referee1_name')) {
+                    referees.push({
+                        name: formData.get('referee1_name'),
+                        position: formData.get('referee1_position'),
+                        phone: formData.get('referee1_contact'),
+                        company: formData.get('referee1_company'),
+                        relationship: 'Referee 1'
+                    });
+                }
+                if (formData.get('referee2_name')) {
+                    referees.push({
+                        name: formData.get('referee2_name'),
+                        position: formData.get('referee2_position'),
+                        phone: formData.get('referee2_contact'),
+                        company: formData.get('referee2_company'),
+                        relationship: 'Referee 2'
+                    });
+                }
+                
+                formData.append('education', JSON.stringify(education));
+                formData.append('work_experience', JSON.stringify(workExperience));
+                formData.append('referees', JSON.stringify(referees));
+                
+                return formData;
+            }
+            
+            // 显示加载状态
+            function showLoadingState() {
+                successOverlay.style.display = 'flex';
+                loadingSpinner.style.display = 'block';
+                successDetails.style.display = 'none';
+                
+                // 禁用表单
+                form.classList.add('form-disabled');
+                submitBtn.disabled = true;
+            }
+            
+            // 提交表单
+            function submitForm(formData) {
+                fetch('/submit', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.blob().then(blob => {
+                            // 获取文件名
+                            const contentDisposition = response.headers.get('Content-Disposition');
+                            let filename = '康業求職申請表.xlsx';
+                            if (contentDisposition) {
+                                const matches = contentDisposition.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/);
+                                if (matches != null && matches[1]) {
+                                    filename = matches[1].replace(/['"]/g, '');
+                                }
+                            }
+                            
+                            // 创建下载链接
+                            downloadUrl = URL.createObjectURL(blob);
+                            
+                            // 保存提交数据
+                            submissionData = {
+                                time: new Date().toLocaleString('zh-TW'),
+                                name: formData.get('chinese_name'),
+                                position: formData.get('position'),
+                                filename: filename
+                            };
+                            
+                            showSuccessState();
+                        });
+                    } else {
+                        throw new Error('提交失败');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    hideLoadingState();
+                    alert('提交過程中發生錯誤，請重試。');
+                    form.classList.remove('form-disabled');
+                    submitBtn.disabled = false;
+                });
+            }
+            
+            // 显示成功状态
+            function showSuccessState() {
+                loadingSpinner.style.display = 'none';
+                successDetails.style.display = 'block';
+                
+                // 填充提交详情
+                document.getElementById('submissionTime').textContent = submissionData.time;
+                document.getElementById('applicantName').textContent = submissionData.name;
+                document.getElementById('appliedPosition').textContent = submissionData.position;
+                
+                // 显示状态栏
+                submissionStatus.style.display = 'block';
+            }
+            
+            // 隐藏加载状态
+            function hideLoadingState() {
+                successOverlay.style.display = 'none';
+                loadingSpinner.style.display = 'none';
+            }
+            
+            // 下载按钮事件
+            document.getElementById('downloadBtn').addEventListener('click', function() {
+                if (downloadUrl) {
+                    const link = document.createElement('a');
+                    link.href = downloadUrl;
+                    link.download = submissionData.filename;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                }
+            });
+            
+            // 新申请按钮事件
+            document.getElementById('newApplicationBtn').addEventListener('click', function() {
+                if (confirm('確定要填寫新的申請表嗎？當前數據將被清除。')) {
+                    form.reset();
+                    form.classList.remove('form-disabled');
+                    submitBtn.disabled = false;
+                    submissionStatus.style.display = 'none';
+                    successOverlay.style.display = 'none';
+                    
+                    // 清理下载链接
+                    if (downloadUrl) {
+                        URL.revokeObjectURL(downloadUrl);
+                        downloadUrl = null;
+                    }
+                }
+            });
+            
+            // 关闭模态框按钮事件
+            document.getElementById('closeModalBtn').addEventListener('click', function() {
+                successOverlay.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
