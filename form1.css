@@ -1443,6 +1443,15 @@ textarea.form-control {
     min-width: 80px;
 }
 
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+    margin-top: auto;
+}
+
+
 
 
 
