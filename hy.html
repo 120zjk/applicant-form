@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>康業服務有限公司 - 求職申請表</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="form1.css">
+    <link rel="stylesheet" href="form.css">
 </head>
 <body>
     <!-- 成功提交的覆盖层 -->
@@ -104,159 +104,164 @@
 
             <h3 class="section-subtitle">個人資料 Personal Particulars</h3>
             
-            <table class="form-table">
-                <tr>
-                    <th>稱謂 Title</th>
-                    <td>
-                        <div class="radio-group">
-                            <label class="radio-option">
-                                <input type="radio" name="title" value="mr" required> 先生 Mr.
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="title" value="ms"> 女士 Ms.
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="title" value="miss"> 小姐 Miss
-                            </label>
-                        </div>
-                        <div class="error-message">此為必填項目</div>
-                    </td>
-                </tr>
-                <tr>
-                    <th>中文姓名 Chinese Name</th>
-                    <td>
-                        <input type="text" name="chinese_name" class="form-control" required>
-                        <div class="error-message">此為必填項目</div>
-                    </td>
-                </tr>
-                <tr>
-                    <th>英文姓名 English Name</th>
-                    <td>
-                        <input type="text" name="english_name" class="form-control" required>
-                        <div class="error-message">此為必填項目</div>
-                    </td>
-                </tr>
-                <tr>
-                    <th>身份證/護照號碼 HKID/Passport No.</th>
-                    <td>
-                        <input type="text" name="id_number" class="form-control" required>
-                        <div class="error-message">此為必填項目</div>
-                    </td>
-                </tr>
-                <tr>
-                    <th>婚姻狀況 Marital Status <span class="required"></span></th>
-                    <td>
-                        <div class="radio-group">
-                            <label class="radio-option">
-                                <input type="radio" name="marital_status" value="single"> 未婚 Single
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="marital_status" value="married"> 已婚 Married
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="marital_status" value="divorced"> 離婚 Divorced
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="marital_status" value="widow"> 喪偶 Widow
-                            </label>
-                        </div>
-                        <div class="optional">(非強制性資料)</div>
-                    </td>
-                </tr>
-				<tr>
-                    <th>出生日期 Date of Birth</th>
-                    <td>
-                        <div class="form-row">
-                            <div class="form-col">
-                                <input type="number" name="birth_day" class="form-control" placeholder="dd" min="1" max="31" required>
+            <!-- 修改个人资料表格 -->
+            <div class="table-container">
+                <table class="form-table">
+                    <tr>
+                        <th>稱謂<br>Title</th>
+                        <td>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="title" value="mr" required> 先生 Mr.
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="title" value="ms"> 女士 Ms.
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="title" value="miss"> 小姐 Miss
+                                </label>
                             </div>
-                            <div class="form-col">
-                                <input type="number" name="birth_month" class="form-control" placeholder="mm" min="1" max="12" required>
+                            <div class="error-message">此為必填項目</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>中文姓名<br>Chinese Name</th>
+                        <td>
+                            <input type="text" name="chinese_name" class="form-control" required>
+                            <div class="error-message">此為必填項目</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>英文姓名<br>English Name</th>
+                        <td>
+                            <input type="text" name="english_name" class="form-control" required>
+                            <div class="error-message">此為必填項目</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>身份證/護照號碼<br>HKID/Passport No.</th>
+                        <td>
+                            <input type="text" name="id_number" class="form-control" required>
+                            <div class="error-message">此為必填項目</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>婚姻狀況<br>Marital Status <span class="required"></span></th>
+                        <td>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="marital_status" value="single"> 未婚 Single
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="marital_status" value="married"> 已婚 Married
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="marital_status" value="divorced"> 離婚 Divorced
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="marital_status" value="widow"> 喪偶 Widow
+                                </label>
                             </div>
-                            <div class="form-col">
-                                <input type="number" name="birth_year" class="form-control" placeholder="yyyy" min="1900" max="2023" required>
+                            <div class="optional">(非強制性資料)</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>出生日期<br>Date of Birth</th>
+                        <td>
+                            <div class="form-row">
+                                <div class="form-col">
+                                    <input type="number" name="birth_day" class="form-control" placeholder="dd" min="1" max="31" required>
+                                </div>
+                                <div class="form-col">
+                                    <input type="number" name="birth_month" class="form-control" placeholder="mm" min="1" max="12" required>
+                                </div>
+                                <div class="form-col">
+                                    <input type="number" name="birth_year" class="form-control" placeholder="yyyy" min="1900" max="2023" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="error-message">此為必填項目</div>
-                    </td>
-                </tr>
-                <tr>
-                    <th>出生地點 Place of Birth</th>
-                    <td>
-                        <input type="text" name="birth_place" class="form-control" required>
-                        <div class="error-message">此為必填項目</div>
-                    </td>
-                </tr>
-                <tr>
-                    <th>來港日期 Date of Arrival</th>
-                    <td>
-                        <div class="form-row">
-                            <div class="form-col">
-                                <input type="number" name="arrival_day" class="form-control" placeholder="dd" min="1" max="31">
+                            <div class="error-message">此為必填項目</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>出生地點<br>Place of Birth</th>
+                        <td>
+                            <input type="text" name="birth_place" class="form-control" required>
+                            <div class="error-message">此為必填項目</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>來港日期<br>Date of Arrival</th>
+                        <td>
+                            <div class="form-row">
+                                <div class="form-col">
+                                    <input type="number" name="arrival_day" class="form-control" placeholder="dd" min="1" max="31">
+                                </div>
+                                <div class="form-col">
+                                    <input type="number" name="arrival_month" class="form-control" placeholder="mm" min="1" max="12">
+                                </div>
+                                <div class="form-col">
+                                    <input type="number" name="arrival_year" class="form-control" placeholder="yyyy" min="1900" max="2023">
+                                </div>
                             </div>
-                            <div class="form-col">
-                                <input type="number" name="arrival_month" class="form-control" placeholder="mm" min="1" max="12">
+                            <div class="error-message">此為必填項目</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>國籍<br>Nationality</th>
+                        <td>
+                            <input type="text" name="nationality" class="form-control" required>
+                            <div class="error-message">此為必填項目</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>電話號碼<br>Telephone No.</th>
+                        <td>
+                            <div class="form-row">
+                                <div class="form-col">
+                                    <label class="form-label">住宅 Home</label>
+                                    <input type="tel" name="home_phone" class="form-control">
+                                    <div class="error-message">此為必填項目</div>
+                                </div>
+                                <div class="form-col">
+                                    <label class="form-label">手提 Mobile</label>
+                                    <input type="tel" name="mobile_phone" class="form-control" required>
+                                    <div class="error-message">此為必填項目</div>
+                                </div>
                             </div>
-                            <div class="form-col">
-                                <input type="number" name="arrival_year" class="form-control" placeholder="yyyy" min="1900" max="2023">
-                            </div>
-                        </div>
-                        <div class="error-message">此為必填項目</div>
-                    </td>
-                </tr>
-                <tr>
-                    <th>國籍 Nationality</th>
-                    <td>
-                        <input type="text" name="nationality" class="form-control" required>
-                        <div class="error-message">此為必填項目</div>
-                    </td>
-                </tr>
-                <tr>
-                    <th>電話號碼 Telephone No.</th>
-                    <td>
-                        <div class="form-row">
-                            <div class="form-col">
-                                <label class="form-label">住宅 Home</label>
-                                <input type="tel" name="home_phone" class="form-control">
-                                <div class="error-message">此為必填項目</div>
-                            </div>
-                            <div class="form-col">
-                                <label class="form-label">手提 Mobile</label>
-                                <input type="tel" name="mobile_phone" class="form-control" required>
-                                <div class="error-message">此為必填項目</div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <th>地址 Address</th>
-                    <td>
-                        <textarea name="address" class="form-control" rows="3" required></textarea>
-                        <div class="error-message">此為必填項目</div>
-                    </td>
-                </tr>
-                <tr>
-                    <th>護照簽發地點</th>
-                    <td>
-                        <input type="text" name="passport_issue_place" class="form-control">
-                        <div class="error-message">此為必填項目</div>
-                    </td>
-                </tr>
-                <tr>
-                    <th>護照簽發日期</th>
-                    <td>
-                        <input type="date" name="passport_issue_date" class="form-control" placeholder="dd-mm-yyyy">
-                        <div class="error-message">此為必填項目</div>
-                    </td>
-                </tr>
-            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>地址<br>Address</th>
+                        <td>
+                            <textarea name="address" class="form-control" rows="3" required></textarea>
+                            <div class="error-message">此為必填項目</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>護照簽發地點<br>Passport Issue Place</th>
+                        <td>
+                            <input type="text" name="passport_issue_place" class="form-control">
+                            <div class="error-message">此為必填項目</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>護照簽發日期<br>Passport Issue Date</th>
+                        <td>
+                            <input type="date" name="passport_issue_date" class="form-control" placeholder="dd-mm-yyyy">
+                            <div class="error-message">此為必填項目</div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
 
             <h3 class="section-subtitle">學歷及專業資歷 Academic and Professional Qualifications Attained</h3>
             
+            <div class = "table-container">
+               
             <table class="form-table">
                 <thead>
                     <tr>
-                        <th></th>
+                        <th class="form1"></th>
                         <th style="width: 25%">開始日期 Start Date</th>
                         <th style="width: 25%">完結日期 End Date</th>
                         <th style="width: 35%">學校/機構名稱 Name of School/ Institution</th>
@@ -265,21 +270,21 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>小學 Primary School</td>
+                        <td class ="form1" >小學 Primary School</td>
                         <td><input type="date" class="form-control" placeholder="月/年"></td>
                         <td><input type="date" class="form-control" placeholder="月/年"></td>
                         <td><input type="text" class="form-control" ></td>
                         <td><input type="text" class="form-control" ></td>
                     </tr>
                     <tr>
-                        <td>中學 Secondary School</td>
+                        <td class ="form1">中學 Secondary School</td>
                         <td><input type="date" class="form-control" placeholder="月/年"></td>
                         <td><input type="date" class="form-control" placeholder="月/年"></td>
                         <td><input type="text" class="form-control" ></td>
                         <td><input type="text" class="form-control" ></td>
                     </tr>
                     <tr>
-                        <td>其他 Others</td>
+                        <td class ="form1">其他 Others</td>
                         <td><input type="date" class="form-control" placeholder="月/年"></td>
                         <td><input type="date" class="form-control" placeholder="月/年"></td>
                         <td><input type="text" class="form-control" ></td>
@@ -288,7 +293,8 @@
                     </tr>
                 </tbody>
             </table>
-            
+            </div>
+
             <div class="form-group" style="margin-top: 20px;">
                 <label class="form-label">是否曾修讀實業保證系統之保安培訓課程或僱員再培訓局認可機構提供之課程？<br>Did you take any security training course of Quality Assurance System / course offered by training institutions accredited by Employee Retraining Board?</label>
                 <div class="radio-group">
@@ -311,51 +317,55 @@
             <h3 class="section-subtitle">工作經驗 Working Experience</h3>
             <p>請倒序列出過往 3 年所有僱傭紀錄，若有需要可附加頁面書寫。<br>Please list all the employment records in the past 3 years in reverse chronological order and use separate sheet if necessary.</p>
             
-            <table class="form-table">
-                <thead>
-                    <tr>
-                        <th>開始日期 Start Date </th>
-                        <th>結束日期 End Date</th>
-                        <th>僱主名稱 Name of Employer</th>
-                        <th>最後職位 Last Position</th>
-                        <th>最後薪金 Last Salary</th>
-                        <th>離職原因 Reason for Leaving</th>
+            <!-- 修改工作经验表格 -->
+            <div class="table-container">
+                <table class="form-table">
+                    <thead>
+                        <tr>
+                            <th>開始日期<br>Start Date</th>
+                            <th>結束日期<br>End Date</th>
+                            <th>僱主名稱<br>Name of Employer</th>
+                            <th>最後職位<br>Last Position</th>
+                            <th>最後薪金<br>Last Salary</th>
+                            <th>離職原因<br>Reason for Leaving</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="date" name = "start_date_1" class="form-control" placeholder="月(mm)/年(yyyy) "></td>
+                            <td><input type="date" name = "end_date_1" class="form-control" placeholder="月(mm)/年(yyyy) "></td>
+                            <td><input type="text" name = "employer_name_1" class="form-control" ></td>
+                            <td><input type="text" name = "last_position_1" class="form-control" ></td>
+                            <td><input type="text" name = "last_salary_1" class="form-control" ></td>
+                            <td><input type="text" name = "reason_for_leaving_1" class="form-control" ></td>
+                        </tr>
+                        <tr>
+                            <td><input type="date" name = "start_date" class="form-control" placeholder="月(mm)/年(yyyy) "></td>
+                            <td><input type="date" name = "end_date" class="form-control" placeholder="月(mm)/年(yyyy) "></td>
+                            <td><input type="text" name = "employer_name" class="form-control" ></td>
+                            <td><input type="text" name = "last_position" class="form-control" ></td>
+                            <td><input type="text" name = "last_salary" class="form-control" ></td>
+                            <td><input type="text" name = "reason_for_leaving" class="form-control" ></td>
+                        </tr>
+                        <tr>
+                            <td><input type="date" name = "start_date" class="form-control" placeholder="月(mm)/年(yyyy) "></td>
+                            <td><input type="date" name = "end_date" class="form-control" placeholder="月(mm)/年(yyyy) "></td>
+                            <td><input type="text" name = "employer_name" class="form-control" ></td>
+                            <td><input type="text" name = "last_position" class="form-control" ></td>
+                            <td><input type="text" name = "last_salary" class="form-control" ></td>
+                            <td><input type="text" name = "reason_for_leaving" class="form-control" ></td>
+                        </tr>
+                        <tr>
+                            <td><input type="date" name = "start_date" class="form-control" placeholder="月(mm)/年(yyyy) "></td>
+                            <td><input type="date" name = "end_date" class="form-control" placeholder="月(mm)/年(yyyy) "></td>
+                            <td><input type="text" name = "employer_name" class="form-control" ></td>
+                            <td><input type="text" name = "last_position" class="form-control" ></td>
+                            <td><input type="text" name = "last_salary" class="form-control" ></td>
+                            <td><input type="text" name = "reason_for_leaving" class="form-control" ></td>
                     </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><input type="date" name = "start_date_1" class="form-control" placeholder="月(mm)/年(yyyy) "></td>
-                        <td><input type="date" name = "end_date_1" class="form-control" placeholder="月(mm)/年(yyyy) "></td>
-                        <td><input type="text" name = "employer_name_1" class="form-control" ></td>
-                        <td><input type="text" name = "last_position_1" class="form-control" ></td>
-                        <td><input type="text" name = "last_salary_1" class="form-control" ></td>
-                        <td><input type="text" name = "reason_for_leaving_1" class="form-control" ></td>
-                    </tr>
-                    <tr>
-                        <td><input type="date" name = "start_date" class="form-control" placeholder="月(mm)/年(yyyy) "></td>
-                        <td><input type="date" name = "end_date" class="form-control" placeholder="月(mm)/年(yyyy) "></td>
-                        <td><input type="text" name = "employer_name" class="form-control" ></td>
-                        <td><input type="text" name = "last_position" class="form-control" ></td>
-                        <td><input type="text" name = "last_salary" class="form-control" ></td>
-                        <td><input type="text" name = "reason_for_leaving" class="form-control" ></td>
-                    </tr>
-                    <tr>
-                        <td><input type="date" name = "start_date" class="form-control" placeholder="月(mm)/年(yyyy) "></td>
-                        <td><input type="date" name = "end_date" class="form-control" placeholder="月(mm)/年(yyyy) "></td>
-                        <td><input type="text" name = "employer_name" class="form-control" ></td>
-                        <td><input type="text" name = "last_position" class="form-control" ></td>
-                        <td><input type="text" name = "last_salary" class="form-control" ></td>
-                        <td><input type="text" name = "reason_for_leaving" class="form-control" ></td>
-                    </tr>
-                    <tr>
-                        <td><input type="date" name = "start_date" class="form-control" placeholder="月(mm)/年(yyyy) "></td>
-                        <td><input type="date" name = "end_date" class="form-control" placeholder="月(mm)/年(yyyy) "></td>
-                        <td><input type="text" name = "employer_name" class="form-control" ></td>
-                        <td><input type="text" name = "last_position" class="form-control" ></td>
-                        <td><input type="text" name = "last_salary" class="form-control" ></td>
-                        <td><input type="text" name = "reason_for_leaving" class="form-control" ></td>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
             
             <div class="form-group" style="margin-top: 20px;">
                 <label class="form-label">總共有多少年物業管理相關經驗？<br>How many years of related experience in property management do you have totally?</label>
@@ -370,20 +380,20 @@
 
             <h3 class="section-subtitle">技能 Skills</h3>
             
-            <div class="form-group">
-                <label class="form-label">語言能力 Language Skills</label>
+            <!-- 修改语言能力表格 -->
+            <div class="table-container">
                 <table class="form-table">
                     <thead>
                         <tr>
                             <th></th>
-                            <th>中文 (廣東話) Chinese (Cantonese)</th>
-                            <th>英文 English</th>
-                            <th>其他 Others: <input type="text" class="form-control" placeholder="語言名稱" style="margin-bottom: 10px;"></th>
+                            <th>中文 (廣東話)<br>Chinese (Cantonese)</th>
+                            <th>英文<br>English</th>
+                            <th>其他<br>Others: <input type="text" class="form-control" placeholder="語言名稱" style="margin-bottom: 10px;"></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <th>書寫 Written</th>
+                            <th>書寫<br>Written</th>
                             <td>
                                 <div class="radio-group" style="flex-direction: column;">
                                     <label class="radio-option">
@@ -428,7 +438,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>會話 Spoken</th>
+                            <th>會話<br>Spoken</th>
                             <td>
                                 <div class="radio-group" style="flex-direction: column;">
                                     <label class="radio-option">
@@ -668,33 +678,35 @@
             <h3 class="section-subtitle">諮詢人 Referees</h3>
             <p>請提供2 名非親屬人士作為諮詢人<br>Please provide information of 2 non-relative referees.</p>
             
-            <table class="form-table">
-                <thead>
-                    <tr>
-                        <th>姓名 Name</th>
-                        <th>電話號碼 Telephone No.</th>
-                        <th>詳細地址 Full Address</th>
-                        <th>關係 Relationship</th>
-                     
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><input type="text" class="form-control" required></td>
-                        <td><input type="tel" class="form-control" required></td>
-                        <td><input type="text" class="form-control" required></td>
-                        <td><input type="text" class="form-control" required></td>
-                   
-                    </tr>
-                    <tr>
-                        <td><input type="text" class="form-control" required></td>
-                        <td><input type="tel" class="form-control" required></td>
-                        <td><input type="text" class="form-control" required></td>
-                        <td><input type="text" class="form-control" required></td>
-                    </tr>
-                </tbody>
-            </table>
-                <!-- 其他表格行保持不变... -->
+            <!-- 修改咨询人表格 -->
+            <div class="table-container">
+                <table class="form-table">
+                    <thead>
+                        <tr>
+                            <th>姓名<br>Name</th>
+                            <th>電話號碼<br>Telephone No.</th>
+                            <th>詳細地址<br>Full Address</th>
+                            <th>關係<br>Relationship</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" class="form-control" required></td>
+                            <td><input type="tel" class="form-control" required></td>
+                            <td><input type="text" class="form-control" required></td>
+                            <td><input type="text" class="form-control" required></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" required></td>
+                            <td><input type="tel" class="form-control" required></td>
+                            <td><input type="text" class="form-control" required></td>
+                            <td><input type="text" class="form-control" required></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 其他表格行保持不变... -->
             </table>
 
             <!-- 其他表单内容保持不变... -->
