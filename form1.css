@@ -307,8 +307,8 @@
             background-color: #e6eef9;
             color: var(--primary-color);
             font-weight: 600;
-            width: 25%; /* 缩小 th 宽度 */
-            min-width: 150px; /* 设置最小宽度 */
+            width: 20%; /* 缩小 th 宽度 */
+            min-width: 125px; /* 设置最小宽度 */
         }
         
         /* 表格内输入框优化 */
@@ -1645,4 +1645,5 @@ footer {
     .form-table td[style*="background-color: #e6eef9"] {
         min-width: 100px;
     }
+
 }
