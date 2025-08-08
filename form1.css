@@ -1450,124 +1450,37 @@ footer {
     padding: 30px 0;
     margin-top: auto;
 }
-/* 手機設備表格優化 - 增強版 */
 @media (max-width: 768px) {
-    /* 表單整體調整 */
-    .form-section {
-        padding: 15px;
-        overflow-x: hidden;
-    }
-    
-    /* 表單行調整為垂直排列 */
-    .form-row {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    /* 表單列全寬 */
-    .form-col {
-        width: 100%;
-    }
-    
-    /* 表格容器增強 */
-    .table-container {
-        width: 100%;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        margin: 15px 0;
-        border: 1px solid var(--border-color);
-        border-radius: 4px;
-        background-color: white;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-    
-    /* 表格調整 */
-    .form-table {
-        min-width: 650px; /* 根據內容調整 */
-        margin: 0;
-        font-size: 0.8rem;
-    }
-    
-    .form-table th,
-    .form-table td {
-        padding: 6px 8px;
-        min-width: 100px; /* 調整最小寬度 */
-        white-space: normal; /* 允許換行 */
-        word-break: break-word; /* 強制換行 */
-    }
-    
-    /* 特殊列固定 */
+    /* 調整固定標題列的寬度 */
     .form-table th:first-child,
     .form-table td:first-child {
-        min-width: 120px;
-        position: sticky;
-        left: 0;
-        background-color: var(--secondary-color);
-        z-index: 2;
-        box-shadow: 1px 0 0 var(--border-color);
+        min-width: 80px; /* 從120px減小到80px */
+        max-width: 80px; /* 新增最大寬度限制 */
+        width: 80px; /* 固定寬度 */
     }
     
-    /* 輸入框調整 */
-    .form-table .form-control {
-        width: 100%;
-        min-width: 80px;
-        padding: 6px 8px;
-        font-size: 14px;
+    /* 調整標題文字樣式 */
+    .form-table th:first-child {
+        font-size: 0.7rem; /* 縮小字體 */
+        line-height: 1.2; /* 調整行高 */
+        padding: 4px 6px; /* 減少內邊距 */
+        word-break: break-word; /* 允許文字換行 */
     }
     
-    /* 單選按鈕組垂直排列 */
-    .radio-group {
-        flex-direction: column;
-        gap: 5px;
+    /* 調整固定列的內容樣式 */
+    .form-table td:first-child {
+        font-size: 0.7rem;
+        padding: 4px 6px;
     }
     
-    /* 減少標題字體大小 */
-    .section-title {
-        font-size: 1.3rem;
-    }
-    
-    .section-subtitle {
-        font-size: 1.1rem;
+    /* 特別針對個人資料表格的調整 */
+    .form-table.personal-data th:first-child,
+    .form-table.personal-data td:first-child {
+        min-width: 70px; /* 可以更窄 */
+        max-width: 70px;
+        width: 70px;
     }
 }
-
-/* 超小屏幕進一步優化 */
-@media (max-width: 480px) {
-    .form-table {
-        min-width: 550px;
-    }
-    
-    .form-table th,
-    .form-table td {
-        padding: 5px 6px;
-        font-size: 0.75rem;
-    }
-    
-    /* 表單輸入框調整 */
-    .form-control {
-        padding: 10px;
-        font-size: 14px;
-    }
-    
-    /* 公司標題調整 */
-    .company-name {
-        font-size: 1.5rem;
-    }
-    
-    .company-name-en {
-        font-size: 1rem;
-    }
-    
-    .form-title {
-        font-size: 1.3rem;
-    }
-    
-    .form-title-en {
-        font-size: 0.9rem;
-    }
-}
-
-
 
 
 
