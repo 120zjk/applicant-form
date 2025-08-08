@@ -786,7 +786,7 @@ footer {
 @media (prefers-color-scheme: dark) {
     .form-control {
         background-color: #ffffff;
-        color: #e2e8f0;
+/*         color: #e2e8f0; */
         border-color: #4a5568;
     }
     
@@ -801,4 +801,5 @@ footer {
     .table-container::after {
         display: none;
     }
+
 }
