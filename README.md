@@ -1,2 +1,0 @@
-# applicant-form
-applicant-form
