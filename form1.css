@@ -307,6 +307,8 @@
             background-color: #e6eef9;
             color: var(--primary-color);
             font-weight: 600;
+            width: 25%; /* 缩小 th 宽度 */
+            min-width: 150px; /* 设置最小宽度 */
         }
         
         /* 表格内输入框优化 */
@@ -537,463 +539,6 @@
         
         .form-table .number-col {
             min-width: 80px;
-        }
-        
-        .signature-area {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px dashed var(--border-color);
-        }
-        
-        .signature-box {
-            width: 45%;
-        }
-        
-        .internal-section {
-            background-color: #f0f7ff;
-            border: 1px solid #c2d8f0;
-            padding: 25px;
-            border-radius: 8px;
-            margin-top: 40px;
-        }
-        
-        .internal-title {
-            color: #1a3a6d;
-            background-color: #e6eef9;
-            padding: 10px 15px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-        
-        .declaration-box {
-            border: 1px solid var(--border-color);
-            padding: 25px;
-            border-radius: 8px;
-            margin: 25px 0;
-            background-color: #fffdf5;
-        }
-        
-        .highlight {
-            background-color: #fff9e6;
-            padding: 3px 5px;
-            border-radius: 3px;
-            font-weight: 600;
-        }
-        
-        .form-hint {
-            font-size: 0.9rem;
-            color: #666;
-            margin-top: 5px;
-            font-style: italic;
-        }
-        
-        .validation-error {
-            border-color: var(--accent-color) !important;
-            box-shadow: 0 0 0 2px rgba(211, 47, 47, 0.2) !important;
-        }
-        
-        .error-message {
-            color: var(--accent-color);
-            font-size: 0.85rem;
-            margin-top: 5px;
-            display: none;
-        }
-        
-        .mandatory-note {
-            color: var(--accent-color);
-            text-align: center;
-            font-weight: 600;
-            margin: 20px 0;
-            padding: 15px;
-            background-color: #fff9f9;
-            border: 1px solid #ffcccc;
-            border-radius: 5px;
-        }
-        
-        .validation-section {
-            position: relative;
-        }
-        
-        .validation-section::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            border: 2px solid var(--accent-color);
-            border-radius: 10px;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .highlight-section {
-            animation: highlight 2s ease;
-        }
-        .add-row-container {
-    margin-top: 15px;
-    text-align: right;
-}
-
-    .add-row-btn {
-        background-color: #2c3e50;
-        color: white;
-        border: none;
-        padding: 8px 16px;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 14px;
-        transition: background-color 0.3s;
-    }
-
-    .add-row-btn:hover {
-        background-color: #1a252f;
-    }
-
-    .add-row-btn i {
-        margin-right: 5px;
-    }
-    @keyframes highlight {
-        0% {
-            background-color: rgba(255, 0, 0, 0.1);
-        }
-        100% {
-            background-color: transparent;
-        }
-    }
-
-    /* 响应式输入框调节 */
-.form-control {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    font-size: 1rem;
-    transition: border-color 0.3s;
-    box-sizing: border-box;
-    min-height: 44px; /* 移动设备触摸友好的最小高度 */
-}
-
-/* 表格内的输入框 */
-.form-table .form-control {
-    padding: 8px 12px;
-    font-size: 0.9rem;
-    min-height: 36px;
-}
-
-/* 文本域响应式调节 */
-textarea.form-control {
-    resize: vertical;
-    min-height: 80px;
-}
-
-/* 表单行响应式 */
-.form-row {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 15px;
-    flex-wrap: wrap;
-}
-
-.form-col {
-    flex: 1;
-    min-width: 0; /* 防止内容溢出 */
-}
-
-/* 单选按钮组响应式 */
-.radio-group {
-    display: flex;
-    gap: 15px;
-    margin: 10px 0;
-    flex-wrap: wrap;
-}
-
-.radio-option {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    white-space: nowrap;
-    margin-bottom: 8px;
-}
-
-/* 表格响应式优化 - 修复内容超出问题 */
-.form-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    table-layout: fixed; /* 强制表格使用固定布局 */
-    word-wrap: break-word; /* 长单词自动换行 */
-}
-
-.form-table th,
-.form-table td {
-    border: 1px solid var(--border-color);
-    padding: 8px 12px;
-    text-align: left;
-    vertical-align: top;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    hyphens: auto; /* 自动断字 */
-    max-width: 0; /* 配合table-layout: fixed使用 */
-}
-
-.form-table th {
-    background-color: #e6eef9;
-    color: var(--primary-color);
-    font-weight: 600;
-}
-
-/* 表格内输入框优化 */
-.form-table .form-control {
-    width: 100%;
-    min-width: 0; /* 允许收缩到容器大小 */
-    box-sizing: border-box;
-    padding: 6px 8px;
-    font-size: 0.9rem;
-    min-height: 32px;
-    word-wrap: break-word;
-}
-
-/* 表格容器 - 添加水平滚动 */
-.table-container {
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    margin: 20px 0;
-}
-
-/* 桌面设备表格优化 */
-@media (min-width: 1025px) {
-    .form-table {
-        table-layout: fixed;
-    }
-    
-    .form-table th,
-    .form-table td {
-        padding: 10px 12px;
-        font-size: 0.95rem;
-    }
-    
-    .form-table .form-control {
-        padding: 8px 10px;
-        font-size: 0.9rem;
-    }
-}
-
-/* 平板设备表格优化 */
-@media (max-width: 1024px) and (min-width: 769px) {
-    .form-table {
-        font-size: 0.9rem;
-        table-layout: fixed;
-    }
-    
-    .form-table th,
-    .form-table td {
-        padding: 8px 10px;
-        font-size: 0.85rem;
-        min-width: 80px;
-    }
-    
-    .form-table .form-control {
-        padding: 6px 8px;
-        font-size: 0.85rem;
-        min-height: 36px;
-    }
-}
-
-/* 手机设备表格优化 */
-@media (max-width: 768px) {
-    /* 创建水平滚动容器 */
-    .table-container {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        border: 1px solid var(--border-color);
-        border-radius: 4px;
-    }
-    
-    .form-table {
-        min-width: 600px; /* 确保表格有最小宽度 */
-        margin: 0;
-        font-size: 0.8rem;
-        table-layout: auto; /* 手机上使用自动布局 */
-    }
-    
-    .form-table th,
-    .form-table td {
-        padding: 6px 8px;
-        font-size: 0.75rem;
-        min-width: 80px;
-        white-space: nowrap; /* 防止文字换行 */
-    }
-    
-    /* 特殊列宽度设置 */
-    .form-table th:first-child,
-    .form-table td:first-child {
-        min-width: 120px; /* 标题列更宽 */
-        position: sticky;
-        left: 0;
-        background-color: var(--secondary-color);
-        z-index: 2;
-    }
-    
-    .form-table .form-control {
-        width: 100%;
-        min-width: 70px;
-        padding: 4px 6px;
-        font-size: 14px;
-        min-height: 32px;
-        box-sizing: border-box;
-    }
-    
-    /* 输入框特殊处理 */
-    .form-table input[type="text"],
-    .form-table input[type="email"],
-    .form-table input[type="tel"],
-    .form-table input[type="date"],
-    .form-table input[type="month"] {
-        min-width: 100px;
-    }
-    
-    .form-table textarea {
-        min-width: 150px;
-        resize: both;
-    }
-}
-
-/* 小屏手机优化 */
-@media (max-width: 480px) {
-    .table-container {
-        margin: 15px -10px; /* 负边距让表格更宽 */
-        border-left: none;
-        border-right: none;
-        border-radius: 0;
-    }
-    
-    .form-table {
-        min-width: 500px;
-        font-size: 0.75rem;
-    }
-    
-    .form-table th,
-    .form-table td {
-        padding: 4px 6px;
-        font-size: 0.7rem;
-        min-width: 70px;
-    }
-    
-    .form-table th:first-child,
-    .form-table td:first-child {
-        min-width: 100px;
-    }
-    
-    .form-table .form-control {
-        padding: 3px 5px;
-        font-size: 13px;
-        min-height: 30px;
-        min-width: 60px;
-    }
-}
-
-/* 超小屏设备 */
-@media (max-width: 360px) {
-    .form-table {
-        min-width: 450px;
-    }
-    
-    .form-table th,
-    .form-table td {
-        padding: 3px 4px;
-        font-size: 0.65rem;
-        min-width: 60px;
-    }
-    
-    .form-table .form-control {
-        padding: 2px 4px;
-        font-size: 12px;
-        min-height: 28px;
-        min-width: 50px;
-    }
-}
-
-/* 长文本处理 */
-.form-table .long-text {
-    max-width: 200px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.form-table .long-text:hover {
-    overflow: visible;
-    white-space: normal;
-    word-wrap: break-word;
-}
-
-/* 表格标题固定样式 */
-.form-table thead th {
-    position: sticky;
-    top: 0;
-    background-color: var(--secondary-color);
-    z-index: 1;
-}
-
-/* 滚动提示 */
-.table-container::after {
-    content: "← 左右滑动查看更多内容 →";
-    display: block;
-    text-align: center;
-    color: #666;
-    font-size: 0.8rem;
-    padding: 8px;
-    background-color: #f8f9fa;
-    border-top: 1px solid var(--border-color);
-}
-
-@media (min-width: 769px) {
-    .table-container::after {
-        display: none;
-    }
-}
-
-/* 特殊列类型优化 */
-.form-table .date-col {
-    min-width: 120px;
-}
-
-.form-table .name-col {
-    min-width: 100px;
-}
-
-.form-table .description-col {
-    min-width: 200px;
-    max-width: 300px;
-}
-
-.form-table .number-col {
-    min-width: 80px;
-}
-        
-        @media (max-width: 768px) {
-            .main-content {
-                flex-direction: column;
-            }
-            
-            .form-row {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .form-section {
-                padding: 20px;
-            }
-            
-            .company-name {
-                font-size: 1.8rem;
-            }
         }
         
         .signature-area {
@@ -1450,39 +995,654 @@ footer {
     padding: 30px 0;
     margin-top: auto;
 }
-@media (max-width: 768px) {
-    /* 調整固定標題列的寬度 */
-    .form-table th:first-child,
-    .form-table td:first-child {
-        min-width: 80px; /* 從120px減小到80px */
-        max-width: 80px; /* 新增最大寬度限制 */
-        width: 80px; /* 固定寬度 */
-    }
-    
-    /* 調整標題文字樣式 */
-    .form-table th:first-child {
-        font-size: 0.7rem; /* 縮小字體 */
-        line-height: 1.2; /* 調整行高 */
-        padding: 4px 6px; /* 減少內邊距 */
-        word-break: break-word; /* 允許文字換行 */
-    }
-    
-    /* 調整固定列的內容樣式 */
-    .form-table td:first-child {
-        font-size: 0.7rem;
-        padding: 4px 6px;
-    }
-    
-    /* 特別針對個人資料表格的調整 */
-    .form-table.personal-data th:first-child,
-    .form-table.personal-data td:first-child {
-        min-width: 70px; /* 可以更窄 */
-        max-width: 70px;
-        width: 70px;
+
+.form-table td.form1 {
+    border: 1px solid var(--border-color);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    max-width: 0;
+    background-color: #e6eef9;
+    color: var(--primary-color);
+    font-weight: 600;
+
+}
+.form-table td.form1 {
+    border: 1px solid var(--border-color);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    max-width: 0;
+    background-color: #e6eef9 !important;
+    color: var(--primary-color) !important;
+    font-weight: 600 !important;
+}
+
+/* 桌面版本的 .form1 样式 */
+@media (min-width: 769px) {
+    .form-table td.form1 {
+        background-color: #e6eef9 !important;
+        color: var(--primary-color) !important;
+        font-weight: 600 !important;
+        border: 1px solid var(--border-color);
+        padding: 8px 12px;
+        text-align: left;
+        vertical-align: top;
     }
 }
 
+/* 手机设备优化 */
+@media (max-width: 768px) {
+    .form-table td.form1 {
+        background-color: #e6eef9 !important;
+        color: var(--primary-color) !important;
+        font-weight: 600 !important;
+        min-width: 120px;
+        position: sticky;
+        left: 0;
+        z-index: 2;
+        border: 1px solid var(--border-color);
+        padding: 6px 8px;
+        font-size: 0.75rem;
+    }
+}
 
+@media (max-width: 480px) {
+    .form-table td.form1 {
+        background-color: #e6eef9 !important;
+        color: var(--primary-color) !important;
+        font-weight: 600 !important;
+        min-width: 100px;
+        padding: 4px 6px;
+        font-size: 0.7rem;
+    }
+}
 
+@media (max-width: 360px) {
+    .form-table td.form1 {
+        background-color: #e6eef9 !important;
+        color: var(--primary-color) !important;
+        font-weight: 600 !important;
+        min-width: 80px;
+        padding: 3px 4px;
+        font-size: 0.65rem;
+    }
+}
 
+/* 个人资料表格 th 缩小 - 与 form.css 保持一致 */
+.form-table th {
+    background-color: #e6eef9;
+    color: var(--primary-color);
+    font-weight: 600;
+    width: 25%; /* 缩小 th 宽度 */
+    min-width: 150px; /* 设置最小宽度 */
+}
 
+/* 确保所有表格都包装在 table-container 中 */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 20px 0;
+}
+
+/* 表单组和标签样式 */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* 输入框焦点状态 */
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(24, 25, 107, 0.2);
+}
+
+/* 复选框和单选按钮样式优化 */
+.checkbox-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.checkbox-option input[type="checkbox"] {
+    margin: 0;
+}
+
+/* 可选项提示 */
+.optional {
+    font-size: 0.85rem;
+    color: #666;
+    font-style: italic;
+}
+
+.required {
+    color: var(--accent-color);
+}
+
+/* 页脚内容样式 */
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-content p {
+    margin-bottom: 10px;
+}
+
+/* 优化桌面设备样式 */
+@media (min-width: 1025px) {
+    .form-table th {
+        width: 25%; /* 桌面端固定宽度 */
+        min-width: 180px;
+    }
+    
+    .form-table td.form1 {
+        background-color: #e6eef9 !important;
+        color: var(--primary-color) !important;
+        font-weight: 600 !important;
+        min-width: 150px;
+        position: static; /* 桌面端不使用 sticky */
+    }
+    
+    .form-table th,
+    .form-table td {
+        padding: 10px 12px;
+        font-size: 0.95rem;
+    }
+    
+    .form-table .form-control {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+    }
+}
+
+/* 平板设备优化 */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .container {
+        max-width: 95%;
+        padding: 15px;
+    }
+    
+    .form-control {
+        font-size: 1rem;
+        padding: 10px 12px;
+        min-height: 42px;
+    }
+    
+    .form-table th {
+        width: 30%;
+        min-width: 150px;
+    }
+    
+    .form-table td.form1 {
+        background-color: #e6eef9 !important;
+        color: var(--primary-color) !important;
+        font-weight: 600 !important;
+        min-width: 120px;
+        position: static; /* 平板端不使用 sticky */
+    }
+    
+    .form-section {
+        padding: 25px 20px;
+    }
+    
+    .company-name {
+        font-size: 2rem;
+    }
+    
+    .form-title {
+        font-size: 1.6rem;
+    }
+}
+
+/* 手机设备优化 - 重新定义 */
+@media (max-width: 768px) {
+    .container {
+        max-width: 100%;
+        padding: 10px;
+    }
+    
+    .form-control {
+        font-size: 16px; /* 防止iOS自动缩放 */
+        padding: 12px 15px;
+        min-height: 48px;
+        border-radius: 6px;
+    }
+    
+    .form-table .form-control {
+        font-size: 14px;
+        padding: 8px 12px;
+        min-height: 40px;
+    }
+    
+    textarea.form-control {
+        min-height: 100px;
+        font-size: 16px;
+    }
+    
+    /* 表单行在手机上变为垂直排列 */
+    .form-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .form-col {
+        width: 100%;
+    }
+    
+    /* 单选按钮在手机上垂直排列 */
+    .radio-group {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    /* 表格在手机上可横向滚动 */
+    .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+    }
+    
+    .form-table {
+        min-width: 600px;
+        margin: 0;
+        font-size: 0.8rem;
+        table-layout: auto;
+    }
+    
+    .form-table th {
+        min-width: 100px;
+        width: auto;
+        font-size: 0.75rem;
+        padding: 6px 8px;
+    }
+    
+    .form-table td {
+        min-width: 100px;
+        font-size: 0.75rem;
+        padding: 6px 8px;
+        white-space: nowrap;
+    }
+    
+    /* 第一列固定在左侧 */
+    .form-table th:first-child,
+    .form-table td:first-child {
+        min-width: 120px;
+        position: sticky;
+        left: 0;
+        background-color: var(--secondary-color);
+        z-index: 2;
+    }
+    
+    .form-table td.form1 {
+        background-color: #e6eef9 !important;
+        color: var(--primary-color) !important;
+        font-weight: 600 !important;
+        min-width: 120px;
+        position: sticky;
+        left: 0;
+        z-index: 2;
+        font-size: 0.75rem;
+        padding: 6px 8px;
+    }
+    
+    .form-section {
+        padding: 20px 15px;
+        margin-bottom: 20px;
+    }
+    
+    .company-name {
+        font-size: 1.6rem;
+    }
+    
+    .company-name-en {
+        font-size: 1.1rem;
+    }
+    
+    .form-title {
+        font-size: 1.4rem;
+    }
+    
+    .section-title {
+        font-size: 1.3rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    /* 按钮在手机上全宽 */
+    .btn {
+        width: 100%;
+        padding: 15px 20px;
+        font-size: 1.1rem;
+        min-height: 50px;
+    }
+    
+    #submitBtn {
+        width: 100%;
+        max-width: 300px;
+        padding: 18px 30px;
+        font-size: 1.2rem;
+        min-height: 55px;
+    }
+    
+    .btn-container {
+        margin: 20px 0;
+        padding: 15px 0;
+    }
+    
+    /* 成功模态框调整 */
+    .success-modal {
+        width: 95%;
+        padding: 30px 20px;
+        margin: 0 10px;
+    }
+    
+    .btn-success,
+    .btn-secondary {
+        width: 100%;
+        margin: 8px 0;
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+}
+
+/* 小屏手机优化 */
+@media (max-width: 480px) {
+    .container {
+        padding: 8px;
+    }
+    
+    .form-control {
+        font-size: 16px;
+        padding: 14px 12px;
+        min-height: 50px;
+    }
+    
+    .form-table .form-control {
+        font-size: 14px;
+        padding: 10px 8px;
+        min-height: 42px;
+    }
+    
+    .form-section {
+        padding: 15px 10px;
+    }
+    
+    .company-name {
+        font-size: 1.4rem;
+    }
+    
+    .form-title {
+        font-size: 1.2rem;
+    }
+    
+    .section-title {
+        font-size: 1.2rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+    }
+    
+    .table-container {
+        margin: 15px -10px;
+        border-left: none;
+        border-right: none;
+        border-radius: 0;
+    }
+    
+    .form-table {
+        min-width: 500px;
+        font-size: 0.75rem;
+    }
+    
+    .form-table th,
+    .form-table td {
+        padding: 4px 6px;
+        font-size: 0.7rem;
+        min-width: 70px;
+    }
+    
+    .form-table th:first-child,
+    .form-table td:first-child {
+        min-width: 100px;
+    }
+    
+    .form-table td.form1 {
+        background-color: #e6eef9 !important;
+        color: var(--primary-color) !important;
+        font-weight: 600 !important;
+        min-width: 100px;
+        padding: 4px 6px;
+        font-size: 0.7rem;
+    }
+    
+    .notes-box {
+        padding: 15px;
+        font-size: 0.9rem;
+    }
+    
+    .notes-list li {
+        margin-bottom: 8px;
+    }
+    
+    #submitBtn {
+        padding: 16px 25px;
+        font-size: 1.1rem;
+        min-height: 50px;
+    }
+}
+
+/* 超小屏设备 */
+@media (max-width: 360px) {
+    .form-control {
+        padding: 12px 10px;
+        font-size: 15px;
+    }
+    
+    .form-table .form-control {
+        padding: 8px 6px;
+        font-size: 13px;
+    }
+    
+    .company-name {
+        font-size: 1.2rem;
+    }
+    
+    .form-title {
+        font-size: 1.1rem;
+    }
+    
+    .form-table {
+        min-width: 450px;
+    }
+    
+    .form-table th,
+    .form-table td {
+        padding: 3px 4px;
+        font-size: 0.65rem;
+        min-width: 60px;
+    }
+    
+    .form-table td.form1 {
+        background-color: #e6eef9 !important;
+        color: var(--primary-color) !important;
+        font-weight: 600 !important;
+        min-width: 80px;
+        padding: 3px 4px;
+        font-size: 0.65rem;
+    }
+}
+
+/* 横屏模式优化 */
+@media (max-height: 500px) and (orientation: landscape) {
+    .success-modal {
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    .form-section {
+        padding: 15px 20px;
+    }
+    
+    header {
+        padding: 15px 0;
+    }
+    
+    .company-name {
+        font-size: 1.4rem;
+    }
+}
+
+/* 触摸设备优化 */
+@media (hover: none) and (pointer: coarse) {
+    .form-control:focus {
+        transform: none;
+        box-shadow: 0 0 0 3px rgba(26, 58, 109, 0.3);
+    }
+    
+    .btn:hover {
+        background-color: var(--primary-color);
+    }
+    
+    .btn:active {
+        background-color: #0f2a52;
+        transform: scale(0.98);
+    }
+    
+    /* 增加触摸目标大小 */
+    .radio-option input[type="radio"],
+    .checkbox-option input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+    }
+}
+
+/* 高分辨率屏幕优化 */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .form-control {
+        border-width: 0.5px;
+    }
+    
+    .form-table th,
+    .form-table td {
+        border-width: 0.5px;
+    }
+}
+
+/* 减少动画效果在移动设备上 */
+@media (prefers-reduced-motion: reduce) {
+    .form-control,
+    .btn,
+    .success-modal {
+        transition: none;
+    }
+    
+    .spinner {
+        animation: none;
+    }
+}
+
+/* 深色模式支持 */
+@media (prefers-color-scheme: dark) {
+    .form-control {
+        background-color: #ffffff;
+        color: #e2e8f0;
+        border-color: #4a5568;
+    }
+    
+    .form-control:focus {
+        border-color: #63b3ed;
+        box-shadow: 0 0 0 2px rgba(99, 179, 237, 0.3);
+    }
+}
+
+/* 按钮悬停效果 */
+.btn:hover {
+    background-color: #0f2a52;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 提交按钮特殊样式 */
+#submitBtn {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-align: center;
+    min-width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#submitBtn:hover {
+    background-color: #0f2a52;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+#submitBtn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#submitBtn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* 语言表格中的特殊 td 样式 */
+.form-table td[style*="background-color: #e6eef9"] {
+    background-color: #e6eef9 !important;
+    color: var(--primary-color) !important;
+    font-weight: 600 !important;
+}
+
+/* 在手机设备上，这些特殊的 td 也要固定在左侧 */
+@media (max-width: 768px) {
+    .form-table td[style*="background-color: #e6eef9"] {
+        position: sticky;
+        left: 0;
+        z-index: 2;
+        min-width: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-table td[style*="background-color: #e6eef9"] {
+        min-width: 100px;
+    }
+}
