@@ -1195,7 +1195,7 @@ textarea.form-control {
     overflow-wrap: break-word;
     hyphens: auto; /* 自动断字 */
     max-width: 0; /* 配合table-layout: fixed使用 */
-    background-color: #ffffff;
+    background-color: #e6eef9;
     color: var(--primary-color);
     font-weight: 600;
 }
@@ -1442,6 +1442,7 @@ textarea.form-control {
 .form-table .number-col {
     min-width: 80px;
 }
+
 
 
 
