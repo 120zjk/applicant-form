@@ -377,8 +377,21 @@
                 -webkit-overflow-scrolling: touch;
                 border: 1px solid var(--border-color);
                 border-radius: 4px;
+                        border-left:none;
+                        border-right:none;
             }
-            
+             .form-table th:first-child,
+            .form-table td:first-child,
+            .form-table td.form1,
+            .form-table td[style*="background-color: #e6eef9"] {
+                position: sticky;
+                left: 0;
+                z-index: 2;
+                min-width: 120px; /* 縮小寬度 */
+                background-color: var(--secondary-color) !important;
+                color: var(--primary-color) !important;
+                font-weight: 600 !important;
+            }
             .form-table {
                 min-width: 600px; /* 确保表格有最小宽度 */
                 margin: 0;
@@ -394,15 +407,7 @@
                 white-space: nowrap; /* 防止文字换行 */
             }
             
-            /* 特殊列宽度设置 */
-            .form-table th:first-child,
-            .form-table td:first-child {
-                min-width: 120px; /* 标题列更宽 */
-                position: sticky;
-                left: 0;
-                background-color: var(--secondary-color);
-                z-index: 2;
-            }
+            
             
             .form-table .form-control {
                 width: 100%;
@@ -507,7 +512,7 @@
         
         /* 滚动提示 */
         .table-container::after {
-            content: "← 左右滑动查看更多内容 →";
+            content: "← 左右滑动查看更多内容 →<br>Swipe left or right to view more content";
             display: block;
             text-align: center;
             color: #666;
@@ -515,12 +520,22 @@
             padding: 8px;
             background-color: #f8f9fa;
             border-top: 1px solid var(--border-color);
+                    left:0;
+                    right:0;
         }
         
         @media (min-width: 769px) {
             .table-container::after {
                 display: none;
             }
+                .form-table th:first-child,
+        .form-table td:first-child,
+        .form-table td.form1,
+        .form-table td[style*="background-color: #e6eef9"] {
+            min-width: 80px; /* 進一步縮小 */
+            font-size: 0.7rem;
+            padding: 4px 6px;
+        }     
         }
         
         /* 特殊列类型优化 */
@@ -1647,4 +1662,5 @@ footer {
     }
 
 }
+
 
