@@ -103,7 +103,7 @@
             </div>
 
             <h3 class="section-subtitle">個人資料 Personal Particulars</h3>
-            
+            <div class ="table-container">
             <table class="form-table">
                 <tr>
                     <th>稱謂 Title </th>
@@ -241,9 +241,9 @@
                     </td>
                 </tr>
             </table>
-
+            </div>
             <h3 class="section-subtitle">學歷及專業資格<br>Academic and Professional Qualifications</h3>
-            
+            <div class = "table-container">
             <table class="form-table">
                 <thead>
                     <tr>
@@ -285,9 +285,10 @@
                     </tr>
                 </tbody>
             </table>
-            
+            </div>
             <div class="form-group">
                 <label class="form-label">專業資格<br>Professional Qualification</label>
+                <div class="table-container">
                 <table class="form-table">
                     <thead>
                         <tr>
@@ -310,6 +311,7 @@
                         </tr>
                     </tbody>
                 </table>
+                </div>
                 <div class="add-row-container">
                     <!-- <button type="button" id="addAcademicRow" class="add-row-btn">
                         <i class="fas fa-plus"></i> 新增學歷
@@ -320,7 +322,7 @@
             
             <div class="form-group">
                 <label class="form-label">語言能力 Language Skills <span class="required"></span></label>
-                
+                <div class = "table-container">
                 <table class="form-table">
                     <thead>
                         <tr>
@@ -424,6 +426,7 @@
                         </tr>
                     </tbody>
                 </table>
+                </div>
             </div>
             
             <div class="form-group">
@@ -446,6 +449,7 @@
             </div>
             <div id ="voluntarySection" class="form-group">
             <h3 class="section-subtitle">有關公共機構/工會/團體的義務崗位例如業主立案法團委員<br>Voluntary Job of Relevant Public Institute/Organizations/Unions (e.g. member of Owners' Corporations)</h3>
+                 <div class="table-container">
                  <table class="form-table">
                 <thead>
                     <tr>
@@ -468,9 +472,10 @@
                 </tbody>
             </table>
             </div>
+            </div>
             <h3 class="section-subtitle">工作經驗 Working Experience</h3>
             <p>請倒序列出過往所有僱傭紀錄，若有需要可附加頁面書寫。<br>Please list all employment records in reverse chronological order and use separate sheet if necessary.</p>
-           
+            <div class="table-container">
             <table class="form-table">
                 <thead>
                     <tr>
@@ -511,7 +516,7 @@
                     </button>
                     </div> -->
             </table>
-
+            </div>
             <h3 class="section-subtitle">其他資料<br>Supplementary Information</h3>
             
             <div class="form-group">
@@ -630,7 +635,8 @@
 
             <h3 class="section-subtitle">諮詢人 Referees</h3>
             <p>請提供2名非親屬人士作為諮詢人<br>Please provide information of 2 non-relative referees.</p>
-            
+
+            <div class="table-container">
             <table class="form-table">
                 <thead>
                     <tr>
@@ -658,7 +664,7 @@
                     </tr>
                 </tbody>
             </table>
-
+            </div>
             <div class="mandatory-note">
                 <i class="fas fa-exclamation-circle"></i> 請完整回答上述所有問題，標「*」項為非必填內容
             </div>
@@ -985,5 +991,4 @@ document.getElementById('addExperienceRow').addEventListener('click', function()
         });
     </script>
 </body>
-
 </html>
