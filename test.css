@@ -820,3 +820,229 @@ textarea.form-control {
     hyphens: auto; /* 自动断字 */
     max-width: 0; /* 配合table-layout: fixed使用 */
 }
+
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+    margin-top: auto;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+ 
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    line-height: 1.8;
+}
+
+.footer-content p {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.footer-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Footer 中的链接样式 */
+.footer-content a {
+    color: white;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.footer-content a:hover {
+    color: var(--secondary-color);
+}
+
+/* Footer 版权信息 */
+.footer-copyright {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-top: 15px;
+}
+
+/* 桌面设备 Footer 优化 */
+@media (min-width: 1025px) {
+    footer {
+        padding: 40px 0;
+    }
+    
+    .footer-content p {
+        font-size: 1.1rem;
+    }
+}
+
+/* 平板设备 Footer 优化 */
+@media (max-width: 1024px) and (min-width: 769px) {
+    footer {
+        padding: 35px 0;
+    }
+    
+    .footer-content {
+        padding: 0 30px;
+    }
+    
+    .footer-content p {
+        font-size: 1rem;
+    }
+}
+
+/* 手机设备 Footer 优化 */
+@media (max-width: 768px) {
+    footer {
+        padding: 25px 0;
+        margin-top: 30px;
+    }
+    
+    .footer-content {
+        padding: 0 15px;
+    }
+    
+    .footer-content p {
+        font-size: 0.95rem;
+        margin-bottom: 8px;
+        line-height: 1.6;
+    }
+    
+    .footer-copyright {
+        font-size: 0.85rem;
+        margin-top: 12px;
+    }
+}
+
+/* 小屏手机 Footer 优化 */
+@media (max-width: 480px) {
+    footer {
+        padding: 20px 0;
+    }
+    
+    .footer-content {
+        padding: 0 10px;
+    }
+    
+    .footer-content p {
+        font-size: 0.9rem;
+        margin-bottom: 6px;
+    }
+    
+    .footer-copyright {
+        font-size: 0.8rem;
+        margin-top: 10px;
+    }
+}
+
+/* 超小屏设备 Footer 优化 */
+@media (max-width: 360px) {
+    footer {
+        padding: 15px 0;
+    }
+    
+    .footer-content p {
+        font-size: 0.85rem;
+        margin-bottom: 5px;
+    }
+    
+    .footer-copyright {
+        font-size: 0.75rem;
+    }
+}
+
+/* 确保页面布局正确 - 让 footer 始终在底部 */
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1; /* 让主内容区域占据剩余空间 */
+}
+
+/* Footer 动画效果 */
+footer {
+    transition: all 0.3s ease;
+}
+
+/* Footer 渐变背景效果（可选） */
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        var(--secondary-color) 0%, 
+        var(--primary-color) 50%, 
+        var(--secondary-color) 100%);
+}
+
+/* Footer 中的强调文本 */
+.footer-highlight {
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+/* Footer 联系信息样式 */
+.footer-contact {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+}
+
+.footer-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+}
+
+.footer-contact-item i {
+    font-size: 1.1rem;
+    color: var(--secondary-color);
+}
+
+/* 移动设备下联系信息垂直排列 */
+@media (max-width: 768px) {
+    .footer-contact {
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+    }
+    
+    .footer-contact-item {
+        font-size: 0.9rem;
+    }
+}
+
+/* 深色模式下的 Footer 样式 */
+@media (prefers-color-scheme: dark) {
+    footer {
+        background-color: #1a1a2e;
+        border-top: 1px solid #16213e;
+    }
+    
+    .footer-content a:hover {
+        color: #64b5f6;
+    }
+}
+
+/* 打印样式 - 隐藏 Footer */
+@media print {
+    footer {
+        display: none;
+    }
+}
