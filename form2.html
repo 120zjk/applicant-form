@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-HK">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>康業服務有限公司電子申請平台-generalform</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="test.css">
+    <style>
+        
+
+    </style>
 </head>
 <body>
     <!-- 成功提交的覆盖层 -->
@@ -16,23 +20,20 @@
             </div>
             <h2 class="success-title">申請表提交成功！</h2>
             <p class="success-message">
-                您的求職申請表已成功提交並轉換為Excel文件。我們將盡快處理您的申請。
+                您的求職申請表已成功提交,我們將盡快處理您的申請。
             </p>
             <div class="success-details" id="successDetails">
                 <h4><i class="fas fa-info-circle"></i> 提交詳情</h4>
                 <p><strong>提交時間：</strong><span id="submissionTime"></span></p>
                 <p><strong>申請人：</strong><span id="applicantName"></span></p>
                 <p><strong>申請職位：</strong><span id="appliedPosition"></span></p>
-                <p><strong>文件狀態：</strong><span style="color: var(--success-color);">已成功生成Excel文件</span></p>
+              
             </div>
             <div class="loading-spinner" id="loadingSpinner">
                 <div class="spinner"></div>
                 <p>正在處理您的申請...</p>
             </div>
             <div>
-                <button class="btn-success" id="downloadBtn">
-                    <i class="fas fa-download"></i> 下載Excel文件
-                </button>
                 <button class="btn-secondary" id="newApplicationBtn">
                     <i class="fas fa-plus"></i> 填寫新申請
                 </button>
@@ -74,10 +75,12 @@
                 <li>請用正楷填寫申請表。Please complete this form in <span class="highlight">BLOCK</span> letters.</li>
             </ol>
         </div>
-
+        <div class="mandatory-note">
+                <i class="fas fa-exclamation-circle"></i> 請完整回答下述所有問題，標「*」項為非必填內容
+            </div>
         <form id="applicationForm" class="form-section">
             <h2 class="section-title">求職者專用 FOR JOB APPLICANT USE ONLY</h2>
-            
+            <input type="hidden" name="typeform" value="general form">
             <div class="form-row">
                 <div class="form-col">
                     <div class="form-group">
@@ -96,10 +99,18 @@
                 <div class="form-col">
                     <div class="form-group">
                         <label class="form-label">可到職日期 Date Available</label>
-                        <input type="date" name="available_date" class="form-control" required>
+                        <input type="date" name="available_date" class="form-control" placeholder="dd-mm-yyyy" required>
                         <div class="error-message">此為必填項目</div>
                     </div>
                 </div>
+                <div class = "form-col">
+                    <div class="form-group">
+                        <label class="form-label">圖片上載 Photo upload</label>
+                        <input type="file" name="photo" class="form-control" accept="image/*" required>
+                        <div class="error-message">此為必填項目</div>
+                    </div>
+                </div>
+
             </div>
 
             <h3 class="section-subtitle">個人資料 Personal Particulars</h3>
@@ -135,7 +146,7 @@
                 <tr>
                     <th>英文姓名<br>English Name </th>
                     <td>
-                        <input type="text" name="english_name" class="form-control" required>
+                        <input type="text" name="english_name" class="form-control" required oninput="this.value = this.value.toUpperCase()">
                         <div class="error-message">此為必填項目</div>
                     </td>
                 </tr>
@@ -149,15 +160,15 @@
                 <tr>
                     <th>國籍<br>Nationality </th>
                     <td>
-                        <input type="text" name="nationality" class="form-control" required>
+                        <input type="text" name="nationality" class="form-control" required >
                         <div class="error-message">此為必填項目</div>
                     </td>
                 </tr>
                 <tr>
                     <th>種族<br>Race <span class="required"></span></th>
                     <td>
-                        <input type="text" name="race" class="form-control">
-                        <div class="optional">非強制性資料</div>
+                        <input type="text" name="race" class="form-control" oninput="this.value = this.value.toUpperCase()">
+                        <div class="optional">*</div>
                     </td>
                 </tr>
                 <tr>
@@ -187,7 +198,7 @@
                                 <input type="radio" name="marital_status" value="Separated"> 分居 Separated
                             </label>
                         </div>
-                        <div class="optional">非強制性資料</div>
+                        <div class="optional">*</div>
                     </td>
                 </tr>
                 <tr>
@@ -207,22 +218,55 @@
                 <tr>
                     <th>電郵地址<br>Email Address</th>
                     <td>
-                        <input type="email" name="email" class="form-control" required>
+                        <input type="email" name="email" class="form-control" required oninput="this.value = this.value.toUpperCase()">
                         <div class="error-message">此為必填項目</div>
                     </td>
                 </tr>
                 <tr>
                     <th>住宅地址<br>Residential Address (English)</th>
                     <td>
-                        <textarea name="address" class="form-control" rows="3" required></textarea>
+                        <textarea name="address1" class="form-control" rows="1"></textarea>
+                        <textarea name="address2" class="form-control" rows="2"></textarea>
+                        <textarea name="address3" class="form-control" rows="3"></textarea>
+                        
+                        <select name="address_area" id="addressArea1" class="form-control" required>
+                            <option value="" disabled selected>請選擇地區 Please select area</option>
+                        </select>
+
+                        <select name="address_district" class="form-control" required>
+                            <option value="" disabled selected>請選擇地區 Please select district</option>
+                            <option value="Hong Kong">香港島 Hong Kong Island</option>
+                            <option value="Kowloon">九龍 Kowloon</option>
+                            <option value="NT">新界 New Territories</option>
+                            <option value="forigen">外地 Forigen</option>
+                        </select>
+
+                        <input type = "text" name = "address_country" class="form-control" placeholder="請輸入國家 Please enter country" required>
                         <div class="error-message">此為必填項目</div>
                     </td>
                 </tr>
                 <tr>
                     <th>通訊地址<br>Correspondence Address (If different from above) <span class="required"></span></th>
                     <td>
-                        <textarea name="correspondence_address" class="form-control" rows="3"></textarea>
-                        <div class="optional">非強制性資料</div>
+                         <textarea name="address1" class="form-control" rows="1"></textarea>
+                        <textarea name="address2" class="form-control" rows="2"></textarea>
+                        <textarea name="address3" class="form-control" rows="3"></textarea>
+                        
+                        <select name="address_area" id="addressArea2" class="form-control" required>
+                            <option value="" disabled selected>請選擇地區 Please select area</option>
+                        </select>
+                        
+                        <select name="address_district" class="form-control" required>
+                            <option value="" disabled selected>請選擇地區 Please select district</option>
+                            <option value="Hong Kong">香港島 Hong Kong Island</option>
+                            <option value="Kowloon">九龍 Kowloon</option>
+                            <option value="NT">新界 New Territories</option>
+                            <option value="forigen">外地 Forigen</option>
+                        </select>
+
+                        <input type = "text" name = "address_country" class="form-control" placeholder="請輸入國家 Please enter country" required>
+                        <div class="error-message">此為必填項目</div>
+                        <div class="optional">*</div>
                     </td>
                 </tr>
                 <tr>
@@ -254,40 +298,37 @@
 
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id = "educationTbody">
                     <tr>
                        
-                        <td><input type="month" name="edu-start-date" class="form-control"></td>
-                        <td><input type="month" name="edu-end-date" class="form-control"></td>
-                        <td><input type="text" name="school" class="form-control" ></td>
-                        <td><input type="text" name="qualification" class="form-control" ></td>
+                        <td><input type="month" name="edu-start-date1" class="form-control"></td>
+                        <td><input type="month" name="edu-end-date1" class="form-control"></td>
+                        <td><input type="text" name="school1" class="form-control" ></td>
+                        <td><input type="text" name="qualification1" class="form-control" ></td>
                     </tr>
                     <tr>
 
-                        <td><input type="month" name="edu-start-date" class="form-control"></td>
-                        <td><input type="month" name="edu-end-date" class="form-control"></td>
-                        <td><input type="text" name="school" class="form-control" ></td>
-                        <td><input type="text" name="qualification" class="form-control" ></td>
+                        <td><input type="month" name="edu-start-date2" class="form-control"></td>
+                        <td><input type="month" name="edu-end-date2" class="form-control"></td>
+                        <td><input type="text" name="school2" class="form-control" ></td>
+                        <td><input type="text" name="qualification2" class="form-control" ></td>
                     </tr>
                     <tr>
 
-                        <td><input type="month" name="edu-end-date" class="form-control"></td>
-                        <td><input type="month" name="edu-end-date" class="form-control"></td>
-                        <td><input type="text" name="school" class="form-control"></td>
-                        <td><input type="text" name="qualification" class="form-control" ></td>
+                        <td><input type="month" name="edu-end-date3" class="form-control"></td>
+                        <td><input type="month" name="edu-end-date3" class="form-control"></td>
+                        <td><input type="text" name="school3" class="form-control"></td>
+                        <td><input type="text" name="qualification3" class="form-control" ></td>
                     </tr>
-                    <tr>
+                    <div id ="eduExperience"></div>
 
-                        <td><input type="month" name="edu-end-date" class="form-control"></td>
-                        <td><input type="month" name="edu-end-date" class="form-control"></td>
-                        <td><input type="text" name="school" class="form-control"></td>
-                        <td><input type="text" name="qualification" class="form-control" ></td>
-                    </tr>
                 </tbody>
             </table>
-            </div>
+            <button type="button" id="addEducationRow" class="add-row-btn">
+                <i class="fas fa-plus"></i> 新增學歷
+            </button>
             <div class="form-group">
-                <label class="form-label">專業資格<br>Professional Qualification</label>
+                <label class="form-label"><strong>專業資格<br>Professional Qualification</strong></label>
                 <div class="table-container">
                 <table class="form-table">
                     <thead>
@@ -298,7 +339,7 @@
 
                         </tr>
                     </thead>
-                    <tbody id ="academicTableBody">
+                    <tbody id ="qualificationsTbody">
                         <tr>
                             <td><input type="date" name="qualification_1" class="form-control"></td>
                             <td><input type="text" name="institution_1" class="form-control"></td>
@@ -311,6 +352,9 @@
                         </tr>
                     </tbody>
                 </table>
+                <button type="button" id="addQualificationRow" class="add-row-btn">
+                    <i class="fas fa-plus"></i> 新增專業資格
+                </button>
                 </div>
                 <div class="add-row-container">
                     <!-- <button type="button" id="addAcademicRow" class="add-row-btn">
@@ -376,7 +420,7 @@
                                         <input type="radio" name="other_written" value="Basic"> 基本 Basic
                                     </label>
                                 </div>
-                                <div class="optional">非強制性資料</div>
+                                <div class="optional">*</div>
                             </td>
                         </tr>
                         <tr>
@@ -421,7 +465,7 @@
                                         <input type="radio" name="other_spoken" value="Basic"> 基本 Basic
                                     </label>
                                 </div>
-                                <div class="optional">非強制性資料</div>
+                                <div class="optional">*</div>
                             </td>
                         </tr>
                     </tbody>
@@ -439,13 +483,13 @@
                         <input type="text" name="programming_skills" class="form-control" placeholder="程式語言 Programming Language">
                     </div>
                 </div>
-                <div class="optional">非強制性資料</div>
+                <div class="optional">*</div>
             </div>
             
             <div class="form-group">
                 <label class="form-label">其他技能/專長 Other Skills</label>
                 <textarea name="other_skills" class="form-control" rows="3"></textarea>
-                <div class="optional">非強制性資料</div>
+                <div class="optional">*</div>
             </div>
             <div id ="voluntarySection" class="form-group">
             <h3 class="section-subtitle">有關公共機構/工會/團體的義務崗位例如業主立案法團委員<br>Voluntary Job of Relevant Public Institute/Organizations/Unions (e.g. member of Owners' Corporations)</h3>
@@ -604,16 +648,28 @@
                 <label class="form-label">4. 從何得知此職位空缺?<br>How did you learn of this position? (Please specify) <span class="required"></span></label>
                 <div class="radio-group" style="flex-wrap: wrap;">
                     <label class="radio-option">
+                        <div id = "online-ad">
                         <input type="radio" name="job_source" value="Online Advertisement" required> 網上招聘廣告 Online Advertisement
+                        <input type="text" name="online_ad_details" class="form-control" placeholder="請提供更多資訊 Please provide more details">
+                        </div>
                     </label>
                     <label class="radio-option">
+                        <div id = "printed-ad">
                         <input type="radio" name="job_source" value="Printed Advertisement"> 印刷招聘廣告 Printed Advertisement
+                        <input type="text" name="printed_ad_details" class="form-control" placeholder="請提供更多資訊 Please provide more details">
+                        </div>
                     </label>
                     <label class="radio-option">
+                        <div id = "Referral">
                         <input type="radio" name="job_source" value="Internal Referral"> 內部介紹 Internal Referral
+                        <input type="text" name="referral_details" class="form-control" placeholder="介紹人姓名 Name of Referral">
+                        </div>
                     </label>
                     <label class="radio-option">
+                        <div id = "edu-institute-referral">
                         <input type="radio" name="job_source" value="Referral from Educational Institute"> 學院轉介 Referral from Educational Institute
+                        <input type="text" name="edu_institute_name" class="form-control" placeholder="學院名稱 Name of Educational Institute">
+                        </div>
                     </label>
                     <label class="radio-option">
                         <input type="radio" name="job_source" value="Company's website"> 公司網站 Company's website
@@ -621,14 +677,6 @@
                     <label class="radio-option">
                         <input type="radio" name="job_source" value="Others"> 其他 Others
                     </label>
-                </div>
-                <div class="form-row" style="margin-top: 10px;">
-                    <div class="form-col">
-                        <input type="text" name="referee_name" class="form-control" placeholder="介紹人姓名 Name of Referee">
-                    </div>
-                    <div class="form-col">
-                        <input type="text" name="other_source" class="form-control" placeholder="其他來源說明 Other Source Details">
-                    </div>
                 </div>
                 <div class="error-message">此為必填項目</div>
             </div>
@@ -665,9 +713,7 @@
                 </tbody>
             </table>
             </div>
-            <div class="mandatory-note">
-                <i class="fas fa-exclamation-circle"></i> 請完整回答上述所有問題，標「*」項為非必填內容
-            </div>
+            
             
             <div class="btn-container">
                 <button type="submit" class="btn" id="submitBtn">
@@ -679,13 +725,15 @@
     
     <footer>
         <div class="footer-content">
-            <p>康業控股有限公司 HONG YIP HOLDINGS LIMITED</p>
+            <p>康業控股有限公司 HONG YIP SERVICES LIMITED</p>
             <p>© 2025 康業控股有限公司 版權所有。保留所有權利。</p>
             <p>個人資料處理聲明: 本公司承諾遵守《個人資料(私隱)條例》的規定，確保個人資料的準確性和安全性。</p>
         </div>
     </footer>
 
     <script>
+        let i = 3;
+        
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('applicationForm');
             const submitBtn = document.getElementById('submitBtn');
@@ -693,40 +741,92 @@
             const loadingSpinner = document.getElementById('loadingSpinner');
             const successDetails = document.getElementById('successDetails');
             const submissionStatus = document.getElementById('submissionStatus');
-            
+            const addEducationRowBtn = document.getElementById('addEducationRow');
+            addEducationRowBtn.addEventListener('click', addEducationRow);
+            addAddressArea();
             let downloadUrl = null;
             let submissionData = null;
-            // 新增學歷行
-document.getElementById('addAcademicRow').addEventListener('click', function() {
-    const tbody = document.getElementById('academicTbody');
-    const newRow = document.createElement('tr');
-    newRow.innerHTML = `
-        <td><input type="text" name="school" class="form-control"></td>
-        <td><input type="text" name="qualification" class="form-control"></td>
-        <td><input type="month" name="edu-start-date" class="form-control"></td>
-        <td><input type="month" name="edu-end-date" class="form-control"></td>
-    `;
-    tbody.appendChild(newRow);
-});
+            
+//add add area address too long in html ^-^
+function addAddressArea(){
+    const hkAreas = [
+        "香港仔 ABERDEEN", "中環 CENTRAL", "鴨脷洲 AP LEI CHAU", "銅鑼灣 CAUSEWAY BAY", "中區 CENTRAL DISTRICT", 
+        "茶果嶺 CHA KWO LING", "柴灣 CHAI WAN", "長洲 CHEUNG CHAU", "長沙灣 CHEUNG SHA WAN", "彩虹 CHOI HUNG",
+        "清水灣 CLEAR WATER BAY", "鑽石山 DIAMOND HILL", "粉嶺 FANLING", "火炭 FO TAN", "跑馬地 HAPPY VALLEY", 
+        "杏花邨 HENG FA CHUEN", "何文田 HO MAN TIN", "紅磡 HUNG HOM", "佐敦 JORDAN", "堅尼地城 KENNEDY TOWN",
+        "九龍灣 KOWLOON BAY", "九龍城 KOWLOON CITY", "九龍塘 KOWLOON TONG", "葵涌 KWAI CHUNG", "觀塘 KWUN TONG", 
+        "荔枝角 LAI CHI KOK", "藍田 LAM TIN", "南丫島 LAMMA ISLAND", "大嶼山 LANTAU ISLAND", "鯉魚門 LEI YUE MUN",
+        "樂富 LOK FU", "馬鞍山 MA ON SHAN", "馬灣 MA WAN", "美孚 MEI FOO", "半山 MID-LEVELS", 
+        "旺角 MONGKOK", "摩星嶺 MOUNT DAVIS", "牛池灣 NGAU CHI WAN", "牛頭角 NGAU TAU KOK", "北角 NORTH POINT",
+        "坪洲 PENG CHAU", "薄扶林 POK FU LAM", "鰂魚涌 QUARRY BAY", "淺水灣 REPULSE BAY", "西貢 SAI KUNG", 
+        "西灣河 SAI WAN HO", "西營盤 SAI YING PUN", "新蒲崗 SAN PO KONG", "秀茂坪 SAU MAU PING", "沙頭角 SHA TAU KOK",
+        "深井 SHAM TSENG", "深水埗 SHAMSHUIPO", "沙田 SHATIN", "筲箕灣 SHAU KEI WAN", "石硤尾 SHEK KIP MEI", 
+        "石澳 SHEK O", "石塘咀 SHEK TONG TSUI", "上水 SHEUNG SHUI", "上環 SHEUNG WAN", "小西灣 SIU SAI WAN",
+        "南灣 SOUTH BAY", "赤柱 STANLEY", "大坑 TAI HANG", "大角咀 TAI KOK TSUI", "大埔 TAI PO", 
+        "大圍 TAI WAI", "太古城 TAIKOO SHING", "山頂 THE PEAK", "天后 TIN HAU", "天水圍 TIN SHUI WAI",
+        "土瓜灣 TOKWAWAN", "將軍澳 TSEUNG KWAN O", "尖沙咀 TSIM SHA TSUI", "青衣 TSING YI", "荃灣 TSUEN WAN", 
+        "慈雲山 TSZ WAN SHAN", "屯門 TUEN MUN", "東涌 TUNG CHUNG", "華富 WAH FU", "灣仔 WANCHAI",
+        "西區 WESTERN DISTRICT", "黃竹坑 WONG CHUK HANG", "黃大仙 WONG TAI SIN", "油麻地 YAU MA TEI", "油塘 YAU TONG",
+        "元朗 YUEN LONG"
+    ];
+    const areaSelect = document.querySelectorAll('[name = "address_area"]');
+    areaSelect.forEach(select => {
+        hkAreas.forEach(area => {
+            const option = document.createElement('option');
+            option.value = area;
+            option.textContent = area;
+            select.appendChild(option);
+        });
+    });
+    }
 
-// 新增工作經驗行
-document.getElementById('addExperienceRow').addEventListener('click', function() {
-    const tbody = document.getElementById('experienceTbody');
-    const newRow = document.createElement('tr');
-    newRow.innerHTML = `
-        <td><input type="date" name="work-start" class="form-control"></td>
-        <td><input type="date" name="work-end" class="form-control"></td>
-        <td><input type="text" name="employer" class="form-control"></td>
-        <td><input type="text" name="business_nature" class="form-control"></td>
-        <td><input type="text" name="last_position" class="form-control"></td>
-        <td><input type="text" name="last_salary" class="form-control"></td>
-        <td><input type="text" name="reason_leaving" class="form-control"></td>
-    `;
-    tbody.appendChild(newRow);
-});
-            // 表单提交处理
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
+
+
+
+// add edu row if needed
+    function addEducationRow(){
+        const tbodyContainer = document.getElementById('educationTbody');
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+            <td><input type="month" name="edu-start-date${i}" class="form-control"></td>
+            <td><input type="month" name="edu-end-date${i}" class="form-control"></td>
+            <td><input type="text" name="school${i}" class="form-control"></td>
+            <td><input type="text" name="qualification${i}" class="form-control" ></td>
+        `;
+        tbodyContainer.appendChild(newRow);
+        i++;
+    }
+
+
+    function addWorkExperienceRow(){
+        // add work experience row
+        const tbodyContainer = document.getElementById('workExperienceTbody');
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+            <td><input type="month" name="edu-start-date${i}" class="form-control"></td>
+            <td><input type="month" name="edu-end-date${i}" class="form-control"></td>
+            <td><input type="text" name="school${i}" class="form-control"></td>
+            <td><input type="text" name="qualification${i}" class="form-control" ></td>
+        `;
+        tbodyContainer.appendChild(newRow);
+        i++;
+    }
+    function addQualificationsRow(){
+        const tbodyContainer = document.getElementById('qualificationsTbody');
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+            <td><input type="date" name="qualification${i}" class="form-control"></td>
+            <td><input type="text" name="institution${i}" class="form-control"></td>
+            <td><input type="text" name="qual-start-date${i}" class="form-control"></td>
+        `;
+        tbodyContainer.appendChild(newRow);
+        i++;
+    }
+
+
+    // 表单提交处理
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
                 
                 // 验证表单
                 if (!validateForm()) {
@@ -796,13 +896,13 @@ document.getElementById('addExperienceRow').addEventListener('click', function()
                 return isValid;
             }
             
-            // 收集表单数据
+            // gather form data
             function collectFormData() {
                 const formData = new FormData(form);
                 
-                // 收集教育经历
+                // edu data
                 const education = [];
-                // 收集小学信息
+                // primary school
                 if (formData.get('primary_school')) {
                     education.push({
                         level: '小學',
@@ -811,7 +911,7 @@ document.getElementById('addExperienceRow').addEventListener('click', function()
                         period: `${formData.get('primary_from')} - ${formData.get('primary_to')}`
                     });
                 }
-                // 收集中学信息
+                // secondary school
                 if (formData.get('secondary_school')) {
                     education.push({
                         level: '中學',
@@ -820,7 +920,7 @@ document.getElementById('addExperienceRow').addEventListener('click', function()
                         period: `${formData.get('secondary_from')} - ${formData.get('secondary_to')}`
                     });
                 }
-                // 收集其他教育信息
+                // others education experience
                 if (formData.get('other_school')) {
                     education.push({
                         level: '其他',
@@ -829,8 +929,8 @@ document.getElementById('addExperienceRow').addEventListener('click', function()
                         period: `${formData.get('other_from')} - ${formData.get('other_to')}`
                     });
                 }
-                
-                // 收集工作经历
+
+                // work experience
                 const workExperience = [];
                 if (formData.get('employer_1')) {
                     workExperience.push({
@@ -851,7 +951,7 @@ document.getElementById('addExperienceRow').addEventListener('click', function()
                     });
                 }
                 
-                // 收集咨询人信息
+                // referees infos
                 const referees = [];
                 if (formData.get('referee1_name')) {
                     referees.push({
@@ -989,8 +1089,7 @@ document.getElementById('addExperienceRow').addEventListener('click', function()
                 successOverlay.style.display = 'none';
             });
         });
+
     </script>
 </body>
-
 </html>
-
