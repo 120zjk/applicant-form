@@ -888,6 +888,7 @@ function addAddressArea(){
     ];
     const areaSelect = document.querySelectorAll('[name = "address_area"]');
     areaSelect.forEach(select => {
+        select.length = 1;
         hkAreas.forEach(area => {
             const option = document.createElement('option');
             option.value = area;
@@ -1313,5 +1314,6 @@ function addAddressArea(){
 </body>
 
 </html>
+
 
 
