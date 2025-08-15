@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>康業服務有限公司 - 前線求職申請表</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="test.css">
+</head>
+<body>
+    <!-- 成功提交的覆盖层 -->
+    <div class="success-overlay" id="successOverlay">
+        <div class="success-modal">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2 class="success-title">申請表提交成功！</h2>
+            <p class="success-message">
+                您的求職申請表已成功提交,我們將盡快處理您的申請。
+            </p>
+            <div class="success-details" id="successDetails">
+                <h4><i class="fas fa-info-circle"></i> 提交詳情</h4>
+                <p><strong>提交時間：</strong><span id="submissionTime"></span></p>
+                <p><strong>申請人：</strong><span id="applicantName"></span></p>
+                <p><strong>申請職位：</strong><span id="appliedPosition"></span></p>
+    
+            </div>
+            <div class="loading-spinner" id="loadingSpinner">
+                <div class="spinner"></div>
+                <p>正在處理您的申請...</p>
+            </div>
+            <div>
+                <button class="btn-secondary" id="newApplicationBtn">
+                    <i class="fas fa-plus"></i> 填寫新申請
+                </button>
+                <button class="btn-secondary" id="closeModalBtn">
+                    <i class="fas fa-times"></i> 關閉
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="company-header">
+                <div class="company-name">康業服務有限公司</div>
+                <div class="company-name-en">HONG YIP HOLDINGS LIMITED</div>
+                <div class="form-title">求職申請表</div>
+                <div class="form-title-en">Application for Employment</div>
+            </div>
+            <p class="section-subtitle">個人資料 PERSONAL DATA</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- 提交状态显示 -->
+        <div class="submission-status" id="submissionStatus">
+            <i class="fas fa-check-circle"></i> 申請表已成功提交
+        </div>
+
+        <div class="notes-box">
+            <h3>個人資料處理聲明及注意事項 Personal Information Collection Statement and Notes to Job Applicants</h3>
+            <ol class="notes-list">
+                <li>康業控股有限公司及其附屬公司(簡稱"公司")收集求職者之個人資料的目的乃協助公司甄選求職者是否合適擔任所申請職位，以及用作於獲聘後各種有關人力資源及行政管理的事項，包括但不限於招聘及選拔。求職者同意此求職申請表可轉移子公司內不同商業單位作招聘及薪酬用途。The personal data collected in this application for employment will be used by Hong Yip Holdings Limited and its subsidiaries ("the Company") to assess the suitability of job applicants for the applied position and for various human resources management and administration purposes throughout the employment thereafter including, but not limited to recruitment and selection. Job Applicants agree that the personal data collected in this application for employment can be transferred and used within all business units of the Company for recruitment-related purpose.</li>
+                <li>求職申請表上的資料可能會披露及/或轉移子公司的保險商、銀行、醫療機構、政府機構、強權金管理人、潛在或前僱主及/或其他第三者機構，以作任何與其僱傭直接有關的用途包括但不限於薪酬及福利管理及檢討、僱傭資料審查及/或職工策劃等。The personal data collected may be disclosed and/or transferred to the Company's insurers, bankers, medical organizations, government organizations, administrators of provident fund scheme, former or prospective employers and/or other third parties for the purpose of any matters directly related to employment including, but not limited to administering and reviewing compensation and benefits, reference checking and/or staff planning etc.</li>
+                <li>根據《個人資料(私隱)條例》，求職者有權要求查閱及更正所填報的個人資料，如有需要，可向人力資源及行政部提出。According to the Personal Data (Privacy) Ordinance, job applicants can request for access and correction of any personal data provided in this application for employment. Please contact Human Resources & Administration Department for enquiries.</li>
+                <li>求職者必須盡量接受求職申請表上所有項目及提供完整資料(非強制性資料除外)，以便進行甄選。若求職者未能完整地提供所有資料，將有可能延誤受託申請。For selection purpose, job applicants are advised to provide <span class="highlight">FULL</span> information and complete all sections in this application for employment (except optional items). Failure to do so may delay the process of the application.</li>
+                <li>作為執行平等機會的僱主，公司會確保每位求職者得到平等的僱傭機會。Being an equal opportunity employer, the Company assures that every job applicant has an equal employment opportunity.</li>
+                <li>所有求職者不會因為其性別、懷孕、殘疾、婚姻狀況、家庭崗位、種族、年齡及性傾向而在求職時蒙受不利。All job applicants will not be disadvantaged because of his/her sex, pregnancy, disability, marital status, family status, race, age and sexual orientation when applying for a job.</li>
+                <li>所有求職申請表資料將絕對保密。All information provided in this application for employment will be treated in strict confidence.</li>
+                <li>請用正楷填寫申請表。Please complete this form in <span class="highlight">BLOCK</span> letters.</li>
+            </ol>
+        </div>
+
+        <form id="applicationForm" class="form-section">
+            <h2 class="section-title">求職者專用 FOR JOB APPLICANT USE ONLY</h2>
+            <input type="hidden" name="typeform" value="frontline-form">
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">申請職位 Position Applied for</label>
+                        <input type="text" name="position" class="form-control" placeholder="請輸入申請職位" required>
+                        <div class="error-message">此為必填項目</div>
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">要求薪金 Expected Salary</label>
+                        <input type="text" name="salary" class="form-control" placeholder="請輸入期望薪金" required>
+                        <div class="error-message">此為必填項目</div>
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">可到職日期 Date Available</label>
+                        <input type="date" name="available_date" class="form-control" required>
+                        <div class="error-message">此為必填項目</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="section-subtitle">個人資料 Personal Particulars</h3>
+            
+            <!-- 修改个人资料表格 -->
+            <div class="table-container">
+                <table class="form-table">
+                    <tr>
+                        <th>稱謂<br>Title</th>
+                        <td>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="title" value="mr" required> 先生 Mr.
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="title" value="ms"> 女士 Ms.
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="title" value="miss"> 小姐 Miss
+                                </label>
+                            </div>
+                            <div class="error-message">此為必填項目</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>中文姓名<br>Chinese Name</th>
+                        <td>
+                            <input type="text" name="chinese_name" class="form-control" required>
+                            <div class="error-message">此為必填項目</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>英文姓名<br>English Name</th>
+                        <td>
+                            <input type="text" name="english_name" class="form-control" required>
+                            <div class="error-message">此為必填項目</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>身份證/護照號碼<br>HKID/Passport No.</th>
+                        <td>
+                            <input type="text" name="id_number" class="form-control" required>
+                            <div class="error-message">此為必填項目</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>婚姻狀況<br>Marital Status <span class="required"></span></th>
+                        <td>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="marital_status" value="single"> 未婚 Single
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="marital_status" value="married"> 已婚 Married
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="marital_status" value="divorced"> 離婚 Divorced
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="marital_status" value="widow"> 喪偶 Widow
+                                </label>
+                            </div>
+                            <div class="optional">(非強制性資料)</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>出生日期<br>Date of Birth</th>
+                        <td>
+                            <div class="form-row">
+                                <div class="form-col">
+                                    <input type="number" name="birth_day" class="form-control" placeholder="dd" min="1" max="31" required>
+                                </div>
+                                <div class="form-col">
+                                    <input type="number" name="birth_month" class="form-control" placeholder="mm" min="1" max="12" required>
+                                </div>
+                                <div class="form-col">
+                                    <input type="number" name="birth_year" class="form-control" placeholder="yyyy" min="1900" max="2023" required>
+                                </div>
+                            </div>
+                            <div class="error-message">此為必填項目</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>出生地點<br>Place of Birth</th>
+                        <td>
+                            <input type="text" name="birth_place" class="form-control" required>
+                            <div class="error-message">此為必填項目</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>來港日期<br>Date of Arrival</th>
+                        <td>
+                            <div class="form-row">
+                                <div class="form-col">
+                                    <input type="number" name="arrival_day" class="form-control" placeholder="dd" min="1" max="31">
+                                </div>
+                                <div class="form-col">
+                                    <input type="number" name="arrival_month" class="form-control" placeholder="mm" min="1" max="12">
+                                </div>
+                                <div class="form-col">
+                                    <input type="number" name="arrival_year" class="form-control" placeholder="yyyy" min="1900" max="2023">
+                                </div>
+                            </div>
+                            <div class="error-message">此為必填項目</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>國籍<br>Nationality</th>
+                        <td>
+                            <input type="text" name="nationality" class="form-control" required>
+                            <div class="error-message">此為必填項目</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>電話號碼<br>Telephone No.</th>
+                        <td>
+                            <div class="form-row">
+                                <div class="form-col">
+                                    <label class="form-label">住宅 Home</label>
+                                    <input type="tel" name="home_phone" class="form-control">
+                                    <div class="error-message">此為必填項目</div>
+                                </div>
+                                <div class="form-col">
+                                    <label class="form-label">手提 Mobile</label>
+                                    <input type="tel" name="mobile_phone" class="form-control" required>
+                                    <div class="error-message">此為必填項目</div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>地址<br>Address</th>
+                        <td>
+                            <textarea name="address" class="form-control" rows="3" required></textarea>
+                            <div class="error-message">此為必填項目</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>護照簽發地點<br>Passport Issue Place</th>
+                        <td>
+                            <input type="text" name="passport_issue_place" class="form-control">
+                            <div class="error-message">此為必填項目</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>護照簽發日期<br>Passport Issue Date</th>
+                        <td>
+                            <input type="date" name="passport_issue_date" class="form-control" placeholder="dd-mm-yyyy">
+                            <div class="error-message">此為必填項目</div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3 class="section-subtitle">學歷及專業資歷 Academic and Professional Qualifications Attained</h3>
+            
+            <div class = "table-container">
+               
+            <table class="form-table">
+                <thead>
+                    <tr>
+                        <th class="form1"></th>
+                        <th style="width: 25%">開始日期 Start Date</th>
+                        <th style="width: 25%">完結日期 End Date</th>
+                        <th style="width: 35%">學校/機構名稱 Name of School/ Institution</th>
+                        <th style="width: 25%">所獲資歷或證書 Qualification / Certificate Obtained</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class ="form1" >小學 Primary School</td>
+                        <td><input type="date" name ="start_date_1" class="form-control" placeholder="月/年"></td>
+                        <td><input type="date" name ="end_date_1" class="form-control" placeholder="月/年"></td>
+                        <td><input type="text" name ="school_1" class="form-control" ></td>
+                        <td><input type="text" name ="qualification_1" class="form-control" ></td>
+                    </tr>
+                    <tr>
+                        <td class ="form1">中學 Secondary School</td>
+                        <td><input type="date" name ="start_date_2" class="form-control" placeholder="月/年"></td>
+                        <td><input type="date" name ="end_date_2" class="form-control" placeholder="月/年"></td>
+                        <td><input type="text" name ="school_2" class="form-control" ></td>
+                        <td><input type="text" name ="qualification_2" class="form-control" ></td>
+                    </tr>
+                    <tr>
+                        <td class ="form1">其他 Others</td>
+                        <td><input type="date" name ="start_date_3" class="form-control" placeholder="月/年"></td>
+                        <td><input type="date" name ="end_date_3" class="form-control" placeholder="月/年"></td>
+                        <td><input type="text" name ="school_3" class="form-control" ></td>
+                        <td><input type="text" name ="qualification_3" class="form-control" ></td>
+
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+
+            <div class="form-group" style="margin-top: 20px;">
+                <label class="form-label">是否曾修讀實業保證系統之保安培訓課程或僱員再培訓局認可機構提供之課程？<br>Did you take any security training course of Quality Assurance System / course offered by training institutions accredited by Employee Retraining Board?</label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="security_training" value="yes" required> 是 Yes
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="security_training" value="no"> 否 No
+                    </label>
+                </div>
+                <div class="error-message">此為必填項目</div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">培訓機構名稱 Name of Training Institution</label>
+                <input type="text" class="form-control">
+                <div class="error-message">此為必填項目</div>
+            </div>
+
+            <h3 class="section-subtitle">工作經驗 Working Experience</h3>
+            <p>請倒序列出過往 3 年所有僱傭紀錄，若有需要可附加頁面書寫。<br>Please list all the employment records in the past 3 years in reverse chronological order and use separate sheet if necessary.</p>
+            
+            <!-- 修改工作经验表格 -->
+            <div class="table-container">
+                <table class="form-table">
+                    <thead>
+                        <tr>
+                            <th>開始日期<br>Start Date</th>
+                            <th>結束日期<br>End Date</th>
+                            <th>僱主名稱<br>Name of Employer</th>
+                            <th>最後職位<br>Last Position</th>
+                            <th>最後薪金<br>Last Salary</th>
+                            <th>離職原因<br>Reason for Leaving</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="date" name = "start_date_1" class="form-control" placeholder="月(mm)/年(yyyy) "></td>
+                            <td><input type="date" name = "end_date_1" class="form-control" placeholder="月(mm)/年(yyyy) "></td>
+                            <td><input type="text" name = "employer_name_1" class="form-control" ></td>
+                            <td><input type="text" name = "last_position_1" class="form-control" ></td>
+                            <td><input type="text" name = "last_salary_1" class="form-control" ></td>
+                            <td><input type="text" name = "reason_for_leaving_1" class="form-control" ></td>
+                        </tr>
+                        <tr>
+                            <td><input type="date" name = "start_date_2" class="form-control" placeholder="月(mm)/年(yyyy) "></td>
+                            <td><input type="date" name = "end_date_2" class="form-control" placeholder="月(mm)/年(yyyy) "></td>
+                            <td><input type="text" name = "employer_name_2" class="form-control" ></td>
+                            <td><input type="text" name = "last_position_2" class="form-control" ></td>
+                            <td><input type="text" name = "last_salary_2" class="form-control" ></td>
+                            <td><input type="text" name = "reason_for_leaving_2" class="form-control" ></td>
+                        </tr>
+                        <tr>
+                            <td><input type="date" name = "start_date_3" class="form-control" placeholder="月(mm)/年(yyyy) "></td>
+                            <td><input type="date" name = "end_date_3" class="form-control" placeholder="月(mm)/年(yyyy) "></td>
+                            <td><input type="text" name = "employer_name_3" class="form-control" ></td>
+                            <td><input type="text" name = "last_position_3" class="form-control" ></td>
+                            <td><input type="text" name = "last_salary_3" class="form-control" ></td>
+                            <td><input type="text" name = "reason_for_leaving_3" class="form-control" ></td>
+                        </tr>
+                        <tr>
+                            <td><input type="date" name = "start_date_4" class="form-control" placeholder="月(mm)/年(yyyy) "></td>
+                            <td><input type="date" name = "end_date_4" class="form-control" placeholder="月(mm)/年(yyyy) "></td>
+                            <td><input type="text" name = "employer_name_4" class="form-control" ></td>
+                            <td><input type="text" name = "last_position_4" class="form-control" ></td>
+                            <td><input type="text" name = "last_salary_4" class="form-control" ></td>
+                            <td><input type="text" name = "reason_for_leaving_4" class="form-control" ></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="form-group" style="margin-top: 20px;">
+                <label class="form-label">總共有多少年物業管理相關經驗？<br>How many years of related experience in property management do you have totally?</label>
+                <div class="form-row" style="align-items: center;">
+                    <div class="form-col" style="max-width: 100px;">
+                        <input type="number" class="form-control" min="0" required>
+                    </div>
+                    <div>年/year(s)</div>
+                </div>
+                <div class="error-message">此為必填項目</div>
+            </div>
+
+            <h3 class="section-subtitle">技能 Skills</h3>
+            
+            <!-- 修改语言能力表格 -->
+            <div class="table-container">
+                <table class="form-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>中文 (廣東話)<br>Chinese (Cantonese)</th>
+                            <th>英文<br>English</th>
+                            <th>其他<br>Others: <input type="text" class="form-control"  placeholder="語言名稱" style="margin-bottom: 10px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>書寫<br>Written</th>
+                            <td>
+                                <div class="radio-group" style="flex-direction: column;">
+                                    <label class="radio-option">
+                                        <input type="radio" name="written_cn" value="fluent" required> 流利 Fluent
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="written_cn" value="fair"> 一般 Fair
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="written_cn" value="basic"> 基本 Basic
+                                    </label>
+                                </div>
+                                <div class="error-message">此為必填項目</div>
+                            </td>
+                            <td>
+                                <div class="radio-group" style="flex-direction: column;">
+                                    <label class="radio-option">
+                                        <input type="radio" name="written_en" value="fluent" required> 流利 Fluent
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="written_en" value="fair"> 一般 Fair
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="written_en" value="basic"> 基本 Basic
+                                    </label>
+                                </div>
+                                <div class="error-message">此為必填項目</div>
+                            </td>
+                            <td>
+                                <div class="radio-group" style="flex-direction: column;">
+                                    <label class="radio-option">
+                                        <input type="radio" name="written_other" value="fluent" > 流利 Fluent
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="written_other" value="fair"> 一般 Fair
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="written_other" value="basic"> 基本 Basic
+                                    </label>
+                                </div>
+                                <div class="error-message">此為必填項目</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>會話<br>Spoken</th>
+                            <td>
+                                <div class="radio-group" style="flex-direction: column;">
+                                    <label class="radio-option">
+                                        <input type="radio" name="spoken_cn" value="fluent" required> 流利 Fluent
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="spoken_cn" value="fair"> 一般 Fair
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="spoken_cn" value="basic"> 基本 Basic
+                                    </label>
+                                </div>
+                                <div class="error-message">此為必填項目</div>
+                            </td>
+                            <td>
+                                <div class="radio-group" style="flex-direction: column;">
+                                    <label class="radio-option">
+                                        <input type="radio" name="spoken_en" value="fluent" required> 流利 Fluent
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="spoken_en" value="fair"> 一般 Fair
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="spoken_en" value="basic"> 基本 Basic
+                                    </label>
+                                </div>
+                                <div class="error-message">此為必填項目</div>
+                            </td>
+                            <td>
+                                <div class="radio-group" style="flex-direction: column;">
+                                    <label class="radio-option">
+                                        <input type="radio" name="spoken_other" value="fluent" > 流利 Fluent
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="spoken_other" value="fair"> 一般 Fair
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="spoken_other" value="basic"> 基本 Basic
+                                    </label>
+                                </div>
+                                <div class="error-message">此為必填項目</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">牌照 License</label>
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="checkbox-option">
+                            <input name ="licence" type="checkbox" value = "licence_security"> 保安人員許可證 Security Personnel Permit
+                        </label>
+                    </div>
+                    <div class="form-col">
+                        <label class="checkbox-option">
+                            <input name ="licence" type="checkbox" value = "licence_safety"> 平安咭 Safety Card
+                        </label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="checkbox-option">
+                            <input name ="licence" type="checkbox" value = "licence_rew"> 電業工程人員證書 REW
+                        </label>
+                    </div>
+                    <div class="form-col">
+                        <label class="checkbox-option">
+                            <input name ="licence" type="checkbox" value = "licence_driving"> 車牌 Driving License
+                        </label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="checkbox-option">
+                            <input name ="licence" type="checkbox" value = "licence_first_aid"> 急救證書 First Aid
+                        </label>
+                    </div>
+                    <div class="form-col">
+                        <label class="checkbox-option">
+                            <input name ="licence" type="checkbox" value = "licence_advanced_pool"> 高級泳池救生章 Advanced Pool Lifeguard Award
+                        </label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="checkbox-option">
+                            <input name ="licence" type="checkbox" value = "licence_pool"> 泳池救生章 Pool Lifeguard Award
+                        </label>
+                    </div>
+                    <div class="form-col">
+                        <label class="checkbox-option">
+                            <input name ="licence" type="checkbox" value = "licence_pool_management"> 泳池救生管理章 Pool Lifeguard Management Award
+                        </label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="licence"> 其他 Others
+                        </label>
+                        <input type="text" class="form-control" placeholder="請說明" style="margin-top: 5px;" >
+                        <div class="error-message">此為必填項目</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="section-subtitle">其他資料 Supplementary Information</h3>
+            
+            <div class="form-group">
+                <label class="form-label">1. 是否曾在本公司任職 (全職/兼職)?<br>Did you work in the Company before (permanent/ temporary employment)?</label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="working_before" value="no" required> 否 No
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="working_before" value="yes"> 是 Yes
+                    </label>
+                </div>
+                <div class="error-message">此為必填項目</div>
+                
+                <div class="form-row" style="margin-top: 15px;">
+                    <div class="form-col">
+                        <label class="form-label">公司/分區/大廈 Company/Area/Building</label>
+                        <input type="text" class="form-control">
+                        <div class="error-message">此為必填項目</div>
+                    </div>
+                    <div class="form-col">
+                        <label class="form-label">職位 Position</label>
+                        <input type="text" class="form-control">
+                        <div class="error-message">此為必填項目</div>
+                    </div>
+                    <div class="form-col">
+                        <label class="form-label">任職時期 Period of Employment</label>
+                        <input type="text" class="form-control">
+                        <div class="error-message">此為必填項目</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">2. 是否有親屬現於本公司任職？<br>Do you have any relative(s) working in the Company?</label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="relatives_working" value="no" required> 否 No
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="relatives_working" value="yes"> 是 Yes
+                    </label>
+                </div>
+                <div class="error-message">此為必填項目</div>
+                
+                <div class="form-row" style="margin-top: 15px;">
+                    <div class="form-col">
+                        <label class="form-label">姓名 Name</label>
+                        <input type="text" class="form-control" >
+                        <div class="error-message">此為必填項目</div>
+                    </div>
+                    <div class="form-col">
+                        <label class="form-label">關係 Relationship</label>
+                        <input type="text" class="form-control" >
+                        <div class="error-message">此為必填項目</div>
+                    </div>
+                    <div class="form-col">
+                        <label class="form-label">公司 Company</label>
+                        <input type="text" class="form-control" >
+                        <div class="error-message">此為必填項目</div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-col">
+                        <label class="form-label">分區/大廈 Area/Building</label>
+                        <input type="text" class="form-control" >
+                        <div class="error-message">此為必填項目</div>
+                    </div>
+                    <div class="form-col">
+                        <label class="form-label">職位 Position</label>
+                        <input type="text" class="form-control" >
+                        <div class="error-message">此為必填項目</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">3. 是否曾在香港境內或境外因觸犯刑事罪行而被定罪？<br>Have you ever been convicted of any criminal offence in or outside Hong Kong?</label>
+                <p style="font-size: 0.9rem; margin-bottom: 10px;">(曾犯刑事案者，公司不會因此而拒絶錄用 A criminal conviction is not necessarily a barrier to appointment)</p>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="criminal_record" value="no" required> 否 No
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="criminal_record" value="yes"> 是 Yes
+                    </label>
+                </div>
+                <div class="error-message">此為必填項目</div>
+                
+                <div class="form-row" style="margin-top: 15px;">
+                    <div class="form-col">
+                        <label class="form-label">日期 Date</label>
+                        <input type="date" class="form-control" placeholder = "dd-mm-yyyy">
+                        <div class="error-message">此為必填項目</div>
+                    </div>
+                    <div class="form-col">
+                        <label class="form-label">地點 Place</label>
+                        <input type="text" class="form-control">
+                        <div class="error-message">此為必填項目</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">4. 從何得知此職位招聘？(請註明)<br>How did you learn of this position recruited? (Please specify)</label>
+                <div class="radio-group" style="flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
+                    <label class="radio-option">
+                        <input type="radio" name="source" value="labour" required> 勞工處 Labour Department
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="source" value="training"> 培訓機構 Training Institution
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="source" value="newspaper"> 報章 Newspaper
+                        <input type="text" class="form-control" placeholder="報章名稱" style="width: 150px; display: inline-block; margin-left: 5px;" >
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="source" value="referral"> 內部介紹 Internal Referral
+                        <input type="text" class="form-control" placeholder="介紹人姓名" style="width: 150px; display: inline-block; margin-left: 5px;" >
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="source" value="others"> 其他 Others
+                        <input type="text" class="form-control" placeholder="請說明" style="width: 150px; display: inline-block; margin-left: 5px;" >
+                    </label>
+                </div>
+                <div class="error-message">此為必填項目</div>
+            </div>
+
+            <h3 class="section-subtitle">諮詢人 Referees</h3>
+            <p>請提供2 名非親屬人士作為諮詢人<br>Please provide information of 2 non-relative referees.</p>
+            
+            <!-- 修改咨询人表格 -->
+            <div class="table-container">
+                <table class="form-table">
+                    <thead>
+                        <tr>
+                            <th>姓名<br>Name</th>
+                            <th>電話號碼<br>Telephone No.</th>
+                            <th>詳細地址<br>Full Address</th>
+                            <th>關係<br>Relationship</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" name ="referee1_name" class="form-control" required></td>
+                            <td><input type="tel" name ="referee1_phone" class="form-control" required></td>
+                            <td><input type="text" name ="referee1_address" class="form-control" required></td>
+                            <td><input type="text" name ="referee1_relationship" class="form-control" required></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name ="referee2_name" class="form-control" required></td>
+                            <td><input type="tel" name ="referee2_phone" class="form-control" required></td>
+                            <td><input type="text" name ="referee2_address" class="form-control" required></td>
+                            <td><input type="text" name ="referee2_relationship" class="form-control" required></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 其他表格行保持不变... -->
+            </table>
+
+            <!-- 其他表单内容保持不变... -->
+
+            <div class="mandatory-note">
+                <i class="fas fa-exclamation-circle"></i> 請完整回答上述所有問題，標「*」項為非必填內容
+            </div>
+            
+            <div class="btn-container">
+                <button type="submit" class="btn" id="submitBtn">
+                    <i class="fas fa-paper-plane"></i> 提交申請表
+                </button>
+            </div>
+        </form>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <p>康業控股有限公司 HONG YIP HOLDINGS LIMITED</p>
+            <p>© 2025 康業控股有限公司 版權所有。保留所有權利。</p>
+            <p>個人資料處理聲明: 本公司承諾遵守《個人資料(私隱)條例》的規定，確保個人資料的準確性和安全性。</p>
+        </div>
+    </footer>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('applicationForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const successOverlay = document.getElementById('successOverlay');
+    const loadingSpinner = document.getElementById('loadingSpinner');
+    const successDetails = document.getElementById('successDetails');
+    const submissionStatus = document.getElementById('submissionStatus');
+    
+    let downloadUrl = null;
+    let submissionData = null;
+    
+    // 表单提交处理
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // 验证表单
+        if (!validateForm()) {
+            return;
+        }
+        
+        // 显示确认弹窗
+        showConfirmationDialog();
+    });
+    
+    // 显示确认弹窗
+    function showConfirmationDialog() {
+        // 收集所有个人资料
+        const confirmData = {
+            // 基本申请信息
+            position: document.querySelector('input[name="position"]').value,
+            salary: document.querySelector('input[name="salary"]').value,
+            availableDate: document.querySelector('input[name="available_date"]').value,
+            
+            // 个人资料
+            title: document.querySelector('input[name="title"]:checked')?.value || '',
+            chineseName: document.querySelector('input[name="chinese_name"]').value,
+            englishName: document.querySelector('input[name="english_name"]').value,
+            idNumber: document.querySelector('input[name="id_number"]').value,
+            maritalStatus: document.querySelector('input[name="marital_status"]:checked')?.value || '',
+            birthDate: `${document.querySelector('input[name="birth_day"]').value}/${document.querySelector('input[name="birth_month"]').value}/${document.querySelector('input[name="birth_year"]').value}`,
+            birthPlace: document.querySelector('input[name="birth_place"]').value,
+            arrivalDate: `${document.querySelector('input[name="arrival_day"]').value || ''}/${document.querySelector('input[name="arrival_month"]').value || ''}/${document.querySelector('input[name="arrival_year"]').value || ''}`,
+            nationality: document.querySelector('input[name="nationality"]').value,
+            homePhone: document.querySelector('input[name="home_phone"]').value,
+            mobilePhone: document.querySelector('input[name="mobile_phone"]').value,
+            address: document.querySelector('textarea[name="address"]').value,
+            passportIssuePlace: document.querySelector('input[name="passport_issue_place"]').value,
+            passportIssueDate: document.querySelector('input[name="passport_issue_date"]').value
+        };
+        
+        // 获取称谓显示文本
+        const getTitleText = (value) => {
+            const titleMap = { 'mr': '先生 Mr.', 'ms': '女士 Ms.', 'miss': '小姐 Miss' };
+            return titleMap[value] || '';
+        };
+        
+        // 获取婚姻状况显示文本
+        const getMaritalStatusText = (value) => {
+            const statusMap = { 'single': '未婚 Single', 'married': '已婚 Married', 'divorced': '離婚 Divorced', 'widow': '喪偶 Widow' };
+            return statusMap[value] || '未填寫';
+        };
+        
+        const confirmationMessage = document.createElement('div');
+        confirmationMessage.className = 'confirmation-dialog';
+        confirmationMessage.id = 'confirmationDialog';
+        confirmationMessage.innerHTML = `
+            <div class="confirmation-model">
+                <div class="confirmation-header">
+                    <h2><i class="fas fa-exclamation-triangle"></i> 確認提交申請表</h2>
+                </div>
+                <div class="confirmation-content">
+                    <p><strong>請確認以下資料無誤後提交：</strong></p>
+                    <div class="confirm-details" style="max-height: 400px; overflow-y: auto;">
+                        <h4>申請職位資訊</h4>
+                        <div class="detail-row">
+                            <span class="label">申請職位：</span>
+                            <span class="value">${confirmData.position}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">要求薪金：</span>
+                            <span class="value">${confirmData.salary}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">可到職日期：</span>
+                            <span class="value">${confirmData.availableDate}</span>
+                        </div>
+                        
+                        <h4>個人資料</h4>
+                        <div class="detail-row">
+                            <span class="label">稱謂：</span>
+                            <span class="value">${getTitleText(confirmData.title)}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">中文姓名：</span>
+                            <span class="value">${confirmData.chineseName}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">英文姓名：</span>
+                            <span class="value">${confirmData.englishName}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">身份證/護照號碼：</span>
+                            <span class="value">${confirmData.idNumber}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">婚姻狀況：</span>
+                            <span class="value">${getMaritalStatusText(confirmData.maritalStatus)}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">出生日期：</span>
+                            <span class="value">${confirmData.birthDate}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">出生地點：</span>
+                            <span class="value">${confirmData.birthPlace}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">來港日期：</span>
+                            <span class="value">${confirmData.arrivalDate}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">國籍：</span>
+                            <span class="value">${confirmData.nationality}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">住宅電話：</span>
+                            <span class="value">${confirmData.homePhone || '未填寫'}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">手提電話：</span>
+                            <span class="value">${confirmData.mobilePhone}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">地址：</span>
+                            <span class="value">${confirmData.address}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">護照簽發地點：</span>
+                            <span class="value">${confirmData.passportIssuePlace || '未填寫'}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">護照簽發日期：</span>
+                            <span class="value">${confirmData.passportIssueDate || '未填寫'}</span>
+                        </div>
+                    </div>
+                    <div class="confirm-warning">
+                        <i class="fas fa-info-circle"></i>
+                        <span>提交後資料將無法修改，請仔細檢查所有內容是否正確。</span>
+                    </div>
+                </div>
+                <div class="confirm-buttons">
+                    <button type="button" class="btn-cancel" onclick="cancelSubmission()">
+                        <i class="fas fa-times"></i> 取消
+                    </button>
+                    <button type="button" class="btn-confirm" onclick="confirmSubmission()">
+                        <i class="fas fa-check"></i> 確認提交
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        // 添加确认对话框到页面
+        document.body.appendChild(confirmationMessage);
+
+        // 显示确认对话框
+        setTimeout(() => {
+            confirmationMessage.classList.add('show');
+        }, 10);
+
+        // 禁用表单提交按钮
+        submitBtn.disabled = true;
+    }
+
+    // 取消提交函数
+    window.cancelSubmission = function() {
+        const confirmationDialog = document.getElementById('confirmationDialog');
+        if (confirmationDialog) {
+            confirmationDialog.classList.remove('show');
+            setTimeout(() => {
+                document.body.removeChild(confirmationDialog);
+            }, 300);
+        }
+        
+        // 重新启用提交按钮
+        submitBtn.disabled = false;
+    };
+
+    // 确认提交函数
+    window.confirmSubmission = function() {
+        const confirmationDialog = document.getElementById('confirmationDialog');
+        if (confirmationDialog) {
+            confirmationDialog.classList.remove('show');
+            setTimeout(() => {
+                document.body.removeChild(confirmationDialog);
+            }, 300);
+        }
+        
+        // 显示加载状态
+        showLoadingState();
+        
+        // 收集表单数据
+        const formData = collectFormData();
+        
+        // 提交表单
+        submitForm(formData);
+    };
+
+    // 验证表单
+    function validateForm() {
+        // 重置所有错误状态
+        form.querySelectorAll('.validation-error').forEach(el => {
+            el.classList.remove('validation-error');
+        });
+        form.querySelectorAll('.error-message').forEach(el => {
+            el.style.display = 'none';
+        });
+        
+        // 验证所有必填项
+        const requiredFields = form.querySelectorAll('[required]');
+        let firstInvalid = null;
+        let isValid = true;
+        
+        requiredFields.forEach(field => {
+            // 特殊处理单选按钮组
+            if (field.type === 'radio') {
+                const groupName = field.name;
+                const group = form.querySelectorAll(`input[name="${groupName}"]`);
+                const isChecked = Array.from(group).some(radio => radio.checked);
+                
+                if (!isChecked) {
+                    if (!firstInvalid) firstInvalid = group[0];
+                    const errorMsg = group[0].closest('td')?.querySelector('.error-message') ||
+                                   group[0].closest('.form-group')?.querySelector('.error-message');
+                    if (errorMsg) errorMsg.style.display = 'block';
+                    isValid = false;
+                }
+            }
+            // 处理其他输入类型
+            else if (!field.value.trim()) {
+                if (!firstInvalid) firstInvalid = field;
+                field.classList.add('validation-error');
+                const errorMsg = field.parentNode.querySelector('.error-message');
+                if (errorMsg) errorMsg.style.display = 'block';
+                isValid = false;
+            }
+        });
+        
+        if (!isValid) {
+            alert('請填寫所有必填項目');
+            if (firstInvalid) {
+                firstInvalid.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            }
+        }
+        
+        return isValid;
+    }
+    
+    // 收集表单数据
+    function collectFormData() {
+        const formData = new FormData(form);
+        
+        // 添加提交时间戳
+        formData.append('submission_time', new Date().toISOString());
+        
+        return formData;
+    }
+    
+    // 显示加载状态
+    function showLoadingState() {
+        successOverlay.style.display = 'flex';
+        loadingSpinner.style.display = 'block';
+        successDetails.style.display = 'none';
+        
+        // 禁用表单
+        form.classList.add('form-disabled');
+        submitBtn.disabled = true;
+    }
+    
+    // 提交表单
+    function submitForm(formData) {
+        // 模拟提交过程
+        setTimeout(() => {
+            // 模拟成功提交
+            const success = true;
+            
+            if (success) {
+                // 保存提交数据到localStorage
+                const submissionInfo = {
+                    time: new Date().toLocaleString('zh-TW'),
+                    name: formData.get('chinese_name'),
+                    englishName: formData.get('english_name'),
+                    position: formData.get('position'),
+                    mobile: formData.get('mobile_phone'),
+                    submissionId: 'APP' + Date.now(),
+                    status: 'submitted'
+                };
+                
+                localStorage.setItem('latestSubmission', JSON.stringify(submissionInfo));
+                
+                // 跳转到成功页面
+                window.location.href = 'success.html';
+            } else {
+                hideLoadingState();
+                alert('提交過程中發生錯誤，請重試。');
+                form.classList.remove('form-disabled');
+                submitBtn.disabled = false;
+            }
+        }, 2000); // 模拟2秒提交时间
+    }
+    
+    // 隐藏加载状态
+    function hideLoadingState() {
+        successOverlay.style.display = 'none';
+        loadingSpinner.style.display = 'none';
+    }
+    
+    // 其他按钮事件处理...
+    document.getElementById('newApplicationBtn')?.addEventListener('click', function() {
+        if (confirm('確定要填寫新的申請表嗎？當前數據將被清除。')) {
+            form.reset();
+            form.classList.remove('form-disabled');
+            submitBtn.disabled = false;
+            submissionStatus.style.display = 'none';
+            successOverlay.style.display = 'none';
+        }
+    });
+    
+    document.getElementById('closeModalBtn')?.addEventListener('click', function() {
+        successOverlay.style.display = 'none';
+    });
+});
+</script>
+</body>
+</html>

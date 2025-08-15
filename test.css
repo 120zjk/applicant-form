@@ -13,6 +13,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+    
 }
 
 body {
@@ -22,7 +23,7 @@ body {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 20px;
 }
@@ -372,12 +373,12 @@ header {
     .form-table th,
     .form-table td {
         padding: 10px 12px;
-        font-size: 0.95rem;
+        font-size: 1rem;
     }
     
     .form-table .form-control {
         padding: 8px 10px;
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 }
 
@@ -391,17 +392,21 @@ header {
     .form-table th,
     .form-table td {
         padding: 8px 10px;
-        font-size: 0.85rem;
+        font-size: 0.9rem;
         min-width: 80px;
     }
     
     .form-table .form-control {
         padding: 6px 8px;
-        font-size: 0.85rem;
+        font-size: 0.9rem;
         min-height: 36px;
     }
 }
-
+@media (min-width: 769px) {
+    .table-container {
+        overflow-x: visible;
+    }
+}
 /* 手机设备表格优化 */
 @media (max-width: 768px) {
     /* 创建水平滚动容器 */
@@ -439,6 +444,8 @@ header {
         left: 0;
         background-color: var(--secondary-color);
         z-index: 2;
+        font-size : 1rem;
+        padding: 8px 12px;
     }
     
     .form-table .form-control {
@@ -450,6 +457,13 @@ header {
         box-sizing: border-box;
     }
     
+    input.form-control {
+    overflow-wrap: break-word; /* 自動換行 */
+    word-wrap: break-word; /* 支持長單詞換行 */
+    white-space: pre-wrap; /* 保留空白和換行符 */
+    height: auto; /* 高度自適應 */
+    min-height: 44px; /* 設置最小高度 */
+    }
     /* 输入框特殊处理 */
     .form-table input[type="text"],
     .form-table input[type="email"],
@@ -582,7 +596,7 @@ header {
 .form-table td.form1,
 .form-table td[style*="background-color: #e6eef9"] {
     min-width: 80px; /* 進一步縮小 */
-    font-size: 0.7rem;
+    font-size: 1rem;
     padding: 4px 6px;
 }
 }
@@ -785,7 +799,14 @@ textarea.form-control {
     white-space: nowrap;
     margin-bottom: 8px;
 }
-
+.optional {
+    color:red;
+}
+.supplementary-info .form-control {
+    width: 80%; /* 限制寬度為容器的 80% */
+    max-width: 300px; /* 設置最大寬度 */
+    margin-bottom: 10px; /* 增加間距 */
+}
 /* 表格响应式优化 - 修复内容超出问题 */
 .form-table {
     width: 100%;
@@ -937,7 +958,16 @@ footer {
         margin-top: 10px;
     }
 }
-
+@media (max-width: 768px) {
+    .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch; /* 平滑滾動(iOS) */
+        margin: 20px 0;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+}
 /* 超小屏设备 Footer 优化 */
 @media (max-width: 360px) {
     footer {
@@ -1045,4 +1075,229 @@ footer::before {
     footer {
         display: none;
     }
+}
+
+/* 确认提交弹窗样式 */
+.confirmation-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.confirmation-dialog.show {
+    opacity: 1;
+}
+
+.confirmation-model {
+    background: white;
+    border-radius: 15px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.confirmation-dialog.show .confirmation-model {
+    transform: scale(1);
+}
+
+.confirmation-header {
+    background: linear-gradient(135deg, var(--primary-color), #0f2a52);
+    color: white;
+    padding: 20px 25px;
+    border-radius: 15px 15px 0 0;
+    text-align: center;
+}
+
+.confirmation-header h2 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.confirmation-header i {
+    margin-right: 10px;
+    font-size: 1.4rem;
+    color: #ffd700;
+}
+
+.confirmation-content {
+    padding: 25px;
+}
+
+.confirmation-content p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+.confirm-details {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-row .label {
+    font-weight: 600;
+    color: var(--primary-color);
+    min-width: 80px;
+}
+
+.detail-row .value {
+    color: var(--text-color);
+    font-weight: 500;
+    text-align: right;
+    word-break: break-all;
+}
+
+.confirm-warning {
+    background-color: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 6px;
+    padding: 15px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.confirm-warning i {
+    color: #856404;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.confirm-warning span {
+    color: #856404;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.confirm-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    padding: 0 25px 25px;
+}
+
+.btn-cancel,
+.btn-confirm {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 120px;
+    justify-content: center;
+}
+
+.btn-cancel {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-cancel:hover {
+    background-color: #545b62;
+    transform: translateY(-1px);
+}
+
+.btn-confirm {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-confirm:hover {
+    background-color: #0f2a52;
+    transform: translateY(-1px);
+}
+
+/* 手机设备优化 */
+@media (max-width: 768px) {
+    .confirmation-model {
+        width: 95%;
+        margin: 20px;
+    }
+    
+    .confirmation-header {
+        padding: 15px 20px;
+    }
+    
+    .confirmation-content {
+        padding: 20px;
+    }
+    
+    .detail-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .detail-row .value {
+        text-align: left;
+        font-size: 0.95rem;
+    }
+    
+    .confirm-buttons {
+        flex-direction: column;
+        padding: 0 20px 20px;
+    }
+    
+    .btn-cancel,
+    .btn-confirm {
+        width: 100%;
+        padding: 15px 20px;
+    }
+}
+.learnPosition  {
+     display: flex; /* 使用 flexbox 排列 */
+    flex-direction: column; /* 垂直排列 */
+    justify-content: center; /* 垂直居中 */
+    gap: 10px; /* 增加間距 */
+    margin-bottom: 15px; /* 每個項目之間的垂直間距 */
+}
+.learnPosition input[type="radio"] {
+    margin-left: auto;
+    size: 13; /* 將 radio 推到最右邊 */
+}
+
+.learnPosition input[type="text"] {
+    flex: 1; /* 讓 text 輸入框占據剩餘空間 */
+    max-width: 300px; /* 限制輸入框的最大寬度 */
+     width: 100%;
+    min-width: 0; /* 允许收缩到容器大小 */
+    box-sizing: border-box;
+    padding: 6px 8px;
+    font-size: 0.9rem;
+    min-height: 32px;
+    word-wrap: break-word;
 }

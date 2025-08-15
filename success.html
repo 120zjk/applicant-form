@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>申請提交成功 - 康業服務有限公司</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="test.css">
+    <style>
+        /* 成功页面专用样式 */
+        .success-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+        }
+        
+        .success-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            animation: slideInUp 0.6s ease-out;
+        }
+        
+        @keyframes slideInUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .success-icon {
+            font-size: 5rem;
+            color: var(--success-color);
+            margin-bottom: 25px;
+            animation: bounce 1s ease-in-out;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        .success-title {
+            font-size: 2rem;
+            color: var(--success-color);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .success-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        
+        .submission-details {
+            background-color: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: left;
+            border-left: 5px solid var(--success-color);
+        }
+        
+        .submission-details h4 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .detail-value {
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        
+        .next-steps {
+            background-color: #e6f3ff;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: left;
+        }
+        
+        .next-steps h4 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .next-steps ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .next-steps li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .next-steps li:before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-action {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #0f2a52;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #545b62;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .success-container {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+            
+            .success-icon {
+                font-size: 4rem;
+            }
+            
+            .success-title {
+                font-size: 1.6rem;
+            }
+            
+            .success-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .submission-details {
+                padding: 20px 15px;
+            }
+            
+            .detail-item {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .btn-action {
+                width: 100%;
+                justify-content: center;
+                padding: 15px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="success-page">
+        <div class="success-container">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            
+            <h1 class="success-title">申請表提交成功！</h1>
+            <p class="success-subtitle">
+                感謝您的申請，我們已成功收到您的求職申請表。<br>
+                我們將盡快處理您的申請，並在適當時候與您聯繫。
+            </p>
+            
+            <div class="submission-details" id="submissionDetails">
+                <h4><i class="fas fa-info-circle"></i> 提交詳情</h4>
+                <div class="detail-item">
+                    <span class="detail-label">申請編號：</span>
+                    <span class="detail-value" id="submissionId">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">提交時間：</span>
+                    <span class="detail-value" id="submissionTime">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">申請人姓名：</span>
+                    <span class="detail-value" id="applicantName">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">申請職位：</span>
+                    <span class="detail-value" id="appliedPosition">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">聯絡電話：</span>
+                    <span class="detail-value" id="contactPhone">-</span>
+                </div>
+            </div>
+            
+            <div class="next-steps">
+                <h4><i class="fas fa-tasks"></i> 接下來的步驟</h4>
+                <ul>
+                    <li>我們將在 3-5 個工作日內初步審核您的申請</li>
+                </ul>
+            </div>
+            
+            <div class="action-buttons">
+                <a href="hy.html" class="btn-action btn-primary">
+                    <i class="fas fa-plus"></i> 填寫新申請
+                </a>
+                <a href="index.html" class="btn-action btn-secondary">
+                    <i class="fas fa-home"></i> 返回首頁
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取提交信息
+            const submissionInfo = localStorage.getItem('latestSubmission');
+            
+            if (submissionInfo) {
+                const data = JSON.parse(submissionInfo);
+                
+                // 填充提交详情
+                document.getElementById('submissionId').textContent = data.submissionId;
+                document.getElementById('submissionTime').textContent = data.time;
+                document.getElementById('applicantName').textContent = data.name + ' (' + data.englishName + ')';
+                document.getElementById('appliedPosition').textContent = data.position;
+                document.getElementById('contactPhone').textContent = data.mobile;
+            } else {
+                // 如果没有提交信息，显示默认信息或重定向
+                document.getElementById('submissionId').textContent = 'APP' + Date.now();
+                document.getElementById('submissionTime').textContent = new Date().toLocaleString('zh-TW');
+                document.getElementById('applicantName').textContent = '申請者';
+                document.getElementById('appliedPosition').textContent = '待定職位';
+                document.getElementById('contactPhone').textContent = '未提供';
+            }
+            
+            // 清理localStorage中的提交信息（可选）
+            // localStorage.removeItem('latestSubmission');
+        });
+    </script>
+</body>
+</html>

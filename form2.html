@@ -225,10 +225,10 @@
                 <tr>
                     <th>住宅地址<br>Residential Address (English)</th>
                     <td>
-                        <textarea name="address1" class="form-control" rows="1"></textarea>
-                        <textarea name="address2" class="form-control" rows="2"></textarea>
-                        <textarea name="address3" class="form-control" rows="3"></textarea>
-                        
+                        <input name="address1" class="form-control" rows="1"></input>
+                        <input name="address2" class="form-control" rows="2"></input>
+                        <input name="address3" class="form-control" rows="3"></input>
+
                         <select name="address_area" id="addressArea1" class="form-control" required>
                             <option value="" disabled selected>請選擇地區 Please select area</option>
                         </select>
@@ -248,9 +248,9 @@
                 <tr>
                     <th>通訊地址<br>Correspondence Address (If different from above) <span class="required"></span></th>
                     <td>
-                         <textarea name="address1" class="form-control" rows="1"></textarea>
-                        <textarea name="address2" class="form-control" rows="2"></textarea>
-                        <textarea name="address3" class="form-control" rows="3"></textarea>
+                        <input name="address1" class="form-control" rows="1"></textarea>
+                        <input name="address2" class="form-control" rows="2"></textarea>
+                        <input name="address3" class="form-control" rows="3"></textarea>
                         
                         <select name="address_area" id="addressArea2" class="form-control" required>
                             <option value="" disabled selected>請選擇地區 Please select area</option>
@@ -291,37 +291,25 @@
             <table class="form-table">
                 <thead>
                     <tr>
-                        <th>由<br>From (mm/yyyy)</th>
-                        <th>至<br>To (mm/yyyy)</th>
+                        <th>由<br>From (YYYY/MM/DD)</th>
+                        <th>至<br>To (YYYY/MM/DD)</th>
                         <th>學校/機構名稱<br>Name of School</th>
                         <th>所獲資歷或證書<br>Qualification Obtained</th>
-
                     </tr>
                 </thead>
                 <tbody id = "educationTbody">
-                    <tr>
-                       
-                        <td><input type="month" name="edu-start-date1" class="form-control"></td>
-                        <td><input type="month" name="edu-end-date1" class="form-control"></td>
-                        <td><input type="text" name="school1" class="form-control" ></td>
-                        <td><input type="text" name="qualification1" class="form-control" ></td>
-                    </tr>
-                    <tr>
-
-                        <td><input type="month" name="edu-start-date2" class="form-control"></td>
-                        <td><input type="month" name="edu-end-date2" class="form-control"></td>
-                        <td><input type="text" name="school2" class="form-control" ></td>
-                        <td><input type="text" name="qualification2" class="form-control" ></td>
-                    </tr>
-                    <tr>
-
-                        <td><input type="month" name="edu-end-date3" class="form-control"></td>
-                        <td><input type="month" name="edu-end-date3" class="form-control"></td>
-                        <td><input type="text" name="school3" class="form-control"></td>
-                        <td><input type="text" name="qualification3" class="form-control" ></td>
-                    </tr>
-                    <div id ="eduExperience"></div>
-
+                        <tr>
+                            <td><input type="date" name="edu-start-date1" class="form-control"></td>
+                            <td><input type="date" name="edu-end-date1" class="form-control"></td>
+                            <td><textarea name="school1" class="form-control"></textarea></td>
+                            <td><textarea name="qualification1" class="form-control"></textarea></td>
+                        </tr>
+                         <tr>
+                            <td><input type="date" name="edu-start-date1" class="form-control"></td>
+                            <td><input type="date" name="edu-end-date1" class="form-control"></td>
+                            <td><textarea name="school1" class="form-control"></textarea></td>
+                            <td><textarea name="qualification1" class="form-control"></textarea></td>
+                        </tr>
                 </tbody>
             </table>
             <button type="button" id="addEducationRow" class="add-row-btn">
@@ -336,31 +324,25 @@
                             <th>獲得日期<br>Date Obtained (dd/mm/yyyy)</th>
                             <th>機構<br>Institution</th>
                             <th>專業資格<br>Professional Qualification</th>
-
                         </tr>
                     </thead>
-                    <tbody id ="qualificationsTbody">
+                    <tbody id ="quaTbody">
                         <tr>
-                            <td><input type="date" name="qualification_1" class="form-control"></td>
-                            <td><input type="text" name="institution_1" class="form-control"></td>
-                            <td><input type="text" name="date_obtained_1" class="form-control"></td>
+                            <td><input type = "date" name="date_obtained_1" class="form-control"></td>
+                            <td><textarea name="institution_1" class="form-control"></textarea></td>
+                            <td><textarea name="qualification_1" class="form-control"></textarea></td>
                         </tr>
                         <tr>
-                            <td><input type="date" name="qualification_2" class="form-control"></td>
-                            <td><input type="text" name="institution_2" class="form-control"></td>
-                            <td><input type="text" name="date_obtained_2" class="form-control"></td>
+                            <td><input type="date" name="date_obtained_2" class="form-control"></td>
+                            <td><textarea name="institution_2" class="form-control"></textarea></td>
+                            <td><textarea name="qualification_2" class="form-control"></textarea></td>
                         </tr>
                     </tbody>
                 </table>
                 <button type="button" id="addQualificationRow" class="add-row-btn">
                     <i class="fas fa-plus"></i> 新增專業資格
                 </button>
-                </div>
-                <div class="add-row-container">
-                    <!-- <button type="button" id="addAcademicRow" class="add-row-btn">
-                        <i class="fas fa-plus"></i> 新增學歷
-                    </button> -->
-                    </div>
+            
             </div>
             <h3 class="section-subtitle">技能 Skills</h3>
             
@@ -373,7 +355,8 @@
                             <th></th>
                             <th>中文 (普通話) Chinese (Mandarin)</th>
                             <th>英文 English</th>
-                            <th>其他 Others</th>
+                            <th>其他 Others
+                                <input type="text" name="other_language" class="form-control" placeholder="請列明 Please specify" style="margin-bottom: 10px;"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -408,7 +391,7 @@
                                 <div class="error-message">此為必填項目</div>
                             </td>
                             <td>
-                                <input type="text" name="other_language" class="form-control" placeholder="請列明 Please specify" style="margin-bottom: 10px;">
+                                
                                 <div class="radio-group" style="flex-direction: column;">
                                     <label class="radio-option">
                                         <input type="radio" name="other_written" value="Fluent"> 流利 Fluent
@@ -502,19 +485,22 @@
                         <th>義務崗位名稱<br>Name of Voluntary Position</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id ="voluntaryTbody">
                     <tr>
                         <td><input type="date" name="voluntary-date" class="form-control" placeholder="dd/mm/yyyy"></td>
-                        <td><input type="text" name="voluntary_organization" class="form-control"></td>
+                        <td><textarea name="voluntary_organization" class="form-control"></textarea></td>
                         <td><input type="text" name="voluntary_position" class="form-control"></td>
                     </tr>
                     <tr>
                         <td><input type="date" name="voluntary-date" class="form-control" placeholder="dd/mm/yyyy"></td>
-                        <td><input type="text" name="voluntary_organization" class="form-control"></td>
+                        <td><textarea name="voluntary_organization" class="form-control"></textarea></td>
                         <td><input type="text" name="voluntary_position" class="form-control"></td>
                     </tr>
                 </tbody>
-            </table>
+                </table>
+                <button type="button" id="addVoluntaryRow" class="add-row-btn">
+                    <i class="fas fa-plus"></i> 新增義務崗位
+                </button>
             </div>
             </div>
             <h3 class="section-subtitle">工作經驗 Working Experience</h3>
@@ -532,39 +518,39 @@
                         <th>離職原因<br>Reason for Leaving</th>
                     </tr>
                 </thead>
-                <tbody id ="experienceTableBody">
+                <tbody id ="workExperienceTbody">
                     <tr>
                         <td><input type="date" name="work-start" class="form-control" placeholder="dd/mm/yyyy"></td>
                         <td><input type="date" name="work-end" class="form-control" placeholder="dd/mm/yyyy"></td>
-                        <td><input type="text" name="employer_1" class="form-control"></td>
-                        <td><input type="text" name="business_nature_1" class="form-control"></td>
-                        <td><input type="text" name="last_position_1" class="form-control"></td>
-                        <td><input type="text" name="last_salary_1" class="form-control"></td>
-                        <td><input type="text" name="reason_leaving_1" class="form-control"></td>
-                        
+                        <td><textarea  name="employer_1" class="form-control"></textarea></td>
+                        <td><textarea  name="business_nature_1" class="form-control"></textarea></td>
+                        <td><textarea  name="last_position_1" class="form-control"></textarea></td>
+                        <td><textarea  name="last_salary_1" class="form-control"></textarea></td>
+                        <td><textarea  name="reason_leaving_1" class="form-control"></textarea></td>
+
                     </tr>
                     <tr>
                         <td><input type="date" name="work-start" class="form-control" placeholder="dd/mm/yyyy"></td>
                         <td><input type="date" name="work-end" class="form-control" placeholder="dd/mm/yyyy"></td>
-                        <td><input type="text" name="employer_2" class="form-control"></td>
-                        <td><input type="text" name="business_nature_2" class="form-control"></td>
-                        <td><input type="text" name="last_position_2" class="form-control"></td>
-                        <td><input type="text" name="last_salary_2" class="form-control"></td>
-                        <td><input type="text" name="reason_leaving_2" class="form-control"></td>
-             
+                        <td><textarea  name="employer_2" class="form-control"></textarea></td>
+                        <td><textarea  name="business_nature_2" class="form-control"></textarea></td>
+                        <td><textarea  name="last_position_2" class="form-control"></textarea></td>
+                        <td><textarea  name="last_salary_2" class="form-control"></textarea></td>
+                        <td><textarea  name="reason_leaving_2" class="form-control"></textarea></td>
+
                     </tr>
                 </tbody>
-                <!-- <div class="add-row-container">
-                    <button type="button" id="addExperienceRow" class="add-row-btn">
-                        <i class="fas fa-plus"></i> 新增工作經驗
-                    </button>
-                    </div> -->
+                
             </table>
+            <button type="button" id="addWorkExperienceRow" class="add-row-btn">
+                <i class="fas fa-plus"></i> 新增工作經驗
+            </button>
             </div>
             <h3 class="section-subtitle">其他資料<br>Supplementary Information</h3>
-            
+            <div class="form-group supplementary-info">
             <div class="form-group">
-                <label class="form-label">1. 是否曾在本公司任職 (全職/兼職)?<br>Did you work in our Company before (Permanent/Temporary)? </label>
+            <label class="form-label">1. 是否曾在本公司任職 (全職/兼職)?<br>Did you work in our Company before (Permanent/Temporary)? </label>
+            
                 <div class="radio-group">
                     <label class="radio-option">
                         <input type="radio" name="previous_employment" value="No" required> 否 No
@@ -574,22 +560,32 @@
                     </label>
                 </div>
                 <div class="error-message">此為必填項目</div>
-                
-                <div class="form-row" style="margin-top: 15px;">
-                    <div class="form-col">
-                        <input type="text" name="prev_company" class="form-control" placeholder="公司 Company">
-                    </div>
-                    <div class="form-col">
-                        <input type="text" name="prev_department" class="form-control" placeholder="部門/分區/大廈 Department/Area/Building">
-                    </div>
-                    <div class="form-col">
-                        <input type="text" name="prev_position" class="form-control" placeholder="職位 Position">
-                    </div>
-                    <div class="form-col">
-                        <input type="text" name="prev_period" class="form-control" placeholder="任職時期 Period of Employment">
-                    </div>
+
+                <div class="form-row" style="margin-top: 15px;" id ="preEmployment">
+                   <table class="form-table">
+                <thead>
+                    <tr>
+                        <th>公司<br>Company</th>
+                        <th>部門/分區/大廈<br>Name of Department/Division/Building</th>
+                        <th>職位名稱<br>Name of Position</th>
+                        <th>任職時期<br>Name of Employment Period</th>
+                    </tr>
+                </thead>
+                <tbody id ="preEmploymentTbody">
+                    <tr>
+                        <td><input type="text" name="pre_employer1" class="form-control"></td>
+                        <td><input type="text" name="pre_department1" class="form-control"></td>
+                        <td><input type="text" name="pre_position1" class="form-control"></td>
+                        <td><input type="text" name="pre_period1" class="form-control"></td>
+                    </tr>
+                    
+                </tbody>
+                </table>
                 </div>
-            </div>
+          
+            <button type="button" id="addPreviousEmployment" class="add-row-btn">
+                <i class="fas fa-plus"></i> 新增舊有工作經驗
+            </button>
             
             <div class="form-group">
                 <label class="form-label">2. 是否有家屬及/或親屬現於本集團任職?<br>Do you have any family member(s) and/or relative(s) working in the Company? </label>
@@ -602,26 +598,37 @@
                     </label>
                 </div>
                 <div class="error-message">此為必填項目</div>
+
                 
-                <div class="form-row" style="margin-top: 15px;">
-                    <div class="form-col">
-                        <input type="text" name="relative_name" class="form-control" placeholder="姓名 Name">
-                    </div>
-                    <div class="form-col">
-                        <input type="text" name="relationship" class="form-control" placeholder="關係 Relationship">
-                    </div>
-                    <div class="form-col">
-                        <input type="text" name="relative_company" class="form-control" placeholder="公司 Company">
-                    </div>
-                    <div class="form-col">
-                        <input type="text" name="relative_area" class="form-control" placeholder="分區/大廈 Area/Building">
-                    </div>
-                    <div class="form-col">
-                        <input type="text" name="relative_position" class="form-control" placeholder="職位 Position">
-                    </div>
-                </div>
-            </div>
+                    <table class="form-table">
+                <thead>
+                    <tr>
+                        <th>姓名<br>Name</th>
+                        <th>關係<br>Relationship</th>
+                        <th>公司<br>Company</th>
+                        <th>分區/大廈<br>Name of Division/Building</th>
+                        <th>職位名稱<br>Name of Position</th>
+                    </tr>
+                </thead>
+                <tbody id ="relativeTbody">
+                    <tr>
+                        <td><input type="text" name="relative_name1" class="form-control"></td>
+                        <td><input type="text" name="relationship1" class="form-control"></td>
+                        <td><input name="text" name="relatives_company1" class="form-control"></td>
+                        <td><input name="text" name="relatives_division1" class="form-control"></td>
+                        <td><input name="text" name="relatives_position1" class="form-control"></td>
+                    </tr>
+                </tbody>
+                
+            </table>
+                
             
+            </div>
+            <button type="button" id="addRelative" class="add-row-btn">
+                <i class="fas fa-plus"></i> 新增家屬/親屬
+            </button>
+
+         
             <div class="form-group">
                 <label class="form-label">3. 是否曾因觸犯刑事罪行而被定罪?<br>Have you ever been convicted of any criminal offence? (A criminal conviction is not necessarily a barrier to appointment)</label>
                 <div class="radio-group">
@@ -633,8 +640,8 @@
                     </label>
                 </div>
                 <div class="error-message">此為必填項目</div>
-                
-                <div class="form-row" style="margin-top: 15px;">
+
+                <div class="form-row" style="margin-top: 15px;" id = "criminal_record">
                     <div class="form-col">
                         <input type="text" name="conviction_date" class="form-control" placeholder="日期 Date">
                     </div>
@@ -642,45 +649,51 @@
                         <input type="text" name="conviction_place" class="form-control" placeholder="地點 Place">
                     </div>
                 </div>
+                
             </div>
+            
             
             <div class="form-group">
                 <label class="form-label">4. 從何得知此職位空缺?<br>How did you learn of this position? (Please specify) <span class="required"></span></label>
                 <div class="radio-group" style="flex-wrap: wrap;">
                     <label class="radio-option">
-                        <div id = "online-ad">
+                        <div class ="learnPosition">
                         <input type="radio" name="job_source" value="Online Advertisement" required> 網上招聘廣告 Online Advertisement
-                        <input type="text" name="online_ad_details" class="form-control" placeholder="請提供更多資訊 Please provide more details">
+                        <input type="text"  name="online_ad_details" placeholder="請提供更多資訊 Please provide more details">
                         </div>
                     </label>
                     <label class="radio-option">
-                        <div id = "printed-ad">
+                    <div class ="learnPosition">
                         <input type="radio" name="job_source" value="Printed Advertisement"> 印刷招聘廣告 Printed Advertisement
-                        <input type="text" name="printed_ad_details" class="form-control" placeholder="請提供更多資訊 Please provide more details">
-                        </div>
+                        <input type="text"  name="printed_ad_details" placeholder="請提供更多資訊 Please provide more details">
+                    </div>
                     </label>
                     <label class="radio-option">
-                        <div id = "Referral">
+                    <div class ="learnPosition">
                         <input type="radio" name="job_source" value="Internal Referral"> 內部介紹 Internal Referral
-                        <input type="text" name="referral_details" class="form-control" placeholder="介紹人姓名 Name of Referral">
-                        </div>
+                        <input type="text"  name="referral_details" placeholder="介紹人姓名 Name of Referral">
+                    </div>
                     </label>
                     <label class="radio-option">
-                        <div id = "edu-institute-referral">
+                    <div class ="learnPosition">
                         <input type="radio" name="job_source" value="Referral from Educational Institute"> 學院轉介 Referral from Educational Institute
-                        <input type="text" name="edu_institute_name" class="form-control" placeholder="學院名稱 Name of Educational Institute">
-                        </div>
+                        <input type="text"  name="edu_institute_name" placeholder="學院名稱 Name of Educational Institute">
+                    </div>
                     </label>
                     <label class="radio-option">
+                    <div class ="learnPosition">
                         <input type="radio" name="job_source" value="Company's website"> 公司網站 Company's website
+                    </div>
                     </label>
                     <label class="radio-option">
+                    <div class ="learnPosition">
                         <input type="radio" name="job_source" value="Others"> 其他 Others
+                    </div>
                     </label>
                 </div>
                 <div class="error-message">此為必填項目</div>
             </div>
-
+            </div>
             <h3 class="section-subtitle">諮詢人 Referees</h3>
             <p>請提供2名非親屬人士作為諮詢人<br>Please provide information of 2 non-relative referees.</p>
 
@@ -732,7 +745,10 @@
     </footer>
 
     <script>
-        let i = 3;
+        let e = 2;
+        let w = 2;
+        let v = 1;
+        let q = 1;
         
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('applicationForm');
@@ -741,9 +757,32 @@
             const loadingSpinner = document.getElementById('loadingSpinner');
             const successDetails = document.getElementById('successDetails');
             const submissionStatus = document.getElementById('submissionStatus');
+
             const addEducationRowBtn = document.getElementById('addEducationRow');
             addEducationRowBtn.addEventListener('click', addEducationRow);
+
+            const addWorkExperienceRowBtn = document.getElementById('addWorkExperienceRow');
+            addWorkExperienceRowBtn.addEventListener('click', addWorkExperienceRow);
+
+            const addVoluntaryRowBtn = document.getElementById('addVoluntaryRow');
+            addVoluntaryRowBtn.addEventListener('click', addVoluntaryRow);
+
+            const addQualificationRowBtn = document.getElementById('addQualificationRow');
+            addQualificationRowBtn.addEventListener('click', addQualificationRow);
+
+            const addPreviousEmploymentBtn = document.getElementById('addPreviousEmployment');
+            addPreviousEmploymentBtn.addEventListener('click', addPreviousEmployment);
+
+            const addRelativeBtn = document.getElementById('addRelative');
+            addRelativeBtn.addEventListener('click', addRelative);
+
+            addEducationRow();
+            addWorkExperienceRow();
+            addVoluntaryRow();
+            addQualificationRow();
             addAddressArea();
+            addPreviousEmployment();
+            addRelative();
             let downloadUrl = null;
             let submissionData = null;
             
@@ -788,13 +827,13 @@ function addAddressArea(){
         const tbodyContainer = document.getElementById('educationTbody');
         const newRow = document.createElement('tr');
         newRow.innerHTML = `
-            <td><input type="month" name="edu-start-date${i}" class="form-control"></td>
-            <td><input type="month" name="edu-end-date${i}" class="form-control"></td>
-            <td><input type="text" name="school${i}" class="form-control"></td>
-            <td><input type="text" name="qualification${i}" class="form-control" ></td>
+            <td><input type="date" name="edu-start-date${e}" class="form-control"></td>
+            <td><input type="date" name="edu-end-date${e}" class="form-control"></td>
+            <td><textarea name="school${e}" class="form-control"></textarea></td>
+            <td><textarea name="qualification${e}" class="form-control"></textarea></td>
         `;
         tbodyContainer.appendChild(newRow);
-        i++;
+        e++;
     }
 
 
@@ -803,27 +842,70 @@ function addAddressArea(){
         const tbodyContainer = document.getElementById('workExperienceTbody');
         const newRow = document.createElement('tr');
         newRow.innerHTML = `
-            <td><input type="month" name="edu-start-date${i}" class="form-control"></td>
-            <td><input type="month" name="edu-end-date${i}" class="form-control"></td>
-            <td><input type="text" name="school${i}" class="form-control"></td>
-            <td><input type="text" name="qualification${i}" class="form-control" ></td>
+            <td><input type="date" name="work-start${w}" class="form-control"></td>
+            <td><input type="date" name="work-end${w}" class="form-control"></td>
+            <td><textarea name="employer${w}" class="form-control"></textarea></td>
+            <td><textarea name="business_nature${w}" class="form-control"></textarea></td>
+            <td><textarea name="last_position${w}" class="form-control"></textarea></td>   
+            <td><textarea name="last_salary${w}" class="form-control"></textarea></td>
+            <td><textarea name="reason_leaving${w}" class="form-control"></textarea></td>
         `;
         tbodyContainer.appendChild(newRow);
-        i++;
+        w++;
     }
-    function addQualificationsRow(){
-        const tbodyContainer = document.getElementById('qualificationsTbody');
+    function addQualificationRow(){
+        //add professional cert
+        const tbodyContainer = document.getElementById('quaTbody');
         const newRow = document.createElement('tr');
         newRow.innerHTML = `
-            <td><input type="date" name="qualification${i}" class="form-control"></td>
-            <td><input type="text" name="institution${i}" class="form-control"></td>
-            <td><input type="text" name="qual-start-date${i}" class="form-control"></td>
+            <td><input type="date" name="qualification${q}" class="form-control"></td>
+            <td><textarea name="institution${q}" class="form-control"></textarea></td>
+            <td><textarea name="qual-start-date${q}" class="form-control"></textarea></td>
         `;
         tbodyContainer.appendChild(newRow);
-        i++;
+        q++;
     }
 
+    function addVoluntaryRow(){
+        //add voluntary work
+        const tbodyContainer = document.getElementById('voluntaryTbody');
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+            <td><input type="date" name="voluntary-date${v}" class="form-control" placeholder="dd/mm/yyyy"></td>
+            <td><textarea name="voluntary_organization${v}" class="form-control"></textarea></td>
+            <td><input type="text" name="voluntary_position${v}" class="form-control"></td>
+        `;
+        tbodyContainer.appendChild(newRow);
+        v++;
+    }
+    function addPreviousEmployment(){
+        let p = 1; // Initialize previous employment row counter
+        const tbodyContainer = document.getElementById('preEmploymentTbody');
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+            <td><input type="text" name="prev_company${p}" class="form-control" ></td>
+            <td><input type="text" name="prev_department${p}" class="form-control"></td>
+            <td><input type="text" name="prev_position${p}" class="form-control" ></td>
+            <td><input type="text" name="prev_period${p}" class="form-control" ></td>
+        `;
+        tbodyContainer.appendChild(newRow);
+        p++;
+    }
 
+    function addRelative(){
+        let r = 1; // Initialize relative row counter
+        const tbodyContainer = document.getElementById('relativeTbody');
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+            <td><input type="text" name="relative_name${r}" class="form-control" ></td>
+            <td><input type="text" name="relationship${r}" class="form-control" ></td>
+            <td><input type="text" name="relatives_company${r}" class="form-control"></td>
+            <td><input type="text" name="relatives_division${r}" class="form-control" ></td>
+            <td><input type="text" name="relatives_position${r}" class="form-control" ></td>
+        `;
+        tbodyContainer.appendChild(newRow);
+        r++;
+    }
     // 表单提交处理
     form.addEventListener('submit', function(e) {
         e.preventDefault();
