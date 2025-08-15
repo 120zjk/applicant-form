@@ -706,3 +706,109 @@ footer {
 .optional{
     color:red
 }
+/* 手機屏幕 header 優化 */
+@media (max-width: 768px) {
+    header {
+        padding: 15px 10px; /* 減少內邊距 */
+        margin-bottom: 20px;
+    }
+    
+    .company-header {
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .company-name {
+        font-size: 1.6rem; /* 縮小字體 */
+        line-height: 1.2;
+        margin-bottom: 8px;
+    }
+    
+    .company-name-en {
+        font-size: 1.1rem; /* 縮小英文字體 */
+        margin-bottom: 10px;
+        line-height: 1.3;
+    }
+    
+    .form-title {
+        font-size: 1.4rem; /* 縮小標題字體 */
+        line-height: 1.3;
+        margin-top: 10px;
+    }
+    
+    .form-title-en {
+        font-size: 1rem; /* 縮小英文標題字體 */
+        margin-bottom: 10px;
+        line-height: 1.4;
+    }
+}
+
+/* 小屏幕手機 header 進一步優化 */
+@media (max-width: 480px) {
+    header {
+        padding: 12px 8px;
+        margin-bottom: 15px;
+    }
+    
+    .company-header {
+        padding-bottom: 8px;
+        margin-bottom: 8px;
+        border-bottom: 2px solid var(--primary-color); /* 縮小邊框 */
+    }
+    
+    .company-name {
+        font-size: 1.4rem;
+        line-height: 1.2;
+        margin-bottom: 6px;
+        word-wrap: break-word; /* 允許文字換行 */
+    }
+    
+    .company-name-en {
+        font-size: 1rem;
+        margin-bottom: 8px;
+        line-height: 1.3;
+        word-wrap: break-word;
+    }
+    
+    .form-title {
+        font-size: 1.2rem;
+        line-height: 1.2;
+        margin-top: 8px;
+        word-wrap: break-word;
+    }
+    
+    .form-title-en {
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+        line-height: 1.3;
+        word-wrap: break-word;
+    }
+}
+
+/* 超小屏幕優化 */
+@media (max-width: 360px) {
+    header {
+        padding: 10px 5px;
+    }
+    
+    .company-name {
+        font-size: 1.2rem;
+        line-height: 1.1;
+    }
+    
+    .company-name-en {
+        font-size: 0.9rem;
+        line-height: 1.2;
+    }
+    
+    .form-title {
+        font-size: 1.1rem;
+        line-height: 1.1;
+    }
+    
+    .form-title-en {
+        font-size: 0.85rem;
+        line-height: 1.2;
+    }
+}
+
