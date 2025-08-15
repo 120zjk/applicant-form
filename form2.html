@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>康業服務有限公司電子申請平台-generalform</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="form2.css">
+    <link rel="stylesheet" href="deepseek.css">
     <style>
         
 
@@ -55,6 +55,11 @@
             <p class="section-subtitle">個人資料 PERSONAL DATA</p>
         </div>
     </header>
+
+    <div class="rotate-reminder">
+        <div class="phone-icon"></div>
+        <div class="reminder-text">為獲得更佳體驗，請將手機橫屏瀏覽</div>
+    </div>
 
     <div class="container">
         <!-- 提交状态显示 -->
@@ -758,7 +763,27 @@
         let w = 2;
         let v = 1;
         let q = 1;
-        
+        // 監聽屏幕方向變化
+        window.addEventListener('orientationchange', adjustReminder);
+        // 初始加載時檢查
+        window.addEventListener('load', adjustReminder);
+
+        function adjustReminder() {
+            const reminder = document.querySelector('.rotate-reminder');
+            // 判斷是否為豎屏（0或180度為豎屏，90或-90度為橫屏）
+            const isPortrait = window.orientation === 0 || window.orientation === 180;
+            
+            if (isPortrait) {
+                reminder.style.opacity = '1';
+                reminder.style.visibility = 'visible';
+                reminder.style.pointerEvents = 'auto';
+            } else {
+                reminder.style.opacity = '0';
+                reminder.style.visibility = 'hidden';
+                reminder.style.pointerEvents = 'none';
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('applicationForm');
             const submitBtn = document.getElementById('submitBtn');
@@ -1219,5 +1244,4 @@ function addAddressArea(){
 
     </script>
 </body>
-
 </html>
