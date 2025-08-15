@@ -561,15 +561,14 @@ footer {
 
 /* 必填提示 */
 .mandatory-note {
-    background-color: #fff8e1;
-    border-left: 4px solid #ffc107;
-    padding: 15px;
+    color: var(--accent-color);
+    text-align: center;
+    font-weight: 600;
     margin: 20px 0;
-    color: #5d4037;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    padding: 15px;
+    background-color: #fff9f9;
+    border: 1px solid #ffcccc;
+    border-radius: 5px;
 }
 
 .required {
@@ -738,3 +737,4 @@ footer {
     margin: 20px 0;
     display: none;
 }
+
