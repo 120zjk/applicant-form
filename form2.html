@@ -15,9 +15,9 @@
       <!-- 新增横屏提示层 -->
     <div class="landscape-reminder" id="landscapeReminder">
         <div class="phone-animation">
-<!--             <div class="rotate-icon">
+            <div class="rotate-icon">
                 <i class="fas fa-sync-alt"></i>
-            </div> -->
+            </div>
             <div class="phone-body">
                 <div class="phone-screen">↻</div>
                 <div class="phone-button"></div>
@@ -268,7 +268,7 @@
                         <input name="address3" class="form-control" rows="3"></input>
 
                         <select name="address_area" id="addressArea1" class="form-control" required>
-                            <option value ="" disabled selected>請選擇區域 Please select district</option>
+                            <option value="" disabled selected>請選擇地區 Please select area</option>
                         </select>
 
                         <select name="address_district" class="form-control" required>
@@ -291,7 +291,7 @@
                         <input name="address3" class="form-control" rows="3"></textarea>
                         
                         <select name="address_area" id="addressArea2" class="form-control" required>
-                             <option value ="" disabled selected>請選擇區域 Please select district</option>
+                            <option value="" disabled selected>請選擇地區 Please select area</option>
                         </select>
                         
                         <select name="address_district" class="form-control" required>
@@ -788,10 +788,9 @@
         window.addEventListener('load', adjustReminder);
 
         function adjustReminder() {
-            const reminder = document.querySelector('.rotate-reminder');
-            // 判斷是否為豎屏（0或180度為豎屏，90或-90度為橫屏）
+            const reminder = document.querySelector('.landscape-reminder');
+            if (!reminder) return;
             const isPortrait = window.orientation === 0 || window.orientation === 180;
-            
             if (isPortrait) {
                 reminder.style.opacity = '1';
                 reminder.style.visibility = 'visible';
@@ -829,6 +828,7 @@
             const addRelativeBtn = document.getElementById('addRelative');
             addRelativeBtn.addEventListener('click', addRelative);
 
+            
             const landscapeReminder = document.getElementById('landscapeReminder');
             
             // 初始检查方向
@@ -839,10 +839,10 @@
             window.addEventListener('resize', checkOrientation);
             
             function checkOrientation() {
-                // 移动设备且竖屏时显示提示
+                const landscapeReminder = document.querySelector('.landscape-reminder');
+                if (!landscapeReminder) return;
                 const isMobile = window.innerWidth <= 768;
                 const isPortrait = window.innerHeight > window.innerWidth;
-                
                 if (isMobile && isPortrait) {
                     landscapeReminder.classList.add('show');
                 } else {
@@ -1254,14 +1254,14 @@ function addAddressArea(){
 
             // 手機轉動提醒功能
             function checkOrientation() {
-                const rotateReminder = document.querySelector('.rotate-reminder');
+                const landscapeReminder = document.querySelector('.landscape-reminder');
+                if (!landscapeReminder) return;
                 const isMobile = window.innerWidth <= 768;
                 const isPortrait = window.innerHeight > window.innerWidth;
-                
                 if (isMobile && isPortrait) {
-                    rotateReminder.classList.add('show');
+                    landscapeReminder.classList.add('show');
                 } else {
-                    rotateReminder.classList.remove('show');
+                    landscapeReminder.classList.remove('show');
                 }
             }
 
@@ -1314,8 +1314,4 @@ function addAddressArea(){
 </body>
 
 </html>
-
-
-
-
 
