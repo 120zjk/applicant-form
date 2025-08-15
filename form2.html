@@ -5,13 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>康業服務有限公司電子申請平台-generalform</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="form2.css">
+    <link rel="stylesheet" href="deepseek.css">
     <style>
         
 
     </style>
 </head>
 <body>
+      <!-- 新增横屏提示层 -->
+    <div class="landscape-reminder" id="landscapeReminder">
+        <div class="phone-animation">
+            <div class="rotate-icon">
+                <i class="fas fa-sync-alt"></i>
+            </div>
+            <div class="phone-body">
+                <div class="phone-screen">↻</div>
+                <div class="phone-button"></div>
+            </div>
+        </div>
+        <div class="reminder-content">
+            <div class="reminder-title">請將手機轉為橫屏</div>
+            <div class="reminder-text">
+                為獲得更佳體驗，請將手機橫屏瀏覽
+            </div>
+            <div class="reminder-subtext">
+                For better experience, please rotate your device to landscape mode
+            </div>
+        </div>
+    </div>
     <!-- 成功提交的覆盖层 -->
     <div class="success-overlay" id="successOverlay">
         <div class="success-modal">
@@ -815,6 +836,31 @@
             const addRelativeBtn = document.getElementById('addRelative');
             addRelativeBtn.addEventListener('click', addRelative);
 
+            const landscapeReminder = document.getElementById('landscapeReminder');
+            
+            // 初始检查方向
+            checkOrientation();
+            
+            // 监听方向变化
+            window.addEventListener('orientationchange', checkOrientation);
+            window.addEventListener('resize', checkOrientation);
+            
+            function checkOrientation() {
+                // 移动设备且竖屏时显示提示
+                const isMobile = window.innerWidth <= 768;
+                const isPortrait = window.innerHeight > window.innerWidth;
+                
+                if (isMobile && isPortrait) {
+                    landscapeReminder.classList.add('show');
+                } else {
+                    landscapeReminder.classList.remove('show');
+                }
+            }
+            
+            // 原有JavaScript代码保持不变
+            
+    
+
             addEducationRow();
             addWorkExperienceRow();
             addVoluntaryRow();
@@ -1270,6 +1316,4 @@ function addAddressArea(){
 
     </script>
 </body>
-
 </html>
-
