@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>康業服務有限公司電子申請平台-generalform</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="test.css">
+    <link rel="stylesheet" href="form2.css">
     <style>
         
 
@@ -106,8 +106,18 @@
                 <div class = "form-col">
                     <div class="form-group">
                         <label class="form-label">圖片上載 Photo upload</label>
-                        <input type="file" name="photo" class="form-control" accept="image/*" required>
-                        <div class="error-message">此為必填項目</div>
+                        <input type="file" name="photo" id ="photoUpload" accept="image/*" required>
+                        <div class="file-upload-btn" id="fileUploadBtn">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <div class="file-upload-text">
+                                <span class="main-text">選擇圖片檔案</span>
+                                <span class="sub-text">支援 JPG, PNG, GIF 格式</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="file-info" id="fileInfo">
+                        <i class="fas fa-check-circle"></i>
+                        <span id="fileName"></span>
                     </div>
                 </div>
 
@@ -819,7 +829,7 @@ function addAddressArea(){
     });
     }
 
-
+    
 
 
 // add edu row if needed
@@ -1170,6 +1180,42 @@ function addAddressArea(){
             document.getElementById('closeModalBtn').addEventListener('click', function() {
                 successOverlay.style.display = 'none';
             });
+
+
+            document.getElementById('photoUpload').addEventListener('change', function(e) {
+    const fileUploadBtn = document.getElementById('fileUploadBtn');
+    const fileInfo = document.getElementById('fileInfo');
+    const fileName = document.getElementById('fileName');
+    
+    if (e.target.files.length > 0) {
+        const file = e.target.files[0];
+        
+        // 更新按鈕樣式
+        fileUploadBtn.classList.add('file-selected');
+        fileUploadBtn.innerHTML = `
+            <i class="fas fa-check-circle"></i>
+            <div class="file-upload-text">
+                <span class="main-text">圖片已選擇</span>
+                <span class="sub-text">點擊重新選擇</span>
+            </div>
+        `;
+        
+        // 顯示文件信息
+        fileName.textContent = file.name;
+        fileInfo.classList.add('show');
+    } else {
+        // 重置樣式
+        fileUploadBtn.classList.remove('file-selected');
+        fileUploadBtn.innerHTML = `
+            <i class="fas fa-cloud-upload-alt"></i>
+            <div class="file-upload-text">
+                <span class="main-text">選擇圖片檔案</span>
+                <span class="sub-text">支援 JPG, PNG, GIF 格式</span>
+            </div>
+        `;
+        fileInfo.classList.remove('show');
+    }
+});
         });
 
     </script>
