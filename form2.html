@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>康業服務有限公司電子申請平台-generalform</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="form2.css">
+    <link rel="stylesheet" href="deepseek.css">
     <style>
         
 
@@ -18,27 +18,28 @@
             <div class="success-icon">
                 <i class="fas fa-check-circle"></i>
             </div>
-            <h2 class="success-title">申請表提交成功！</h2>
+            <h2 class="success-title">申請表提交成功！<br><span style="font-size: 1.2rem;">Application Submitted Successfully!</span></h2>
             <p class="success-message">
-                您的求職申請表已成功提交,我們將盡快處理您的申請。
+                您的求職申請表已成功提交,我們將盡快處理您的申請。<br>
+                <span style="font-size: 0.9rem; opacity: 0.8;">Your job application has been successfully submitted. We will process your application as soon as possible.</span>
             </p>
             <div class="success-details" id="successDetails">
-                <h4><i class="fas fa-info-circle"></i> 提交詳情</h4>
-                <p><strong>提交時間：</strong><span id="submissionTime"></span></p>
-                <p><strong>申請人：</strong><span id="applicantName"></span></p>
-                <p><strong>申請職位：</strong><span id="appliedPosition"></span></p>
+                <h4><i class="fas fa-info-circle"></i> 提交詳情 Submission Details</h4>
+                <p><strong>提交時間 Submission Time：</strong><span id="submissionTime"></span></p>
+                <p><strong>申請人 Applicant：</strong><span id="applicantName"></span></p>
+                <p><strong>申請職位 Applied Position：</strong><span id="appliedPosition"></span></p>
               
             </div>
             <div class="loading-spinner" id="loadingSpinner">
                 <div class="spinner"></div>
-                <p>正在處理您的申請...</p>
+                <p>正在處理您的申請...<br><span style="font-size: 0.9rem;">Processing your application...</span></p>
             </div>
             <div>
                 <button class="btn-secondary" id="newApplicationBtn">
-                    <i class="fas fa-plus"></i> 填寫新申請
+                    <i class="fas fa-plus"></i> 填寫新申請 New Application
                 </button>
                 <button class="btn-secondary" id="closeModalBtn">
-                    <i class="fas fa-times"></i> 關閉
+                    <i class="fas fa-times"></i> 關閉 Close
                 </button>
             </div>
         </div>
@@ -58,13 +59,16 @@
 
     <div class="rotate-reminder">
         <div class="phone-icon"></div>
-        <div class="reminder-text">為獲得更佳體驗，請將手機橫屏瀏覽</div>
+        <div class="reminder-text">
+            為獲得更佳體驗，請將手機橫屏瀏覽<br>
+            <span style="font-size: 1rem; opacity: 0.8;">For better experience, please rotate your device to landscape mode</span>
+        </div>
     </div>
 
     <div class="container">
         <!-- 提交状态显示 -->
         <div class="submission-status" id="submissionStatus">
-            <i class="fas fa-check-circle"></i> 申請表已成功提交
+            <i class="fas fa-check-circle"></i> 申請表已成功提交 Application submitted successfully
         </div>
 
         <div class="notes-box">
@@ -81,8 +85,9 @@
             </ol>
         </div>
         <div class="mandatory-note">
-                <i class="fas fa-exclamation-circle"></i> 請完整回答下述所有問題，標「*」項為非必填內容
-            </div>
+            <i class="fas fa-exclamation-circle"></i> 請完整回答下述所有問題，標「*」項為非必填內容<br>
+            <span style="font-size: 0.9rem;">Please answer all questions completely. Items marked with "*" are optional.</span>
+        </div>
         <form id="applicationForm" class="form-section">
             <div class ="form-container">
             <h2 class="section-title">求職者專用 FOR JOB APPLICANT USE ONLY</h2>
@@ -1205,6 +1210,27 @@ function addAddressArea(){
                 successOverlay.style.display = 'none';
             });
 
+            // 手機轉動提醒功能
+            function checkOrientation() {
+                const rotateReminder = document.querySelector('.rotate-reminder');
+                const isMobile = window.innerWidth <= 768;
+                const isPortrait = window.innerHeight > window.innerWidth;
+                
+                if (isMobile && isPortrait) {
+                    rotateReminder.classList.add('show');
+                } else {
+                    rotateReminder.classList.remove('show');
+                }
+            }
+
+            // 監聽屏幕方向變化
+            window.addEventListener('resize', checkOrientation);
+            window.addEventListener('orientationchange', function() {
+                setTimeout(checkOrientation, 100); // 延遲一點以確保orientation change完成
+            });
+            
+            // 初始檢查
+            checkOrientation();
 
             document.getElementById('photoUpload').addEventListener('change', function(e) {
     const fileUploadBtn = document.getElementById('fileUploadBtn');
@@ -1244,5 +1270,4 @@ function addAddressArea(){
 
     </script>
 </body>
-
 </html>
