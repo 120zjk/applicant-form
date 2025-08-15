@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>康業服務有限公司電子申請平台-generalform</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="form2.css">
+    <link rel="stylesheet" href="deepseek.css">
     <style>
         
 
@@ -79,6 +79,7 @@
                 <i class="fas fa-exclamation-circle"></i> 請完整回答下述所有問題，標「*」項為非必填內容
             </div>
         <form id="applicationForm" class="form-section">
+            <div class ="form-container">
             <h2 class="section-title">求職者專用 FOR JOB APPLICANT USE ONLY</h2>
             <input type="hidden" name="typeform" value="general form">
             <div class="form-row">
@@ -99,25 +100,28 @@
                 <div class="form-col">
                     <div class="form-group">
                         <label class="form-label">可到職日期 Date Available</label>
-                        <input type="date" name="available_date" class="form-control" placeholder="dd-mm-yyyy" required>
+                        <input type="text" name="available_date" class="form-control" placeholder="dd-mm-yyyy" required>
                         <div class="error-message">此為必填項目</div>
                     </div>
                 </div>
                 <div class = "form-col">
                     <div class="form-group">
                         <label class="form-label">圖片上載 Photo upload</label>
-                        <input type="file" name="photo" id ="photoUpload" accept="image/*" required>
-                        <div class="file-upload-btn" id="fileUploadBtn">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            <div class="file-upload-text">
-                                <span class="main-text">選擇圖片檔案</span>
-                                <span class="sub-text">支援 JPG, PNG, GIF 格式</span>
+                        <div class="file-upload-wrapper">
+                            <input type="file" name="photo" id="photoUpload" accept="image/*" required>
+                            <div class="file-upload-btn" id="fileUploadBtn">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <div class="file-upload-text">
+                                    <span class="main-text">選擇圖片檔案</span>
+                                    <span class="sub-text">支援 JPG, PNG, GIF 格式</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="file-info" id="fileInfo">
-                        <i class="fas fa-check-circle"></i>
-                        <span id="fileName"></span>
+                        <div class="file-info" id="fileInfo">
+                            <i class="fas fa-check-circle"></i>
+                            <span id="fileName"></span>
+                        </div>
+                        <div class="error-message">此為必填項目</div>
                     </div>
                 </div>
 
@@ -326,7 +330,7 @@
                 <i class="fas fa-plus"></i> 新增學歷
             </button>
             <div class="form-group">
-                <h3 class="section-subtitle">學歷及專業資格<br>Academic and Professional Qualifications</h3>
+                <h3 class="section-subtitle">專業資格<br>Professional Qualifications</h3>
                 <div class="table-container">
                 <table class="form-table">
                     <thead>
@@ -665,43 +669,37 @@
             
             <div class="form-group">
                 <label class="form-label">4. 從何得知此職位空缺?<br>How did you learn of this position? (Please specify) <span class="required"></span></label>
-                <div class="radio-group" style="flex-wrap: wrap;">
-                    <label class="radio-option">
-                        <div class ="learnPosition">
-                        <input type="radio" name="job_source" value="Online Advertisement" required> 網上招聘廣告 Online Advertisement
-                        <input type="text"  name="online_ad_details" placeholder="請提供更多資訊 Please provide more details">
-                        </div>
-                    </label>
-                    <label class="radio-option">
-                    <div class ="learnPosition">
-                        <input type="radio" name="job_source" value="Printed Advertisement"> 印刷招聘廣告 Printed Advertisement
-                        <input type="text"  name="printed_ad_details" placeholder="請提供更多資訊 Please provide more details">
-                    </div>
-                    </label>
-                    <label class="radio-option">
-                    <div class ="learnPosition">
-                        <input type="radio" name="job_source" value="Internal Referral"> 內部介紹 Internal Referral
-                        <input type="text"  name="referral_details" placeholder="介紹人姓名 Name of Referral">
-                    </div>
-                    </label>
-                    <label class="radio-option">
-                    <div class ="learnPosition">
-                        <input type="radio" name="job_source" value="Referral from Educational Institute"> 學院轉介 Referral from Educational Institute
-                        <input type="text"  name="edu_institute_name" placeholder="學院名稱 Name of Educational Institute">
-                    </div>
-                    </label>
-                    <label class="radio-option">
-                    <div class ="learnPosition">
-                        <input type="radio" name="job_source" value="Company's website"> 公司網站 Company's website
-                    </div>
-                    </label>
-                    <label class="radio-option">
-                    <div class ="learnPosition">
-                        <input type="radio" name="job_source" value="Others"> 其他 Others
-                    </div>
-                    </label>
-                </div>
-                <div class="error-message">此為必填項目</div>
+    <div class="learn-position-container">
+        <div class="learnPosition">
+            <span class="radio-text">網上招聘廣告<br>Online Advertisement</span>
+            <input type="radio" name="job_source" value="Online Advertisement" required>
+            <input type="text" name="online_ad_details" placeholder="請提供更多資訊 Please provide more details">
+        </div>
+        <div class="learnPosition">
+            <span class="radio-text">印刷招聘廣告<br>Printed Advertisement</span>
+            <input type="radio" name="job_source" value="Printed Advertisement">
+            <input type="text" name="printed_ad_details" placeholder="請提供更多資訊 Please provide more details">
+        </div>
+        <div class="learnPosition">
+            <span class="radio-text">內部介紹<br>Internal Referral</span>
+            <input type="radio" name="job_source" value="Internal Referral">
+            <input type="text" name="referral_details" placeholder="介紹人姓名 Name of Referral">
+        </div>
+        <div class="learnPosition">
+            <span class="radio-text">學院轉介<br>Referral from Educational Institute</span>
+            <input type="radio" name="job_source" value="Referral from Educational Institute">
+            <input type="text" name="edu_institute_name" placeholder="學院名稱 Name of Educational Institute">
+        </div>
+        <div class="learnPosition">
+            <span class="radio-text">公司網站<br>Company's website</span>
+            <input type="radio" name="job_source" value="Company's website">
+        </div>
+        <div class="learnPosition">
+            <span class="radio-text">其他<br>Others</span>
+            <input type="radio" name="job_source" value="Others">
+        </div>
+    </div>
+    <div class="error-message">此為必填項目</div>
             </div>
             </div>
             <h3 class="section-subtitle">諮詢人 Referees</h3>
@@ -743,9 +741,10 @@
                     <i class="fas fa-paper-plane"></i> 提交申請表
                 </button>
             </div>
+            </div>
         </form>
     </div>
-    
+</div>
     <footer>
         <div class="footer-content">
             <p>康業控股有限公司 HONG YIP SERVICES LIMITED</p>
@@ -753,7 +752,7 @@
             <p>個人資料處理聲明: 本公司承諾遵守《個人資料(私隱)條例》的規定，確保個人資料的準確性和安全性。</p>
         </div>
     </footer>
-
+</body>
     <script>
         let e = 2;
         let w = 2;
@@ -1220,5 +1219,4 @@ function addAddressArea(){
 
     </script>
 </body>
-
 </html>
