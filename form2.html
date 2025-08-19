@@ -12,26 +12,13 @@
     </style>
 </head>
 <body>
-      <!-- 新增横屏提示层 -->
-    <div class = "rotate-reminder">
-        <div class = "phone-icon"></div>
-        <div class="phone-animation">
-            <div class="rotate-icon">
-                <i class="fas fa-sync-alt"></i>
-            </div>
-            <div class="phone-body">
-                <div class="phone-screen">↻</div>
-                <div class="phone-button"></div>
-            </div>
-        </div>
+    <!-- 橫屏提示層 -->
+    <div class="rotate-reminder">
+        <div class="phone-icon"></div>
         <div class="reminder-content">
             <div class="reminder-title">請將手機轉為橫屏</div>
-            <div class="reminder-text">
-                為獲得更佳體驗，請將手機橫屏瀏覽
-            </div>
-            <div class="reminder-subtext">
-                For better experience, please rotate your device to landscape mode
-            </div>
+            <div class="reminder-text">為獲得更佳體驗，請將手機橫屏瀏覽</div>
+            <div class="reminder-subtext">For better experience, please rotate your device to landscape mode</div>
         </div>
     </div>
     <!-- 成功提交的覆盖层 -->
@@ -783,25 +770,6 @@
         let w = 2;
         let v = 1;
         let q = 1;
-        // 監聽屏幕方向變化
-        window.addEventListener('orientationchange', adjustReminder);
-        // 初始加載時檢查
-        window.addEventListener('load', adjustReminder);
-
-        function adjustReminder() {
-            const reminder = document.querySelector('.landscape-reminder');
-            if (!reminder) return;
-            const isPortrait = window.orientation === 0 || window.orientation === 180;
-            if (isPortrait) {
-                reminder.style.opacity = '1';
-                reminder.style.visibility = 'visible';
-                reminder.style.pointerEvents = 'auto';
-            } else {
-                reminder.style.opacity = '0';
-                reminder.style.visibility = 'hidden';
-                reminder.style.pointerEvents = 'none';
-            }
-        }
 
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('applicationForm');
@@ -828,32 +796,6 @@
 
             const addRelativeBtn = document.getElementById('addRelative');
             addRelativeBtn.addEventListener('click', addRelative);
-
-            
-            const landscapeReminder = document.getElementById('landscapeReminder');
-            
-            // 初始检查方向
-            checkOrientation();
-            
-            // 监听方向变化
-            window.addEventListener('orientationchange', checkOrientation);
-            window.addEventListener('resize', checkOrientation);
-            
-            function checkOrientation() {
-                const landscapeReminder = document.querySelector('.landscape-reminder');
-                if (!landscapeReminder) return;
-                const isMobile = window.innerWidth <= 768;
-                const isPortrait = window.innerHeight > window.innerWidth;
-                if (isMobile && isPortrait) {
-                    landscapeReminder.classList.add('show');
-                } else {
-                    landscapeReminder.classList.remove('show');
-                }
-            }
-            
-            // 原有JavaScript代码保持不变
-            
-    
 
             addEducationRow();
             addWorkExperienceRow();
@@ -1255,24 +1197,29 @@ function addAddressArea(){
 
             // 手機轉動提醒功能
             function checkOrientation() {
-                const landscapeReminder = document.querySelector('.landscape-reminder');
-                if (!landscapeReminder) return;
+                const rotateReminder = document.querySelector('.rotate-reminder');
+                if (!rotateReminder) return;
+                
                 const isMobile = window.innerWidth <= 768;
-                const isPortrait = window.innerHeight > window.innerWidth;
+                // 判斷是否為豎屏（0或180度為豎屏，90或-90度為橫屏）
+                const isPortrait = window.orientation === 0 || window.orientation === 180;
+                
                 if (isMobile && isPortrait) {
-                    landscapeReminder.classList.add('show');
+                    rotateReminder.classList.add('show');
                 } else {
-                    landscapeReminder.classList.remove('show');
+                    rotateReminder.classList.remove('show');
                 }
             }
 
             // 監聽屏幕方向變化
             window.addEventListener('resize', checkOrientation);
             window.addEventListener('orientationchange', function() {
-                setTimeout(checkOrientation, 100); // 延遲一點以確保orientation change完成
+                // 延遲檢查以確保orientation change完成
+                setTimeout(checkOrientation, 100);
             });
             
             // 初始檢查
+            window.addEventListener('load', checkOrientation);
             checkOrientation();
 
             document.getElementById('photoUpload').addEventListener('change', function(e) {
