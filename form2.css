@@ -25,141 +25,108 @@ body {
     display: flex;
     flex-direction: column;
 }
-.landscape-reminder {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 10000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-align: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.5s ease;
-            pointer-events: none;
-        }
-        
-        .landscape-reminder.show {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-        }
-        
-        .phone-animation {
-            width: 120px;
-            height: 200px;
-            position: relative;
-            margin-bottom: 30px;
-        }
-        
-        .phone-body {
-            width: 100%;
-            height: 100%;
-            border: 4px solid #fff;
-            border-radius: 25px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .phone-screen {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            right: 10px;
-            bottom: 40px;
-            background: #3498db;
-            border-radius: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-weight: bold;
-            font-size: 16px;
-            padding: 10px;
-            box-sizing: border-box;
-        }
-        
-        .phone-button {
-            position: absolute;
-            bottom: 5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .rotate-icon {
-            position: absolute;
-            top: -70px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 40px;
-            color: #fff;
-            animation: rotatePulse 2s infinite;
-        }
-        
-        @keyframes rotateAnimation {
-            0% { transform: rotate(0deg); }
-            30% { transform: rotate(0deg); }
-            50% { transform: rotate(90deg); }
-            80% { transform: rotate(90deg); }
-            100% { transform: rotate(0deg); }
-        }
-        
-        @keyframes rotatePulse {
-            0% { transform: translateX(-50%) scale(1); }
-            50% { transform: translateX(-50%) scale(1.2); }
-            100% { transform: translateX(-50%) scale(1); }
-        }
-        
-        .reminder-content {
-            max-width: 80%;
-        }
-        
-        .reminder-title {
-            font-size: 1.8rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: #f39c12;
-        }
-        
-        .reminder-text {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-        
-        .reminder-subtext {
-            font-size: 1rem;
-            opacity: 0.8;
-        }
-        
-        /* 手机竖屏时显示 */
-        @media screen and (orientation: portrait) {
-            .landscape-reminder {
-                opacity: 1;
-                visibility: visible;
-                pointer-events: auto;
-            }
-            
-            .phone-body {
-                animation: rotateAnimation 5s infinite ease-in-out;
-            }
-        }
-        
 
+/* 手機轉動提醒樣式 */
+.rotate-reminder {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.rotate-reminder.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.phone-icon {
+    width: 120px;
+    height: 200px;
+    border: 8px solid #fff;
+    border-radius: 30px;
+    position: relative;
+    margin-bottom: 30px;
+    animation: rotatePhone 3s ease-in-out infinite;
+}
+
+.phone-icon::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 2px;
+}
+
+.phone-icon::after {
+    content: '';
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 30px;
+    border: 3px solid rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+}
+
+@keyframes rotatePhone {
+    0% { transform: rotate(0deg); }
+    20% { transform: rotate(0deg); }
+    50% { transform: rotate(90deg); }
+    80% { transform: rotate(90deg); }
+    100% { transform: rotate(0deg); }
+}
+
+.reminder-content {
+    text-align: center;
+}
+
+.reminder-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.reminder-text {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #fff;
+    line-height: 1.5;
+}
+
+.reminder-subtext {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.4;
+}
+
+/* 橫屏時隱藏提醒 */
+@media (orientation: landscape) {
+    .rotate-reminder {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+}
 
 .container {
     max-width: 1200px;
@@ -610,6 +577,8 @@ header {
     padding: 25px 0;
     text-align: center;
     margin-bottom: 30px;
+    width:auto;
+
 }
 
 .company-header {
@@ -893,38 +862,7 @@ header {
         padding: 4px;
         min-height: 28px;
     }
-    header {
-        padding: 12px 0;
-        margin-bottom: 15px;
-        margin-left: -20px;
-        margin-right: -20px;
-        width: calc(100% + 40px);
-    }
-    
-    header .container {
-        padding: 0 15px; /* 小屏幕減少內邊距 */
-    }
-    
-    .company-header {
-        padding-bottom: 8px;
-        margin-bottom: 8px;
-        border-bottom: 2px solid var(--primary-color);
-    }
-    
-    .company-name {
-        font-size: 1.4rem;
-        line-height: 1.2;
-        margin-bottom: 6px;
-        word-wrap: break-word;
-    }
-    
-    .company-name-en {
-        font-size: 1rem;
-        margin-bottom: 8px;
-        line-height: 1.3;
-        word-wrap: break-word;
-    }
-    
+   
     .form-title {
         font-size: 1.2rem;
         line-height: 1.2;
@@ -1069,27 +1007,7 @@ header {
     margin-bottom: 10px;
 }
 @media (max-width: 360px) {
-    header {
-        padding: 10px 0;
-        margin-left: -20px;
-        margin-right: -20px;
-        width: calc(100% + 40px);
-    }
-    
-    header .container {
-        padding: 0 12px;
-    }
-    
-    .company-name {
-        font-size: 1.2rem;
-        line-height: 1.1;
-    }
-    
-    .company-name-en {
-        font-size: 0.9rem;
-        line-height: 1.2;
-    }
-    
+
     .form-title {
         font-size: 1.1rem;
         line-height: 1.1;
@@ -1235,47 +1153,7 @@ footer {
         line-height: 1.6;
     }
 }
-header {
-        padding: 15px 0; /* 移除左右內邊距，讓header貼邊 */
-        margin-bottom: 20px;
-        margin-left: -20px; /* 抵消container的padding */
-        margin-right: -20px; /* 抵消container的padding */
-        width: calc(100% + 40px); /* 補償container的padding */
-    }
-    
-    header .container {
-        padding: 0 20px; /* 在header內部重新添加內邊距 */
-    }
-    
-    .company-header {
-        padding-bottom: 10px;
-        margin-bottom: 10px;
-    }
-    
-    .company-name {
-        font-size: 1.6rem;
-        line-height: 1.2;
-        margin-bottom: 8px;
-    }
-    
-    .company-name-en {
-        font-size: 1.1rem;
-        margin-bottom: 10px;
-        line-height: 1.3;
-    }
-    
-    .form-title {
-        font-size: 1.4rem;
-        line-height: 1.3;
-        margin-top: 10px;
-    }
-    
-    .form-title-en {
-        font-size: 1rem;
-        margin-bottom: 10px;
-        line-height: 1.4;
-    }
-
+   
 @media (max-width: 480px) {
     footer {
         padding: 20px 0;
