@@ -5,23 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>康業服務有限公司電子申請平台-generalform</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="form2.css">
+    <link rel="stylesheet" href="../static/css/form2.css">
     <style>
         
 
     </style>
 </head>
 <body>
-    <!-- 橫屏提示層 -->
-    <div class="rotate-reminder">
-        <div class="phone-icon"></div>
-        <div class="reminder-content">
-            <div class="reminder-title">請將手機轉為橫屏</div>
-            <div class="reminder-text">為獲得更佳體驗，請將手機橫屏瀏覽</div>
-            <div class="reminder-subtext">For better experience, please rotate your device to landscape mode</div>
-        </div>
-    </div>
-    <!-- 成功提交的覆盖层 -->
     <div class="success-overlay" id="successOverlay">
         <div class="success-modal">
             <div class="success-icon">
@@ -66,7 +56,14 @@
         </div>
     </header>
 
-   
+    <div class="rotate-reminder">
+        <div class="phone-icon"></div>
+        <div class="reminder-text">
+            為獲得更佳體驗，請將手機橫屏瀏覽<br>
+            <span style="font-size: 1rem; opacity: 0.8;">For better experience, please rotate your device to landscape mode</span>
+        </div>
+    </div>
+
     <div class="container">
         <!-- 提交状态显示 -->
         <div class="submission-status" id="submissionStatus">
@@ -90,7 +87,8 @@
             <i class="fas fa-exclamation-circle"></i> 請完整回答下述所有問題，標「*」項為非必填內容<br>
             <span style="font-size: 0.9rem;">Please answer all questions completely. Items marked with "*" are optional.</span>
         </div>
-        <form id="applicationForm" class="form-section">
+        <form id="applicationForm" class="form-section" method="POST" action="/submit">
+             <input type="hidden" name="formtype" value="general">
             <div class ="form-container">
             <h2 class="section-title">求職者專用 FOR JOB APPLICANT USE ONLY</h2>
             <input type="hidden" name="typeform" value="general form">
@@ -120,12 +118,12 @@
                     <div class="form-group">
                         <label class="form-label">圖片上載 Photo upload</label>
                         <div class="file-upload-wrapper">
-                            <input type="file" name="photo" id="photoUpload" accept="image/*">
+                            <input type="file" name="photo" id="photoUpload" accept="image/*" required>
                             <div class="file-upload-btn" id="fileUploadBtn">
                                 <i class="fas fa-cloud-upload-alt"></i>
                                 <div class="file-upload-text">
                                     <span class="main-text">選擇圖片檔案</span>
-                                    <span class="sub-text">支援 JPG, PNG, GIF 格式</span>
+                                    <span class="sub-text">支援 JPG, PNG, JPEG 格式</span>
                                 </div>
                             </div>
                         </div>
@@ -249,17 +247,22 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>住宅地址<br>Residential Address (English)</th>
+                    <th>住宅地址<br>Residential Address (English)
+                    <button id =voiceInputBtn type="button" class="voice-input-btn" onclick="document.querySelector('#residentialAddressInput').focus">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    </th>
+                    
                     <td>
-                        <input name="address1" class="form-control" rows="1"></input>
-                        <input name="address2" class="form-control" rows="2"></input>
-                        <input name="address3" class="form-control" rows="3"></input>
+                        <input name="address1" id="residentialAddressInput" class="form-control" placeholder="請輸入/粘貼完整地址 Please enter/paste full address"></input> <!--//樓層/單位/-->
+                        <input name="address2" id="residentialAddress2" class="form-control" placeholder="Address Line 2"></input> <!--//大樓/building/estate/-->
+                        <input name="address3" id="residentialAddress3" class="form-control" placeholder="Address Line 3"></input><!--//街道/street/-->
 
                         <select name="address_area" id="addressArea1" class="form-control" required>
                             <option value="" disabled selected>請選擇地區 Please select area</option>
                         </select>
 
-                        <select name="address_district" class="form-control" required>
+                        <select name="address_district" id="residentialDistrict" class="form-control" required>
                             <option value="" disabled selected>請選擇地區 Please select district</option>
                             <option value="Hong Kong">香港島 Hong Kong Island</option>
                             <option value="Kowloon">九龍 Kowloon</option>
@@ -267,22 +270,22 @@
                             <option value="forigen">外地 Forigen</option>
                         </select>
 
-                        <input type = "text" name = "address_country" class="form-control" placeholder="請輸入國家 Please enter country" required>
+                        <input type = "text" name = "address_country" class="form-control" placeholder="請輸入國家/地區 Please enter country/region" required>
                         <div class="error-message">此為必填項目</div>
                     </td>
                 </tr>
                 <tr>
-                    <th>通訊地址<br>Correspondence Address (If different from above) <span class=""></span></th>
+                    <th>通訊地址<br>Correspondence Address (If different from above) <span class="required"></span></th>
                     <td>
                         <input name="address1" class="form-control" rows="1"></textarea>
                         <input name="address2" class="form-control" rows="2"></textarea>
                         <input name="address3" class="form-control" rows="3"></textarea>
                         
-                        <select name="address_area" id="addressArea2" class="form-control" >
+                        <select name="address_area" id="addressArea2" class="form-control">
                             <option value="" disabled selected>請選擇地區 Please select area</option>
                         </select>
                         
-                        <select name="address_district" class="form-control">
+                        <select name="address_district" class="form-control" >
                             <option value="" disabled selected>請選擇地區 Please select district</option>
                             <option value="Hong Kong">香港島 Hong Kong Island</option>
                             <option value="Kowloon">九龍 Kowloon</option>
@@ -290,7 +293,7 @@
                             <option value="forigen">外地 Forigen</option>
                         </select>
 
-                        <input type = "text" name = "address_country" class="form-control" placeholder="請輸入國家 Please enter country" required>
+                        <input type = "text" name = "address_country" class="form-control" placeholder="請輸入國家 Please enter country" >
                         <div class="error-message">此為必填項目</div>
                         <div class="optional">*</div>
                     </td>
@@ -325,16 +328,16 @@
                 </thead>
                 <tbody id = "educationTbody">
                         <tr>
-                            <td><input type="date" name="edu-start-date1" class="form-control"></td>
-                            <td><input type="date" name="edu-end-date1" class="form-control"></td>
-                            <td><textarea name="school1" class="form-control"></textarea></td>
-                            <td><textarea name="qualification1" class="form-control"></textarea></td>
+                            <td><input type="date" name="edu-start-date_1" class="form-control"></td>
+                            <td><input type="date" name="edu-end-date_1" class="form-control"></td>
+                            <td><textarea name="school_1" class="form-control"></textarea></td>
+                            <td><textarea name="qualification_1" class="form-control"></textarea></td>
                         </tr>
                          <tr>
-                            <td><input type="date" name="edu-start-date1" class="form-control"></td>
-                            <td><input type="date" name="edu-end-date1" class="form-control"></td>
-                            <td><textarea name="school1" class="form-control"></textarea></td>
-                            <td><textarea name="qualification1" class="form-control"></textarea></td>
+                            <td><input type="date" name="edu-start-date_2" class="form-control"></td>
+                            <td><input type="date" name="edu-end-date_2" class="form-control"></td>
+                            <td><textarea name="school_2" class="form-control"></textarea></td>
+                            <td><textarea name="qualification_2" class="form-control"></textarea></td>
                         </tr>
                 </tbody>
             </table>
@@ -354,14 +357,14 @@
                     </thead>
                     <tbody id ="quaTbody">
                         <tr>
-                            <td><input type = "date" name="date_obtained_1" class="form-control"></td>
+                            <td><input type = "date" name="prof_date_obtained_1" class="form-control"></td>
                             <td><textarea name="institution_1" class="form-control"></textarea></td>
-                            <td><textarea name="qualification_1" class="form-control"></textarea></td>
+                            <td><textarea name="pro_qualification_1" class="form-control"></textarea></td>
                         </tr>
                         <tr>
-                            <td><input type="date" name="date_obtained_2" class="form-control"></td>
+                            <td><input type="date" name="prof_date_obtained_2" class="form-control"></td>
                             <td><textarea name="institution_2" class="form-control"></textarea></td>
-                            <td><textarea name="qualification_2" class="form-control"></textarea></td>
+                            <td><textarea name="pro_qualification_2" class="form-control"></textarea></td>
                         </tr>
                     </tbody>
                 </table>
@@ -391,13 +394,13 @@
                             <td>
                                 <div class="radio-group" style="flex-direction: column;">
                                     <label class="radio-option">
-                                        <input type="radio" name="mandarin_written" value="Fluent" required> 流利 Fluent
+                                        <input type="radio" name="chinese_written" value="Fluent" required> 流利 Fluent
                                     </label>
                                     <label class="radio-option">
-                                        <input type="radio" name="mandarin_written" value="Fair"> 一般 Fair
+                                        <input type="radio" name="chinese_written" value="Fair"> 一般 Fair
                                     </label>
                                     <label class="radio-option">
-                                        <input type="radio" name="mandarin_written" value="Basic"> 基本 Basic
+                                        <input type="radio" name="chinese_written" value="Basic"> 基本 Basic
                                     </label>
                                 </div>
                                 <div class="error-message">此為必填項目</div>
@@ -437,13 +440,13 @@
                             <td>
                                 <div class="radio-group" style="flex-direction: column;">
                                     <label class="radio-option">
-                                        <input type="radio" name="mandarin_spoken" value="Fluent" required> 流利 Fluent
+                                        <input type="radio" name="chinese_spoken" value="Fluent" required> 流利 Fluent
                                     </label>
                                     <label class="radio-option">
-                                        <input type="radio" name="mandarin_spoken" value="Fair"> 一般 Fair
+                                        <input type="radio" name="chinese_spoken" value="Fair"> 一般 Fair
                                     </label>
                                     <label class="radio-option">
-                                        <input type="radio" name="mandarin_spoken" value="Basic"> 基本 Basic
+                                        <input type="radio" name="chinese_spoken" value="Basic"> 基本 Basic
                                     </label>
                                 </div>
                                 <div class="error-message">此為必填項目</div>
@@ -546,8 +549,8 @@
                 </thead>
                 <tbody id ="workExperienceTbody">
                     <tr>
-                        <td><input type="date" name="work-start" class="form-control" placeholder="dd/mm/yyyy"></td>
-                        <td><input type="date" name="work-end" class="form-control" placeholder="dd/mm/yyyy"></td>
+                        <td><input type="date" name="work-start1" class="form-control" placeholder="dd/mm/yyyy"></td>
+                        <td><input type="date" name="work-end1" class="form-control" placeholder="dd/mm/yyyy"></td>
                         <td><textarea  name="employer_1" class="form-control"></textarea></td>
                         <td><textarea  name="business_nature_1" class="form-control"></textarea></td>
                         <td><textarea  name="last_position_1" class="form-control"></textarea></td>
@@ -556,8 +559,8 @@
 
                     </tr>
                     <tr>
-                        <td><input type="date" name="work-start" class="form-control" placeholder="dd/mm/yyyy"></td>
-                        <td><input type="date" name="work-end" class="form-control" placeholder="dd/mm/yyyy"></td>
+                        <td><input type="date" name="work-start2" class="form-control" placeholder="dd/mm/yyyy"></td>
+                        <td><input type="date" name="work-end2" class="form-control" placeholder="dd/mm/yyyy"></td>
                         <td><textarea  name="employer_2" class="form-control"></textarea></td>
                         <td><textarea  name="business_nature_2" class="form-control"></textarea></td>
                         <td><textarea  name="last_position_2" class="form-control"></textarea></td>
@@ -617,10 +620,10 @@
                 <label class="form-label">2. 是否有家屬及/或親屬現於本集團任職?<br>Do you have any family member(s) and/or relative(s) working in the Company? </label>
                 <div class="radio-group">
                     <label class="radio-option">
-                        <input type="radio" name="relatives" value="No" required> 否 No
+                        <input type="radio" name="has_relatives" value="No" required> 否 No
                     </label>
                     <label class="radio-option">
-                        <input type="radio" name="relatives" value="Yes"> 是 Yes
+                        <input type="radio" name="has_relatives" value="Yes"> 是 Yes
                     </label>
                 </div>
                 <div class="error-message">此為必填項目</div>
@@ -765,11 +768,92 @@
         </div>
     </footer>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js">
+/**
+ * Handles OCR processing from an input file element.
+ * 
+ * @param {File} file - The image file object from the input.
+ * @returns {Promise<string>} - The extracted text.
+ */
+async function recognizeTextFromImage(file) {
+    if (!file) {
+        console.error("No file selected");
+        return;
+    }
+
+    console.log("Starting OCR processing...");
+    
+    // Tesseract.js worker
+    try {
+        const worker = await Tesseract.createWorker('chi_tra'); // Load Traditional Chinese
+        // You can also load 'eng' for English: await Tesseract.createWorker(['chi_tra', 'eng']);
+        
+        const ret = await worker.recognize(file);
+        
+        console.log("OCR Result:", ret.data.text);
+        
+        await worker.terminate();
+        return ret.data.text;
+    } catch (error) {
+        console.error("OCR Error:", error);
+        return null;
+    }
+}
+
+// Example usage hook for an HTML input element
+// Document ID: <input type="file" id="cameraInput" accept="image/*" capture="environment">
+function setupOCRListener() {
+    const inputElement = document.getElementById('cameraInput'); // Ensure this ID exists in your HTML
+    
+    if(inputElement) {
+        inputElement.addEventListener('change', async (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                // Show a loading indicator here (optional)
+                document.body.style.cursor = 'wait';
+                
+                const text = await recognizeTextFromImage(file);
+                
+                // Do something with the text (e.g., fill a form field)
+                if (text) {
+                    alert(`Text Found:\n${text}`);
+                    // Example: document.getElementById('nameField').value = parseName(text);
+                }
+                
+                document.body.style.cursor = 'default';
+            }
+        });
+    }
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', setupOCRListener);
+</script>
     <script>
         let e = 2;
         let w = 2;
         let v = 1;
         let q = 1;
+        // 監聽屏幕方向變化
+        window.addEventListener('orientationchange', adjustReminder);
+        // 初始加載時檢查
+        window.addEventListener('load', adjustReminder);
+
+        function adjustReminder() {
+            const reminder = document.querySelector('.rotate-reminder');
+            // 判斷是否為豎屏（0或180度為豎屏，90或-90度為橫屏）
+            const isPortrait = window.orientation === 0 || window.orientation === 180;
+            
+            if (isPortrait) {
+                reminder.style.opacity = '1';
+                reminder.style.visibility = 'visible';
+                reminder.style.pointerEvents = 'auto';
+            } else {
+                reminder.style.opacity = '0';
+                reminder.style.visibility = 'hidden';
+                reminder.style.pointerEvents = 'none';
+            }
+        }
 
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('applicationForm');
@@ -831,7 +915,6 @@ function addAddressArea(){
     ];
     const areaSelect = document.querySelectorAll('[name = "address_area"]');
     areaSelect.forEach(select => {
-        select.length = 1;
         hkAreas.forEach(area => {
             const option = document.createElement('option');
             option.value = area;
@@ -841,18 +924,16 @@ function addAddressArea(){
     });
     }
 
-    
-
 
 // add edu row if needed
     function addEducationRow(){
         const tbodyContainer = document.getElementById('educationTbody');
         const newRow = document.createElement('tr');
         newRow.innerHTML = `
-            <td><input type="date" name="edu-start-date${e}" class="form-control"></td>
-            <td><input type="date" name="edu-end-date${e}" class="form-control"></td>
-            <td><textarea name="school${e}" class="form-control"></textarea></td>
-            <td><textarea name="qualification${e}" class="form-control"></textarea></td>
+            <td><input type="date" name="edu-start-date_${e}" class="form-control"></td>
+            <td><input type="date" name="edu-end-date_${e}" class="form-control"></td>
+            <td><textarea name="school_${e}" class="form-control"></textarea></td>
+            <td><textarea name="qualification_${e}" class="form-control"></textarea></td>
         `;
         tbodyContainer.appendChild(newRow);
         e++;
@@ -866,25 +947,23 @@ function addAddressArea(){
         newRow.innerHTML = `
             <td><input type="date" name="work-start${w}" class="form-control"></td>
             <td><input type="date" name="work-end${w}" class="form-control"></td>
-            <td><textarea name="employer${w}" class="form-control"></textarea></td>
-            <td><textarea name="business_nature${w}" class="form-control"></textarea></td>
-            <td><textarea name="last_position${w}" class="form-control"></textarea></td>   
-            <td><textarea name="last_salary${w}" class="form-control"></textarea></td>
-            <td><textarea name="reason_leaving${w}" class="form-control"></textarea></td>
+            <td><textarea name="employer_${w}" class="form-control"></textarea></td>
+            <td><textarea name="business_nature_${w}" class="form-control"></textarea></td>
+            <td><textarea name="last_position_${w}" class="form-control"></textarea></td>   
+            <td><textarea name="last_salary_${w}" class="form-control"></textarea></td>
+            <td><textarea name="reason_leaving_${w}" class="form-control"></textarea></td>
         `;
         tbodyContainer.appendChild(newRow);
         w++;
     }
-
-            
     function addQualificationRow(){
         //add professional cert
         const tbodyContainer = document.getElementById('quaTbody');
         const newRow = document.createElement('tr');
         newRow.innerHTML = `
-            <td><input type="date" name="qualification${q}" class="form-control"></td>
-            <td><textarea name="institution${q}" class="form-control"></textarea></td>
-            <td><textarea name="qual-start-date${q}" class="form-control"></textarea></td>
+            <td><input type="date" name="prof_date_obtained_${q}" class="form-control"></td>
+            <td><textarea name="institution_${q}" class="form-control"></textarea></td>
+            <td><textarea name="pro_qualification_${q}" class="form-control"></textarea></td>
         `;
         tbodyContainer.appendChild(newRow);
         q++;
@@ -1162,47 +1241,53 @@ function addAddressArea(){
             }
             
             // 下载按钮事件
-            document.getElementById('downloadBtn').addEventListener('click', function() {
-                if (downloadUrl) {
-                    const link = document.createElement('a');
-                    link.href = downloadUrl;
-                    link.download = submissionData.filename;
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                }
-            });
+            const downloadBtn = document.getElementById('downloadBtn');
+            if (downloadBtn) {
+                downloadBtn.addEventListener('click', function() {
+                    if (downloadUrl) {
+                        const link = document.createElement('a');
+                        link.href = downloadUrl;
+                        link.download = submissionData.filename;
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    }
+                });
+            }
             
             // 新申请按钮事件
-            document.getElementById('newApplicationBtn').addEventListener('click', function() {
-                if (confirm('確定要填寫新的申請表嗎？當前數據將被清除。')) {
-                    form.reset();
-                    form.classList.remove('form-disabled');
-                    submitBtn.disabled = false;
-                    submissionStatus.style.display = 'none';
-                    successOverlay.style.display = 'none';
-                    
-                    // 清理下载链接
-                    if (downloadUrl) {
-                        URL.revokeObjectURL(downloadUrl);
-                        downloadUrl = null;
+            const newApplicationBtn = document.getElementById('newApplicationBtn');
+            if (newApplicationBtn) {
+                newApplicationBtn.addEventListener('click', function() {
+                    if (confirm('確定要填寫新的申請表嗎？當前數據將被清除。')) {
+                        form.reset();
+                        form.classList.remove('form-disabled');
+                        submitBtn.disabled = false;
+                        submissionStatus.style.display = 'none';
+                        successOverlay.style.display = 'none';
+                        
+                        // 清理下载链接
+                        if (downloadUrl) {
+                            URL.revokeObjectURL(downloadUrl);
+                            downloadUrl = null;
+                        }
                     }
-                }
-            });
+                });
+            }
             
             // 关闭模态框按钮事件
-            document.getElementById('closeModalBtn').addEventListener('click', function() {
-                successOverlay.style.display = 'none';
-            });
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', function() {
+                    successOverlay.style.display = 'none';
+                });
+            }
 
             // 手機轉動提醒功能
             function checkOrientation() {
                 const rotateReminder = document.querySelector('.rotate-reminder');
-                if (!rotateReminder) return;
-                
                 const isMobile = window.innerWidth <= 768;
-                // 判斷是否為豎屏（0或180度為豎屏，90或-90度為橫屏）
-                const isPortrait = window.orientation === 0 || window.orientation === 180;
+                const isPortrait = window.innerHeight > window.innerWidth;
                 
                 if (isMobile && isPortrait) {
                     rotateReminder.classList.add('show');
@@ -1214,56 +1299,70 @@ function addAddressArea(){
             // 監聽屏幕方向變化
             window.addEventListener('resize', checkOrientation);
             window.addEventListener('orientationchange', function() {
-                // 延遲檢查以確保orientation change完成
-                setTimeout(checkOrientation, 100);
+                setTimeout(checkOrientation, 100); // 延遲一點以確保orientation change完成
             });
             
             // 初始檢查
-            window.addEventListener('load', checkOrientation);
             checkOrientation();
 
-            document.getElementById('photoUpload').addEventListener('change', function(e) {
-    const fileUploadBtn = document.getElementById('fileUploadBtn');
-    const fileInfo = document.getElementById('fileInfo');
-    const fileName = document.getElementById('fileName');
-    
-    if (e.target.files.length > 0) {
-        const file = e.target.files[0];
-        
-        // 更新按鈕樣式
-        fileUploadBtn.classList.add('file-selected');
-        fileUploadBtn.innerHTML = `
-            <i class="fas fa-check-circle"></i>
-            <div class="file-upload-text">
-                <span class="main-text">圖片已選擇</span>
-                <span class="sub-text">點擊重新選擇</span>
-            </div>
-        `;
-        
-        // 顯示文件信息
-        fileName.textContent = file.name;
-        fileInfo.classList.add('show');
-    } else {
-        // 重置樣式
-        fileUploadBtn.classList.remove('file-selected');
-        fileUploadBtn.innerHTML = `
-            <i class="fas fa-cloud-upload-alt"></i>
-            <div class="file-upload-text">
-                <span class="main-text">選擇圖片檔案</span>
-                <span class="sub-text">支援 JPG, PNG, GIF 格式</span>
-            </div>
-        `;
-        fileInfo.classList.remove('show');
-    }
-});
+            const photoUploadInput = document.getElementById('photoUpload');
+            if (photoUploadInput) {
+                photoUploadInput.addEventListener('change', function(e) {
+                    const fileUploadBtn = document.getElementById('fileUploadBtn');
+                    const fileInfo = document.getElementById('fileInfo');
+                    const fileName = document.getElementById('fileName');
+                    
+                    if (e.target.files.length > 0) {
+                        const file = e.target.files[0];
+                        
+                        // 更新按鈕樣式
+                        if (fileUploadBtn) {
+                            fileUploadBtn.classList.add('file-selected');
+                            fileUploadBtn.innerHTML = `
+                                <i class="fas fa-check-circle"></i>
+                                <div class=\"file-upload-text\">
+                                    <span class=\"main-text\">圖片已選擇</span>
+                                    <span class=\"sub-text\">點擊重新選擇</span>
+                                </div>
+                            `;
+                        }
+                        
+                        // 顯示文件信息
+                        if (fileName && fileInfo) {
+                            fileName.textContent = file.name;
+                            fileInfo.classList.add('show');
+                        }
+                    } else {
+                        // 重置樣式
+                        if (fileUploadBtn) {
+                            fileUploadBtn.classList.remove('file-selected');
+                            fileUploadBtn.innerHTML = `
+                                <i class=\"fas fa-cloud-upload-alt\"></i>
+                                <div class=\"file-upload-text\">
+                                    <span class=\"main-text\">選擇圖片檔案</span>
+                                    <span class=\"sub-text\">支援 JPG, PNG, JPEG 格式</span>
+                                </div>
+                            `;
+                        }
+                        if (fileInfo) fileInfo.classList.remove('show');
+                    }
+                });
+            }
         });
 
     </script>
+    <script src="../static/js/address-parser.js"></script>
+    <script>
+        // Initialize Address Parser
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.AddressParser) {
+                // Initialize on the residential address input
+                window.AddressParser.attachAddressParser('residentialAddressInput');
+                console.log('Address Parser initialized on residentialAddressInput');
+            } else {
+                console.error('Address Parser script not loaded');
+            }
+        });
+    </script>
 </body>
-
 </html>
-
-
-
-
-
